@@ -1,4 +1,5 @@
 infos/
+.env
 
 .gradle
 build/
