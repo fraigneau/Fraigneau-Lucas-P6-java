@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pay My Buddy - Ajouter relation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .header span {
+        font-size: 24px;
+        font-weight: 600;
+        color: #4a4a4a;
+      }
+
+      .header a {
+        text-decoration: none;
+        color: #4a4a4a;
+        margin: 0 10px;
+        font-size: 16px;
+        transition: color 0.3s;
+      }
+
+      .header a.active {
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .header a:hover {
+        color: #007bff;
+      }
+
+      .container {
+        padding: 20px 40px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .form-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        width: 100%;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="text"] {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        transition: box-shadow 0.3s;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+      }
+
+      button {
+        background-color: #ffa500;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background-color: #e69500;
+        transform: translateY(-2px);
+      }
+
+      h2 {
+        color: white;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <span>Pay My Buddy</span>
+      <nav>
+        <a href="/transfer" sec:authorize="isAuthenticated()">Transférer</a>
+        <a href="/profil" sec:authorize="isAuthenticated()">Profil</a>
+        <a href="/relation" sec:authorize="isAuthenticated()" class="active"
+          >Ajouter relation</a
+        >
+        <a href="/login?logout" sec:authorize="isAuthenticated()"
+          >Se déconnecter</a
+        >
+      </nav>
+    </div>
+
+    <div class="container">
+      <h2>Ajouter une relation</h2>
+      <div class="form-section">
+        <input type="text" placeholder="Saisir une adresse mail" />
+        <button>Ajouter</button>
+      </div>
+    </div>
+  </body>
+</html>

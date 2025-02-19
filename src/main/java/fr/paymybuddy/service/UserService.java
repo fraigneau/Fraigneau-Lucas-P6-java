@@ -1,6 +1,5 @@
 package fr.paymybuddy.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -17,18 +16,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // Ajouter un utilisateur
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
-
-    // Récupérer tous les utilisateurs
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    // Rechercher un utilisateur par email
     public Optional<User> getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 }
