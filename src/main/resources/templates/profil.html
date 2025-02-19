@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pay My Buddy - Profil</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .header span {
+        font-size: 24px;
+        font-weight: 600;
+        color: #4a4a4a;
+      }
+
+      .header a {
+        text-decoration: none;
+        color: #4a4a4a;
+        margin: 0 10px;
+        font-size: 16px;
+        transition: color 0.3s;
+      }
+
+      .header a.active {
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .header a:hover {
+        color: #007bff;
+      }
+
+      .container {
+        padding: 20px 40px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profile-section {
+        width: 100%;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .profile-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .profile-item label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4a4a4a;
+      }
+
+      .profile-item input {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        background-color: #f9f9f9;
+      }
+
+      button {
+        align-self: flex-end;
+        background-color: #ffa500;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      h2 {
+        color: white;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <span>Pay My Buddy</span>
+      <nav>
+        <a href="/transfer" sec:authorize="isAuthenticated()">Transférer</a>
+        <a href="/profil" sec:authorize="isAuthenticated()" class="active"
+          >Profil</a
+        >
+        <a href="/relation" sec:authorize="isAuthenticated()"
+          >Ajouter relation</a
+        >
+        <a href="/login?logout" sec:authorize="isAuthenticated()"
+          >Se déconnecter</a
+        >
+      </nav>
+    </div>
+
+    <div class="container">
+      <h2>Profil</h2>
+      <form th:action="@{/profil}" method="post" class="profile-section">
+        <div class="profile-item">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            th:value="${user.username}"
+            disabled
+          />
+        </div>
+        <div class="profile-item">
+          <label for="email">Mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            th:value="${user.email}"
+            disabled
+          />
+        </div>
+        <div class="profile-item">
+          <label for="password">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value="******"
+            disabled
+          />
+        </div>
+        <button type="button" id="edit-btn">Modifier</button>
+        <button type="submit" id="save-btn" style="display: none">
+          Enregistrer
+        </button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("edit-btn")
+        .addEventListener("click", function () {
+          document
+            .querySelectorAll("input")
+            .forEach((input) => input.removeAttribute("disabled"));
+          document.getElementById("save-btn").style.display = "block";
+        });
+    </script>
+  </body>
+</html>

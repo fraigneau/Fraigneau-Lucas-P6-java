@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pay My Buddy - Transférer</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        align-items: center;
+      }
+
+      .header span {
+        font-size: 24px;
+        font-weight: 600;
+        color: #4a4a4a;
+      }
+
+      .header a {
+        text-decoration: none;
+        color: #4a4a4a;
+        margin: 0 10px;
+        font-size: 16px;
+        transition: color 0.3s;
+      }
+
+      .header a.active {
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .header a:hover {
+        color: #007bff;
+      }
+
+      .container {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .form-section {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      select,
+      input[type="text"],
+      input[type="number"] {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+      }
+
+      table {
+        width: 100%;
+        max-width: 800px;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      table th,
+      table td {
+        padding: 15px;
+        text-align: left;
+        font-size: 14px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      table th {
+        background-color: #f9f9f9;
+        font-weight: 600;
+      }
+
+      table tbody tr:hover {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <span>Pay My Buddy</span>
+      <nav>
+        <a href="/transfer" sec:authorize="isAuthenticated()" class="active"
+          >Transférer</a
+        >
+        <a href="/profil" sec:authorize="isAuthenticated()">Profil</a>
+        <a href="/relation" sec:authorize="isAuthenticated()"
+          >Ajouter relation</a
+        >
+        <a href="/login?logout" sec:authorize="isAuthenticated()"
+          >Se déconnecter</a
+        >
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="form-section">
+        <select>
+          <option>Sélectionner une relation</option>
+          <option>Laure-Anne</option>
+          <option>Clara</option>
+          <option>Luc</option>
+        </select>
+        <input type="text" placeholder="Description" />
+        <input type="number" placeholder="0€" />
+        <button>Payer</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Relations</th>
+            <th>Description</th>
+            <th>Montant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Laure-Anne</td>
+            <td>Restaurant</td>
+            <td>10€</td>
+          </tr>
+          <tr>
+            <td>Clara</td>
+            <td>Voyage</td>
+            <td>25€</td>
+          </tr>
+          <tr>
+            <td>Luc</td>
+            <td>Billets de cinéma</td>
+            <td>8€</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
