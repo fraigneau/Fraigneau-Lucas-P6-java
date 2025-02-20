@@ -11,10 +11,5 @@ import org.springframework.lang.NonNull;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @NonNull
-    Optional<User> findById(@NonNull Long id);
-
     Optional<User> findByEmail(String email);
-
-    boolean existsByEmail(String email);
 }
