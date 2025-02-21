@@ -38,7 +38,7 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/login", "/register").permitAll()
+                                                .requestMatchers("/login", "/signup", "signup-processing").permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin(login -> login
                                                 .loginPage("/login")
@@ -55,7 +55,8 @@ public class SecurityConfig {
         @SuppressWarnings("deprecation")
         @Bean
         public PasswordEncoder passwordEncoder() {
-                // TODO : utiliser BCryptPasswordEncoder
+                // return new BCryptPasswordEncoder();
                 return NoOpPasswordEncoder.getInstance();
+
         }
 }

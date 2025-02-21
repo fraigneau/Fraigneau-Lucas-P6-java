@@ -1,5 +1,8 @@
 package fr.paymybuddy.service;
 
+import java.util.Optional;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.paymybuddy.dto.UserUpdateDTO;
@@ -10,9 +13,11 @@ import fr.paymybuddy.repository.UserRepository;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User getUserByEmail(String email) {
@@ -35,32 +40,29 @@ public class UserService {
         if (user == null) {
             throw new IllegalArgumentException("User not found");
         }
-        user = mergeUserUpdate(user, updatedUser);
+        user = mergeUpdateUser(user, updatedUser);
 
         userRepository.save(user);
     }
 
-    public User mergeUserUpdate(User existingUser, UserUpdateDTO updateDTO) {
-        if (existingUser == null || updateDTO == null) {
-            throw new IllegalArgumentException(
-                    "les donnee de mise ajour sont null");
-        }
+    public User mergeUpdateUser(User existingUser, UserUpdateDTO updateDTO) {
+        Optional.ofNullable(updateDTO.getUsername())
+                .filter(username -> isValidUpdateUser(username, existingUser.getUsername()))
+                .ifPresent(existingUser::setUsername);
 
-        if (updateDTO.getUsername() != null && !updateDTO.getUsername().isBlank() &&
-                !updateDTO.getUsername().equals(existingUser.getUsername())) {
-            existingUser.setUsername(updateDTO.getUsername());
-        }
+        Optional.ofNullable(updateDTO.getEmail())
+                .filter(email -> isValidUpdateUser(email, existingUser.getEmail()))
+                .ifPresent(existingUser::setEmail);
 
-        if (updateDTO.getEmail() != null && !updateDTO.getEmail().isBlank() &&
-                !updateDTO.getEmail().equals(existingUser.getEmail())) {
-            existingUser.setEmail(updateDTO.getEmail());
-        }
-
-        if (updateDTO.getPassword() != null && !updateDTO.getPassword().isBlank()) {
-            // TODO HASH PASSWORD
-            existingUser.setPassword(updateDTO.getPassword());
-        }
+        Optional.ofNullable(updateDTO.getPassword())
+                .filter(password -> !password.isBlank())
+                .map(passwordEncoder::encode)
+                .ifPresent(existingUser::setPassword);
 
         return existingUser;
+    }
+
+    private boolean isValidUpdateUser(String newValue, String existingValue) {
+        return newValue != null && !newValue.isBlank() && !newValue.equals(existingValue);
     }
 }

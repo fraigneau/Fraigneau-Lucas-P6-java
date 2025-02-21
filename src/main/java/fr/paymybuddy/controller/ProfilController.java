@@ -21,8 +21,15 @@ public class ProfilController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfilController.class);
 
+    private UserService userService;
+
+    public ProfilController() {
+    }
+
     @Autowired
-    UserService userService;
+    public ProfilController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/profil")
     public String profil(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -39,8 +46,8 @@ public class ProfilController {
 
     @PostMapping("/profil-processing")
     public String profilProssesing(@Valid @ModelAttribute("user") UserUpdateDTO updatedUser,
-            BindingResult bindingResult, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        if (bindingResult.hasErrors()) {
+            BindingResult result, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        if (result.hasErrors()) {
             return "profil";
         }
         userService.updateUser(updatedUser, userDetails.getId());
