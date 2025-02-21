@@ -11,7 +11,7 @@
         font-family: "Poppins", sans-serif;
         background: linear-gradient(135deg, #6e8efb, #a777e3);
         margin: 0;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
       }
@@ -53,61 +53,84 @@
       }
 
       .container {
-        padding: 20px 40px;
         flex: 1;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: 20px;
       }
 
       .profile-section {
-        width: 100%;
-        max-width: 600px;
-        background: rgba(255, 255, 255, 0.8);
+        width: 90%;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.9);
         padding: 20px;
         border-radius: 12px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      .profile-section h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #ffa500;
       }
 
       .profile-item {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+        margin-bottom: 15px;
+        text-align: left;
       }
 
       .profile-item label {
+        display: block;
+        margin-bottom: 5px;
         font-size: 14px;
         font-weight: 600;
         color: #4a4a4a;
       }
 
       .profile-item input {
+        width: 100%;
         padding: 12px;
         border: 1px solid #ddd;
         border-radius: 8px;
         font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         background-color: #f9f9f9;
+        box-sizing: border-box;
+      }
+
+      .profile-item input:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
       }
 
       button {
-        align-self: flex-end;
-        background-color: #ffa500;
+        width: 100%;
+        background-color: #007bff;
         color: white;
         border: none;
-        padding: 12px 20px;
+        padding: 12px;
         border-radius: 8px;
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.2s;
+        margin-top: 20px;
       }
 
-      h2 {
-        color: white;
-        margin-bottom: 20px;
+      button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+      }
+
+      .error {
+        color: #dc3545;
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
       }
     </style>
   </head>
@@ -129,57 +152,64 @@
     </div>
 
     <div class="container">
-      <h2>Profil</h2>
       <form
-  th:action="@{/profil-processing}"
-  th:object="${user}"
-  method="post"
-  class="profile-section"
->
-  <!-- Username -->
-  <div class="profile-item">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" th:field="*{username}" />
-    <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-  </div>
+        th:action="@{/signup-processing}"
+        th:object="${user}"
+        method="post"
+        class="profile-section"
+      >
+        <h2>Profil</h2>
 
-  <!-- Email -->
-  <div class="profile-item">
-    <label for="email">Mail</label>
-    <input type="email" id="email" name="email" th:field="*{email}" />
-    <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-  </div>
+        <div class="profile-item">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            th:field="*{username}"
+            placeholder="Entrez votre username"
+          />
+          <span
+            class="error"
+            th:if="${#fields.hasErrors('username')}"
+            th:errors="*{username}"
+          ></span>
+        </div>
 
-  <!-- Mot de passe -->
-  <div class="profile-item">
-    <label for="password">Mot de passe</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      th:field="*{password}"
-      placeholder="Laissez vide pour ne pas changer"
-    />
-    <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-  </div>
+        <div class="profile-item">
+          <label for="email">Mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            th:field="*{email}"
+            placeholder="Entrez votre email"
+          />
+          <span
+            class="error"
+            th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+          ></span>
+        </div>
 
-  <button type="submit">Enregistrer</button>
-</form>
+        <div class="profile-item">
+          <label for="password">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            th:field="*{password}"
+            placeholder="Entrez votre mdp : 6 caractères minimum"
+          />
+          <span
+            class="error"
+            th:if="${#fields.hasErrors('password')}"
+            th:errors="*{password}"
+          ></span>
+        </div>
 
-<script>
-  document.getElementById("edit-btn").addEventListener("click", function () {
-    document.querySelectorAll("input").forEach((input) => input.removeAttribute("disabled"));
-    document.getElementById("save-btn").style.display = "inline-block";
-    document.getElementById("cancel-btn").style.display = "inline-block";
-    this.style.display = "none";
-  });
-
-  document.getElementById("cancel-btn").addEventListener("click", function () {
-    document.querySelectorAll("input").forEach((input) => input.setAttribute("disabled", "true"));
-    document.getElementById("edit-btn").style.display = "inline-block";
-    document.getElementById("save-btn").style.display = "none";
-    this.style.display = "none";
-  });
-</script>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
   </body>
 </html>

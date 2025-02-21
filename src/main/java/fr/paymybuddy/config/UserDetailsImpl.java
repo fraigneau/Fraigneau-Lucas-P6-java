@@ -7,18 +7,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.paymybuddy.model.User;
+import lombok.Data;
 
+@Data
 public class UserDetailsImpl implements UserDetails {
+
+    private Long id;
+    private String username;
     private String email;
     private String password;
-    private String username;
-    private Long id;
 
     public UserDetailsImpl(User user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.username = user.getUsername();
-        this.id = user.getId();
     }
 
     @Override
