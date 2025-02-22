@@ -1,6 +1,6 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.4.3"
+    id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -35,8 +35,8 @@ dependencies {
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 
     // Lombok
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
 
     // Base de données MySQL
     runtimeOnly("com.mysql:mysql-connector-j")
@@ -62,3 +62,4 @@ tasks.withType<Test> {
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.add("-Amapstruct.defaultComponentModel=spring")
 }
+
