@@ -1,11 +1,10 @@
-package fr.paymybuddy.service;
+package fr.paymybuddy.config;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import fr.paymybuddy.config.UserDetailsImpl;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.UserRepository;
 

@@ -4,8 +4,9 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import fr.paymybuddy.dto.UserUpdateDTO;
+import fr.paymybuddy.dto.UserFromDTO;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.UserRepository;
 
@@ -25,16 +26,19 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User byEmail not found"));
     }
 
+    @Transactional
     public User getUserById(Long id) {
-        return userRepository.findById(id)
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User byId not found"));
+
+        return user;
     }
 
     public void saveUser(User user) {
         userRepository.save(user);
     }
 
-    public void updateUser(UserUpdateDTO updatedUser, Long id) {
+    public void updateUser(UserFromDTO updatedUser, Long id) {
 
         User user = getUserByEmail(updatedUser.getEmail());
         if (user == null) {
@@ -45,7 +49,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User mergeUpdateUser(User existingUser, UserUpdateDTO updateDTO) {
+    public User mergeUpdateUser(User existingUser, UserFromDTO updateDTO) {
         Optional.ofNullable(updateDTO.getUsername())
                 .filter(username -> isValidUpdateUser(username, existingUser.getUsername()))
                 .ifPresent(existingUser::setUsername);

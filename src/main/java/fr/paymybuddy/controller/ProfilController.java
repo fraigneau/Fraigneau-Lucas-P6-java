@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.paymybuddy.config.UserDetailsImpl;
-import fr.paymybuddy.dto.UserUpdateDTO;
+import fr.paymybuddy.dto.UserFromDTO;
+import fr.paymybuddy.model.User;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
 
@@ -34,7 +35,7 @@ public class ProfilController {
     @GetMapping("/profil")
     public String profil(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null) {
-            UserUpdateDTO user = new UserUpdateDTO(userDetails.getUsername(),
+            UserFromDTO user = new UserFromDTO(userDetails.getUsername(),
                     userDetails.getEmail(), null);
             model.addAttribute("user", user);
         } else {
@@ -45,7 +46,7 @@ public class ProfilController {
     }
 
     @PostMapping("/profil-processing")
-    public String profilProssesing(@Valid @ModelAttribute("user") UserUpdateDTO updatedUser,
+    public String profilProssesing(@Valid @ModelAttribute("user") UserFromDTO updatedUser,
             BindingResult result, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (result.hasErrors()) {
             return "profil";
