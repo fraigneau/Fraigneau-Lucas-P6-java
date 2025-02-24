@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import fr.paymybuddy.dto.UserFromDTO;
-import fr.paymybuddy.mapper.UserUpdateMapper;
+import fr.paymybuddy.dto.UserFormDTO;
+import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
 
@@ -21,26 +21,26 @@ public class SignupController {
     private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
 
     private UserService userService;
-    private UserUpdateMapper UserUpdateMapper;
+    private UserMapper UserUpdateMapper;
 
     public SignupController() {
     }
 
     @Autowired
-    public SignupController(UserService userService, UserUpdateMapper UserUpdateMapper) {
+    public SignupController(UserService userService, UserMapper UserUpdateMapper) {
         this.userService = userService;
         this.UserUpdateMapper = UserUpdateMapper;
     }
 
     @GetMapping("/signup")
     public String login(Model model) {
-        model.addAttribute("user", new UserFromDTO());
+        model.addAttribute("user", new UserFormDTO());
         logger.debug("Acces a la page d'inscription");
         return "signup";
     }
 
     @PostMapping("/signup-processing")
-    public String signup(@Valid @ModelAttribute("user") UserFromDTO newuser, BindingResult result, Model model) {
+    public String signup(@Valid @ModelAttribute("user") UserFormDTO newuser, BindingResult result, Model model) {
         if (result.hasErrors()) {
             logger.error("Erreur lors de l'inscription: " + result.getAllErrors());
             return "signup";

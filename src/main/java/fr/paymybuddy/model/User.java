@@ -1,5 +1,6 @@
 package fr.paymybuddy.model;
 
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -38,9 +39,9 @@ public class User {
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_connections", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "connection_id"))
-    private Set<User> friends;
+    private List<User> friends;
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Transaction> sentTransactions;

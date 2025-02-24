@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.paymybuddy.config.UserDetailsImpl;
-import fr.paymybuddy.dto.UserFromDTO;
-import fr.paymybuddy.model.User;
+import fr.paymybuddy.dto.UserFormDTO;
+import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
 
@@ -23,21 +23,22 @@ public class ProfilController {
     private static final Logger logger = LoggerFactory.getLogger(ProfilController.class);
 
     private UserService userService;
+    private UserMapper userMapper;
 
     public ProfilController() {
     }
 
     @Autowired
-    public ProfilController(UserService userService) {
+    public ProfilController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping("/profil")
     public String profil(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null) {
-            UserFromDTO user = new UserFromDTO(userDetails.getUsername(),
-                    userDetails.getEmail(), null);
-            model.addAttribute("user", user);
+            UserFormDTO actualUserForm = userMapper.toUserFormDTO(userService.getUserById(userDetails.getId()));
+            model.addAttribute("user", actualUserForm);
         } else {
             logger.warn("Aucun utilisateur authentifié !");
             return "redirect:/login";
@@ -46,7 +47,7 @@ public class ProfilController {
     }
 
     @PostMapping("/profil-processing")
-    public String profilProssesing(@Valid @ModelAttribute("user") UserFromDTO updatedUser,
+    public String profilProssesing(@Valid @ModelAttribute("user") UserFormDTO updatedUser,
             BindingResult result, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (result.hasErrors()) {
             return "profil";
