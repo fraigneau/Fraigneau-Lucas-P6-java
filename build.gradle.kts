@@ -61,5 +61,6 @@ tasks.withType<Test> {
 
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.add("-Amapstruct.defaultComponentModel=spring")
+    options.compilerArgs.add("-Amapstruct.verbose=true")  // Ajout du mode verbeux
 }
 

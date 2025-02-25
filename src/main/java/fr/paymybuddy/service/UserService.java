@@ -74,11 +74,46 @@ public class UserService {
     @Transactional
     public List<UserFriendDTO> getFriends(Long userId) {
         User user = userRepository.findByIdWithFriends(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User with Friend not found"));
 
         return user.getFriends().stream()
                 .map(friend -> new UserFriendDTO(friend.getId(), friend.getUsername(), friend.getEmail()))
                 .toList();
     }
 
+    @Transactional
+    public void addFriend(Long userId, Long friendId) {
+
+        User user = getUserById(userId);
+        User friend = getUserById(friendId);
+
+        if (!isFriend(user, friend)) {
+            user.getFriends().add(friend);
+            friend.getFriends().add(user);
+            userRepository.save(user);
+            userRepository.save(friend);
+        } else {
+            throw new IllegalArgumentException("User is already friend with this user");
+        }
+    }
+
+    @Transactional
+    public void deleteFriend(Long userId, Long friendId) {
+
+        User user = getUserById(userId);
+        User friend = getUserById(friendId);
+
+        if (isFriend(user, friend)) {
+            user.getFriends().remove(friend);
+            friend.getFriends().remove(user);
+            userRepository.save(user);
+            userRepository.save(friend);
+        } else {
+            throw new IllegalArgumentException("User is not friend with this user");
+        }
+    }
+
+    private boolean isFriend(User user, User friend) {
+        return user.getFriends().contains(friend) || friend.getFriends().contains(user);
+    }
 }
