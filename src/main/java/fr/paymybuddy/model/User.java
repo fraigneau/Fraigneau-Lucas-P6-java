@@ -39,6 +39,9 @@ public class User {
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
+    @Column(name = "balance", nullable = false, columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
+    private double balance;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_connections", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "connection_id"))
     private List<User> friends;

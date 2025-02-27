@@ -120,6 +120,12 @@
     table tbody tr:hover {
       background-color: #f1f1f1;
     }
+
+    h2 {
+      color: white;
+      margin-bottom: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -127,7 +133,7 @@
   <div class="header">
     <span>Pay My Buddy</span>
     <nav>
-      <a href="/transfer" sec:authorize="isAuthenticated()" class="active">Virements</a>
+      <a href="/transaction" sec:authorize="isAuthenticated()" class="active">Virements</a>
       <a href="/profil" sec:authorize="isAuthenticated()">Profil</a>
       <a href="/friends" sec:authorize="isAuthenticated()">Relations</a>
       <a href="/login?logout" sec:authorize="isAuthenticated()">Se déconnecter</a>
@@ -135,41 +141,52 @@
   </div>
 
   <div class="container">
+    <h2>Ajouter des fonds</h2>
+    <h3 th:if="${param.ferror}" style="color: rgb(239, 6, 6)">Fonds insuffisante</h3>
+    <h3 th:if="${param.fsucess}" style="color: rgb(10, 232, 40)">Fonds effectués</h3>
     <div class="form-section">
-      <select>
-        <option>Sélectionner une relation</option>
-        <option>Laure-Anne</option>
-        <option>Clara</option>
-        <option>Luc</option>
-      </select>
-      <input type="text" placeholder="Description" />
-      <input type="number" placeholder="0€" />
-      <button>Payer</button>
+      <form th:action="@{/transaction/deposit}" method="get">
+        <select name="compte">
+          <option disabled selected>Choix du compte</option>
+          <option>Pay My Buddy</option>
+        </select>
+        <input type="number" name="count" step="0.01" placeholder="Montant 0€" />
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+
+    <h2>Virements</h2>
+    <h3 th:if="${param.verror}" style="color: rgb(239, 6, 6)">Balance insuffisante</h3>
+    <h3 th:if="${param.vsucess}" style="color: rgb(10, 232, 40)">Virements effectués</h3>
+    <div class="form-section">
+      <form th:action="@{/transaction/pay}" method="get">
+        <select name="receiverEmail">
+          <option value="" disabled selected>Choix du destinataire</option>
+          <option th:each="friend : ${friends}" th:text="${friend.email}"></option>
+        </select>
+        <input type="text" name="description" maxlength="25" minlength="5" placeholder="Description" />
+        <input type="number" name="amount" step="0.01" placeholder="Montant 0€" th:placeholder=${balance} />
+        <button type="submit">Envoyer</button>
+      </form>
     </div>
 
     <table>
       <thead>
         <tr>
-          <th>Relations</th>
+          <th>Emetteur</th>
+          <th>Récepteur</th>
           <th>Description</th>
           <th>Montant</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Laure-Anne</td>
-          <td>Restaurant</td>
-          <td>10€</td>
-        </tr>
-        <tr>
-          <td>Clara</td>
-          <td>Voyage</td>
-          <td>25€</td>
-        </tr>
-        <tr>
-          <td>Luc</td>
-          <td>Billets de cinéma</td>
-          <td>8€</td>
+        <tr th:each="transaction : ${transactions}">
+          <td th:text="${transaction.senderUsername}"></td>
+          <td th:text="${transaction.receiverUsername}"></td>
+          <td th:text="${transaction.description}"></td>
+          <td th:text="${transaction.amount}"></td>
+          <td th:text="${transaction.createdAt}"></td>
         </tr>
       </tbody>
     </table>

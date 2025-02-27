@@ -116,4 +116,27 @@ public class UserService {
     private boolean isFriend(User user, User friend) {
         return user.getFriends().contains(friend) || friend.getFriends().contains(user);
     }
+
+    @Transactional
+    public void updateBalance(User sender, User reciver, double amount) {
+        if (!isValidBalanceOperationForSender(sender, amount)) {
+            throw new IllegalArgumentException("Insufficient balance");
+        } else {
+            sender.setBalance(sender.getBalance() - amount);
+            reciver.setBalance(sender.getBalance() + amount);
+            userRepository.save(sender);
+            userRepository.save(reciver);
+        }
+    }
+
+    private boolean isValidBalanceOperationForSender(User user, double amount) {
+        if (user.getBalance() - amount < 0)
+            return false;
+        return true;
+    }
+
+    public void addBalance(User user, double amount) {
+        user.setBalance(user.getBalance() + amount);
+        userRepository.save(user);
+    }
 }
