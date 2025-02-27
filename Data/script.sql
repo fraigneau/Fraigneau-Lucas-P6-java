@@ -11,6 +11,7 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
+    balance DECIMAL(10, 2) DEFAULT 0.00,
     CONSTRAINT unique_email UNIQUE (email)
 );
 
@@ -24,9 +25,9 @@ CREATE TABLE user_connections (
     CONSTRAINT fk_connection FOREIGN KEY (connection_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS user_transactions;
+DROP TABLE IF EXISTS transactions;
 
-CREATE TABLE user_transactions (
+CREATE TABLE transactions (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     sender_id BIGINT NOT NULL,
     receiver_id BIGINT NOT NULL,
