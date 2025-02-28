@@ -33,12 +33,12 @@ public class TransactionService {
 
     private List<Transaction> getTransactionsBySender(Long sender) {
         return transactionRepository.findBySender_Id(sender)
-                .orElseThrow(() -> new RuntimeException("Transactions by sender not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Transactions by sender not found"));
     }
 
     private List<Transaction> getTransactionsByReceiver(Long receiver) {
         return transactionRepository.findByReceiver_Id(receiver)
-                .orElseThrow(() -> new RuntimeException("Transactions by receiver not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Transactions by receiver not found"));
     }
 
     public List<TransactionDTO> getFilteredTransactionsByUser(User user) {
