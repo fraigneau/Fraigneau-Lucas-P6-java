@@ -121,21 +121,30 @@ public class UserService {
     public void updateBalance(User sender, User reciver, double amount) {
         if (!isValidBalanceOperationForSender(sender, amount)) {
             throw new IllegalArgumentException("Insufficient balance");
-        } else {
-            sender.setBalance(sender.getBalance() - amount);
-            reciver.setBalance(sender.getBalance() + amount);
-            userRepository.save(sender);
-            userRepository.save(reciver);
         }
+        if (!isValidReceiver(sender, reciver)) {
+            throw new IllegalArgumentException("Sender and receiver are the same");
+        }
+        sender.setBalance(sender.getBalance() - amount);
+        reciver.setBalance(sender.getBalance() + amount);
+        userRepository.save(sender);
+        userRepository.save(reciver);
+
     }
 
     private boolean isValidBalanceOperationForSender(User user, double amount) {
-        if (user.getBalance() - amount < 0)
-            return false;
-        return true;
+        return user.getBalance() - amount > 0 && amount > 0;
     }
 
+    private boolean isValidReceiver(User sender, User receiver) {
+        return sender.getId() != receiver.getId();
+    }
+
+    @Transactional
     public void addBalance(User user, double amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be positive");
+        }
         user.setBalance(user.getBalance() + amount);
         userRepository.save(user);
     }
