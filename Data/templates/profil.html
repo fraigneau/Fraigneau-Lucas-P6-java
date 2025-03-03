@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pay My Buddy - Profil</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+  <div class="header">
+    <span>Pay My Buddy</span>
+    <nav>
+      <a href="/transfer" sec:authorize="isAuthenticated()">Virements</a>
+      <a href="/profil" sec:authorize="isAuthenticated()" class="active">Profil</a>
+      <a href="/friends" sec:authorize="isAuthenticated()">Relations</a>
+      <a href="/login?logout" sec:authorize="isAuthenticated()">Se déconnecter</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h2>Profil</h2>
+    <form th:action="@{/profil-processing}" th:object="${user}" method="post" class="profile-section">
+      <!-- Username -->
+      <div class="profile-item">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" th:field="*{username}" />
+        <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+      </div>
+
+      <!-- Email -->
+      <div class="profile-item">
+        <label for="email">Mail</label>
+        <input type="email" id="email" name="email" th:field="*{email}" />
+        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="profile-item">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" th:field="*{password}"
+          placeholder="Laissez vide pour ne pas changer" />
+        <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+      </div>
+
+      <button type="submit">Enregistrer</button>
+    </form>
+
+    <script>
+      document.getElementById("edit-btn").addEventListener("click", function () {
+        document.querySelectorAll("input").forEach((input) => input.removeAttribute("disabled"));
+        document.getElementById("save-btn").style.display = "inline-block";
+        document.getElementById("cancel-btn").style.display = "inline-block";
+        this.style.display = "none";
+      });
+
+      document.getElementById("cancel-btn").addEventListener("click", function () {
+        document.querySelectorAll("input").forEach((input) => input.setAttribute("disabled", "true"));
+        document.getElementById("edit-btn").style.display = "inline-block";
+        document.getElementById("save-btn").style.display = "none";
+        this.style.display = "none";
+      });
+    </script>
+</body>
+
+</html>

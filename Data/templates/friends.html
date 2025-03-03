@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pay My Buddy - Gestion des contact</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+  <div class="header">
+    <span>Pay My Buddy</span>
+    <nav>
+      <a href="/transfer" sec:authorize="isAuthenticated()">Virements</a>
+      <a href="/profil" sec:authorize="isAuthenticated()">Profil</a>
+      <a href="/friends" sec:authorize="isAuthenticated()" class="active">Relations</a>
+      <a href="/login?logout" sec:authorize="isAuthenticated()">Se déconnecter</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h2>Ajouter une relation</h2>
+    <div class="form-section">
+      <form th:action="@{/friends/add}" method="get">
+        <p th:if="${param.error}" style="color: rgb(248, 99, 7)">Email incorrect</p>
+        <p th:if="${param.add}" style="color: rgb(20, 193, 179)">Relation cree</p>
+        <p th:if="${param.del}" style="color: rgb(223, 33, 182)">Relation suprimer</p>
+        <input type="email" name="email" placeholder="Saisir une adresse mail" required />
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+
+    <h2>Liste des amis</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom d'utilisateur</th>
+          <th>Email</th>
+          <th class="action-cell">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="friend : ${friends}">
+          <td th:text="${friend.username}"></td>
+          <td th:text="${friend.email}"></td>
+          <td class="action-cell">
+            <form th:action="@{/friends/del}" method="get">
+              <input type="hidden" name="email" th:value="${friend.email}" />
+              <button type="submit" class="del">X</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

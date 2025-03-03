@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pay My Buddy - Profil</title>
+  <meta name="description"
+    content="Pay My Buddy - Créez votre compte pour commencer à effectuer des paiements entre amis" />
+  <title>Pay My Buddy - Inscription</title>
   <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
@@ -12,37 +14,42 @@
   <div class="header">
     <span>Pay My Buddy</span>
     <nav>
-      <a href="/login" sec:authorize="isAuthenticated()">Acceuil</a>
+      <a href="/login" sec:authorize="isAuthenticated()">Accueil</a>
     </nav>
   </div>
 
-  <div class="container">
+  <main class="container">
     <form th:action="@{/signup-processing}" th:object="${user}" method="post" class="profile-section">
-      <h2>Profil</h2>
+      <h1 class="section-title">Inscription</h1>
 
-      <div class="profile-item">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" th:field="*{username}" placeholder="Entrez votre username"
-          required />
-        <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" id="username" name="username" th:field="*{username}"
+          placeholder="Entrez votre nom d'utilisateur" required aria-label="Nom d'utilisateur" />
+        <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
       </div>
 
-      <div class="profile-item">
-        <label for="email">Mail</label>
-        <input type="email" id="email" name="email" th:field="*{email}" placeholder="Entrez votre email" required />
-        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+      <div class="form-group">
+        <label for="email">Adresse email</label>
+        <input type="email" id="email" name="email" th:field="*{email}" placeholder="Entrez votre email" required
+          aria-label="Adresse email" />
+        <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
       </div>
 
-      <div class="profile-item">
+      <div class="form-group">
         <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password" th:field="*{password}"
-          placeholder="Entrez votre mdp : 6 caractères minimum" required />
-        <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        <input type="password" id="password" name="password" th:field="*{password}" placeholder="6 caractères minimum"
+          required aria-label="Mot de passe" />
+        <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
       </div>
 
-      <button type="submit">S'inscrire</button>
+      <button type="submit" class="btn-primary">S'inscrire</button>
+
+      <footer class="form-footer">
+        <a href="/login" class="link">Déjà inscrit ? Connectez-vous</a>
+      </footer>
     </form>
-  </div>
+  </main>
 </body>
 
 </html>

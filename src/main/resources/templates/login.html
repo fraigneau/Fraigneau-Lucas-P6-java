@@ -4,30 +4,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pay My Buddy - Application de paiement entre amis" />
   <title>Pay My Buddy - Connexion</title>
   <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
-  <div class="login-container">
-    <h1>Pay My Buddy</h1>
-    <h3>Connexion</h3>
+  <main class="login-container">
+    <h1 class="app-title">Pay My Buddy</h1>
+    <h2 class="section-title">Connexion</h2>
 
-    <p th:if="${param.error}" style="color: red">Identifiant / mot de passe incorrect</p>
-    <p th:if="${param.logout}" style="color: green">Déconnexion réussie</p>
+    <div class="alert" th:if="${param.error}" role="alert">
+      <p class="alert-error">Identifiant / mot de passe incorrect</p>
+    </div>
+    <div class="alert" th:if="${param.logout}" role="alert">
+      <p class="alert-success">Déconnexion réussie</p>
+    </div>
 
-    <form th:action="@{/login}" method="post">
-      <input type="email" name="username" placeholder="Email" required />
-      <input type="password" name="password" placeholder="Password" required />
-      <button type="submit">Se connecter</button>
+    <form th:action="@{/login}" method="post" class="login-form">
+      <div class="form-group">
+        <input type="email" name="username" placeholder="Email" required aria-label="Adresse email" />
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" placeholder="Mot de passe" required aria-label="Mot de passe" />
+      </div>
+      <button type="submit" class="btn-primary">Se connecter</button>
     </form>
 
-    <div class="footer">
-      <a href="#">Mot de passe oublié ?</a>
-      |
-      <a href="/signup">Créer un compte</a>
-    </div>
-  </div>
+    <footer class="form-footer">
+      <a href="#" class="link">Mot de passe oublié ?</a>
+      <span class="separator">|</span>
+      <a href="/signup" class="link">Créer un compte</a>
+    </footer>
+  </main>
 </body>
 
 </html>

@@ -12,7 +12,6 @@ import fr.paymybuddy.mapper.TransactionMapper;
 import fr.paymybuddy.model.Transaction;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.TransactionRepository;
-import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 
 @Service
