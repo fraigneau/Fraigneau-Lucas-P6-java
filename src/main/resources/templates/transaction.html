@@ -73,7 +73,7 @@
           <td th:text="${transaction.receiverUsername}"></td>
           <td th:text="${transaction.description}"></td>
           <td th:text="${transaction.amount}"></td>
-          <td th:text="${transaction.createdAt}"></td>
+          <td th:text="${#temporals.format(transaction.createdAt, 'HH:mm dd/MM/yy')}"></td>
         </tr>
       </tbody>
     </table>

@@ -16,64 +16,63 @@ import fr.paymybuddy.dto.TransactionRequestDTO;
 import fr.paymybuddy.mapper.TransactionMapper;
 import fr.paymybuddy.service.TransactionService;
 import fr.paymybuddy.service.UserService;
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/transaction")
 public class TransactionController {
 
-    private UserService userService;
-    private TransactionService transactionService;
+        private UserService userService;
+        private TransactionService transactionService;
 
-    public TransactionController() {
-    }
+        public TransactionController() {
+        }
 
-    @Autowired
-    public TransactionController(UserService userService, TransactionService transactionService,
-            TransactionMapper transactionMapper) {
-        this.userService = userService;
-        this.transactionService = transactionService;
-    }
+        @Autowired
+        public TransactionController(UserService userService, TransactionService transactionService,
+                        TransactionMapper transactionMapper) {
+                this.userService = userService;
+                this.transactionService = transactionService;
+        }
 
-    @GetMapping()
-    public String transactionHome(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails,
-            BalanceRequestDTO balanceRequest, TransactionRequestDTO transactionRequest) {
+        @GetMapping()
+        public String transactionHome(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails,
+                        BalanceRequestDTO balanceRequest, TransactionRequestDTO transactionRequest) {
 
-        model.addAttribute("balanceResponse", balanceRequest);
-        model.addAttribute("transactionResponse", transactionRequest);
+                model.addAttribute("balanceResponse", balanceRequest);
+                model.addAttribute("transactionResponse", transactionRequest);
 
-        model.addAttribute("friendsList", userService.getFriends(userDetails
-                .getId()));
+                model.addAttribute("friendsList", userService.getFriends(userDetails
+                                .getId()));
 
-        model.addAttribute("transactionsList", transactionService.getFilteredTransactionsByUser(userService
-                .getUserById(userDetails.getId())));
+                model.addAttribute("transactionsList", transactionService.getFilteredTransactionsByUser(userService
+                                .getUserById(userDetails.getId())));
 
-        model.addAttribute("userBalance", userService.getUserById(userDetails
-                .getId()).getBalance());
+                model.addAttribute("userBalance", userService.getUserById(userDetails
+                                .getId()).getBalance());
 
-        return "transaction";
-    }
+                return "transaction";
+        }
 
-    @PostMapping("/pay")
-    public String pay(@ModelAttribute TransactionRequestDTO transactionRequest,
-            @AuthenticationPrincipal UserDetailsImpl userDetails,
-            RedirectAttributes redirectAttributes) {
+        @PostMapping("/pay")
+        public String pay(@ModelAttribute TransactionRequestDTO transactionRequest,
+                        @AuthenticationPrincipal UserDetailsImpl userDetails,
+                        RedirectAttributes redirectAttributes) {
 
-        transactionService.addNewTransaction(userDetails.getId(), transactionRequest.getEmail(),
-                transactionRequest.getDescription(), transactionRequest.getAmount());
+                transactionService.addNewTransaction(userDetails.getId(), transactionRequest.getEmail(),
+                                transactionRequest.getDescription(), transactionRequest.getAmount());
 
-        redirectAttributes.addFlashAttribute("success", "Payment successful");
+                redirectAttributes.addFlashAttribute("success", "Payment successful");
 
-        return "redirect:/transaction";
-    }
+                return "redirect:/transaction";
+        }
 
-    @PostMapping("/deposit")
-    public String deposit(@ModelAttribute BalanceRequestDTO balanceRequest,
-            @AuthenticationPrincipal UserDetailsImpl userDetails,
-            RedirectAttributes redirectAttributes) {
+        @PostMapping("/deposit")
+        public String deposit(@ModelAttribute BalanceRequestDTO balanceRequest,
+                        @AuthenticationPrincipal UserDetailsImpl userDetails,
+                        RedirectAttributes redirectAttributes) {
 
-        userService.addBalance(userService.getUserById(userDetails.getId()), balanceRequest.getAmount());
-        redirectAttributes.addFlashAttribute("success", "Deposit successful");
-        return "redirect:/transaction";
-    }
+                userService.addBalance(userService.getUserById(userDetails.getId()), balanceRequest.getAmount());
+                redirectAttributes.addFlashAttribute("success", "Deposit successful");
+                return "redirect:/transaction";
+        }
 }
