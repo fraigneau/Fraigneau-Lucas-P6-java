@@ -20,12 +20,19 @@
   </div>
 
   <div class="container">
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <p th:text="${error}"></p>
+      <button type="button" class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+    </div>
+    <div th:if="${success}" class="alert alert-success" role="alert">
+      <p th:text="${success}"></p>
+      <button type="button" class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+    </div>
+
     <h2>Ajouter une relation</h2>
     <div class="form-section">
       <form th:action="@{/friends/add}" method="get">
-        <p th:if="${param.error}" style="color: rgb(248, 99, 7)">Email incorrect</p>
-        <p th:if="${param.add}" style="color: rgb(20, 193, 179)">Relation cree</p>
-        <p th:if="${param.del}" style="color: rgb(223, 33, 182)">Relation suprimer</p>
         <input type="email" name="email" placeholder="Saisir une adresse mail" required />
         <button type="submit">Ajouter</button>
       </form>

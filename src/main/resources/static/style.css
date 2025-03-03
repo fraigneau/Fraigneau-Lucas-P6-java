@@ -213,24 +213,83 @@ table th {
     margin-bottom: 20px;
 }
 
+/* Styles pour les messages d'alerte */
 .alert {
-    padding: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    border: none;
     border-radius: 8px;
-    margin-bottom: 20px;
+    width: 95%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    animation: slideDown 0.5s ease-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.alert-error {
-    background-color: #fff2f2;
-    color: #dc3545;
-    border: 1px solid #ffcdd2;
-    margin: 0;
+.alert::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #ffe5e8;
+    border-left: 4px solid #dc3545;
+}
+
+.alert-danger::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc3545'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
 }
 
 .alert-success {
-    background-color: #f0fff4;
-    color: #28a745;
-    border: 1px solid #c3e6cb;
+    color: #0f5132;
+    background-color: #e8f6ee;
+    border-left: 4px solid #198754;
+}
+
+.alert-success::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23198754'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Ajout d'un bouton de fermeture */
+.alert .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
     margin: 0;
+    min-width: auto;
+    box-shadow: none;
+}
+
+.alert .close-btn:hover {
+    opacity: 1;
+    background: none;
+    transform: translateY(-50%);
 }
 
 .form-footer {

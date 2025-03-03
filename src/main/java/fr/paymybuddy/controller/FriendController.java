@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.paymybuddy.config.UserDetailsImpl;
 import fr.paymybuddy.dto.UserFriendDTO;
@@ -37,27 +38,24 @@ public class FriendController {
     }
 
     @GetMapping("/add")
-    public String addFriend(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam("email") String email) {
+    public String addFriend(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam("email") String email,
+            RedirectAttributes redirectAttributes) {
 
-        try {
-            User friend = userService.getUserByEmail(email);
-            userService.addFriend(userDetails.getId(), friend.getId());
-        } catch (Exception e) {
-            return "redirect:/friends?error";
-        }
+        User friend = userService.getUserByEmail(email);
+        userService.addFriend(userDetails.getId(), friend.getId());
+        redirectAttributes.addFlashAttribute("success", "Friend added successfully");
+
         return "redirect:/friends?add";
     }
 
     @GetMapping("/del")
-    public String delFriend(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam("email") String email) {
+    public String delFriend(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam("email") String email,
+            RedirectAttributes redirectAttributes) {
 
-        try {
-            User friend = userService.getUserByEmail(email);
-            userService.deleteFriend(userDetails.getId(), friend.getId());
+        User friend = userService.getUserByEmail(email);
+        userService.deleteFriend(userDetails.getId(), friend.getId());
+        redirectAttributes.addFlashAttribute("success", "Friend deleted successfully");
 
-        } catch (Exception e) {
-            return "redirect:/friends?error";
-        }
         return "redirect:/friends?del";
     }
 }

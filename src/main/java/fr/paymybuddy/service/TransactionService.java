@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import fr.paymybuddy.dto.TransactionDTO;
-import fr.paymybuddy.exception.ResourceNotFoundException;
 import fr.paymybuddy.mapper.TransactionMapper;
 import fr.paymybuddy.model.Transaction;
 import fr.paymybuddy.model.User;
@@ -33,13 +32,11 @@ public class TransactionService {
     }
 
     private List<Transaction> getTransactionsBySender(Long sender) {
-        return transactionRepository.findBySender_Id(sender)
-                .orElseThrow(() -> new ResourceNotFoundException("Transactions", "sender", sender));
+        return transactionRepository.findBySender_Id(sender);
     }
 
     private List<Transaction> getTransactionsByReceiver(Long receiver) {
-        return transactionRepository.findByReceiver_Id(receiver)
-                .orElseThrow(() -> new ResourceNotFoundException("Transactions", "receiver", receiver));
+        return transactionRepository.findByReceiver_Id(receiver);
     }
 
     public List<TransactionDTO> getFilteredTransactionsByUser(User user) {
