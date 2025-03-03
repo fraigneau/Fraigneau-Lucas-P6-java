@@ -45,6 +45,11 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void saveNewUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
+
     public void updateUser(UserFormRequestDTO updatedUser, Long id) {
 
         User user = getUserByEmail(updatedUser.getEmail());

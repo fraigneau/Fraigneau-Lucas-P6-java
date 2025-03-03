@@ -20,6 +20,12 @@
   </div>
 
   <div class="container">
+
+    <div th:if="${success}" class="alert alert-success" role="alert">
+      <p text="Profil updated">Profil updated</p>
+      <button type="button" class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+    </div>
+
     <h2>Profil</h2>
     <form th:action="@{/profil-processing}" th:object="${user}" method="post" class="profile-section">
       <!-- Username -->

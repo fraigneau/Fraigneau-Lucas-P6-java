@@ -55,7 +55,7 @@ public class TransactionController {
     }
 
     @PostMapping("/pay")
-    public String pay(@ModelAttribute @Valid TransactionRequestDTO transactionRequest,
+    public String pay(@ModelAttribute TransactionRequestDTO transactionRequest,
             @AuthenticationPrincipal UserDetailsImpl userDetails,
             RedirectAttributes redirectAttributes) {
 
@@ -68,7 +68,7 @@ public class TransactionController {
     }
 
     @PostMapping("/deposit")
-    public String deposit(@ModelAttribute @Valid BalanceRequestDTO balanceRequest,
+    public String deposit(@ModelAttribute BalanceRequestDTO balanceRequest,
             @AuthenticationPrincipal UserDetailsImpl userDetails,
             RedirectAttributes redirectAttributes) {
 
@@ -76,5 +76,4 @@ public class TransactionController {
         redirectAttributes.addFlashAttribute("success", "Deposit successful");
         return "redirect:/transaction";
     }
-
 }

@@ -47,7 +47,7 @@ public class SignupController {
         }
 
         logger.debug("Utilisateur inscrit avec succes: " + newuser);
-        userService.saveUser(UserUpdateMapper.toUser(newuser));
+        userService.saveNewUser(UserUpdateMapper.toUser(newuser));
 
         return "redirect:/login";
     }
