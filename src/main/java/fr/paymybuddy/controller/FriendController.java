@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.paymybuddy.config.UserDetailsImpl;
-import fr.paymybuddy.dto.UserFriendDTO;
+import fr.paymybuddy.dto.UserFriendResponseDTO;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.service.UserService;
 
@@ -32,7 +32,7 @@ public class FriendController {
 
     @GetMapping
     public String showFriends(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        List<UserFriendDTO> friends = userService.getFriends(userDetails.getId());
+        List<UserFriendResponseDTO> friends = userService.getFriends(userDetails.getId());
         model.addAttribute("friends", friends);
         return "friends";
     }

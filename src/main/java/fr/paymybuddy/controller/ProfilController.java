@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.paymybuddy.config.UserDetailsImpl;
-import fr.paymybuddy.dto.UserFormDTO;
+import fr.paymybuddy.dto.UserFormRequestDTO;
 import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
@@ -37,7 +37,7 @@ public class ProfilController {
     @GetMapping("/profil")
     public String profil(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null) {
-            UserFormDTO actualUserForm = userMapper.toUserFormDTO(userService.getUserById(userDetails.getId()));
+            UserFormRequestDTO actualUserForm = userMapper.toUserFormDTO(userService.getUserById(userDetails.getId()));
             model.addAttribute("user", actualUserForm);
         } else {
             logger.warn("Aucun utilisateur authentifié !");
@@ -47,7 +47,7 @@ public class ProfilController {
     }
 
     @PostMapping("/profil-processing")
-    public String profilProssesing(@Valid @ModelAttribute("user") UserFormDTO updatedUser,
+    public String profilProssesing(@Valid @ModelAttribute("user") UserFormRequestDTO updatedUser,
             BindingResult result, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (result.hasErrors()) {
             return "profil";
