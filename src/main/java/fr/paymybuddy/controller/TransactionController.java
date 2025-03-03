@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.paymybuddy.config.UserDetailsImpl;
 import fr.paymybuddy.mapper.TransactionMapper;
@@ -21,7 +22,6 @@ public class TransactionController {
 
     private UserService userService;
     private TransactionService transactionService;
-    private Logger logger = LoggerFactory.getLogger(TransactionController.class);
 
     public TransactionController() {
     }
@@ -49,29 +49,21 @@ public class TransactionController {
     public String pay(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails,
             @RequestParam("receiverEmail") String receiverEmail,
             @RequestParam("description") String description,
-            @RequestParam("amount") double amount) {
+            @RequestParam("amount") double amount, RedirectAttributes redirectAttributes) {
 
-        try {
-            transactionService.addNewTransaction(userDetails.getId(), receiverEmail, description, amount);
-        } catch (Exception e) {
-            logger.error("Transaction failed {}", e.getMessage());
-            return "redirect:/transaction?verror";
-        }
-        return "redirect:/transaction?vsuceess";
+        transactionService.addNewTransaction(userDetails.getId(), receiverEmail, description, amount);
+        redirectAttributes.addFlashAttribute("success", "Payment successful");
+
+        return "redirect:/transaction";
     }
 
     @GetMapping("/deposit")
     public String deposit(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails,
-            @RequestParam("count") double count) {
+            @RequestParam("count") double count, RedirectAttributes redirectAttributes) {
 
-        try {
-            userService.addBalance(userService.getUserById(userDetails.getId()), count);
-        } catch (Exception e) {
-            logger.error("Transaction failed {}", e.getMessage());
-            return "redirect:/transaction?ferror";
-        }
-
-        return "redirect:/transaction?fsucess";
+        userService.addBalance(userService.getUserById(userDetails.getId()), count);
+        redirectAttributes.addFlashAttribute("success", "Deposit successful");
+        return "redirect:/transaction";
     }
 
 }

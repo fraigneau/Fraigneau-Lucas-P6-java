@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.paymybuddy.dto.UserFormDTO;
 import fr.paymybuddy.dto.UserFriendDTO;
+import fr.paymybuddy.exception.ContactAlreadyExistException;
 import fr.paymybuddy.exception.DuplicateResourceException;
 import fr.paymybuddy.exception.InsufficientBalanceException;
 import fr.paymybuddy.exception.ResourceNotFoundException;
-import fr.paymybuddy.exception.UnauthorizedOperationException;
+import fr.paymybuddy.exception.SelfSendingAmountException;
+import fr.paymybuddy.exception.UserNotFondExeption;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.UserRepository;
 
@@ -29,12 +31,12 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+                .orElseThrow(() -> new UserNotFondExeption("User not found"));
     }
 
     public User getUserById(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         return user;
     }
@@ -74,7 +76,7 @@ public class UserService {
     @Transactional
     public List<UserFriendDTO> getFriends(Long userId) {
         User user = userRepository.findByIdWithFriends(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User with friends", "id", userId));
+                .orElseThrow(() -> new UserNotFondExeption("User not found"));
 
         return user.getFriends().stream()
                 .map(friend -> new UserFriendDTO(friend.getId(), friend.getUsername(), friend.getEmail()))
@@ -93,7 +95,7 @@ public class UserService {
             userRepository.save(user);
             userRepository.save(friend);
         } else {
-            throw new DuplicateResourceException("Relation", "id", friendId);
+            throw new DuplicateResourceException("Relation already exists");
         }
     }
 
@@ -109,7 +111,7 @@ public class UserService {
             userRepository.save(user);
             userRepository.save(friend);
         } else {
-            throw new ResourceNotFoundException("Relation", "id", friendId);
+            throw new ContactAlreadyExistException("Relation don't exists");
         }
     }
 
@@ -120,10 +122,13 @@ public class UserService {
     @Transactional
     public void updateBalance(User sender, User reciver, double amount) {
         if (!isValidBalanceOperationForSender(sender, amount)) {
-            throw new InsufficientBalanceException(sender.getBalance(), amount - sender.getBalance());
+            throw new InsufficientBalanceException("Insufficient balance");
         }
         if (!isValidReceiver(sender, reciver)) {
-            throw new UnauthorizedOperationException("Sender and receiver are the same");
+            throw new SelfSendingAmountException("Same sander and receiver");
+        }
+        if (!isPositiveAmount(amount)) {
+            throw new InsufficientBalanceException("Amount must be positive");
         }
         sender.setBalance(sender.getBalance() - amount);
         reciver.setBalance(sender.getBalance() + amount);
@@ -133,7 +138,11 @@ public class UserService {
     }
 
     private boolean isValidBalanceOperationForSender(User user, double amount) {
-        return user.getBalance() - amount > 0 && amount > 0;
+        return user.getBalance() - amount > 0;
+    }
+
+    private boolean isPositiveAmount(double amount) {
+        return amount > 0;
     }
 
     private boolean isValidReceiver(User sender, User receiver) {
@@ -142,7 +151,7 @@ public class UserService {
 
     @Transactional
     public void addBalance(User user, double amount) {
-        if (amount < 0) {
+        if (!isPositiveAmount(amount)) {
             throw new InsufficientBalanceException("Amount must be positive");
         }
         user.setBalance(user.getBalance() + amount);

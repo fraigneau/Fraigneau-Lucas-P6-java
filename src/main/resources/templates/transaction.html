@@ -21,9 +21,15 @@
   </div>
 
   <div class="container">
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <p th:text="${error}"></p>
+    </div>
+    <div th:if="${success}" class="alert alert-success" role="alert">
+      <p th:text="${success}"></p>
+    </div>
+
     <h2>Ajouter des fonds</h2>
-    <h3 th:if="${param.ferror}" class="error">Fonds négatif</h3>
-    <h3 th:if="${param.fsucess}" class="success">Fonds effectués</h3>
     <div class="form-section">
       <form th:action="@{/transaction/deposit}" method="get">
         <select name="compte" required>
@@ -35,8 +41,6 @@
     </div>
 
     <h2>Virements</h2>
-    <h3 th:if="${param.verror}" class="error">Balance insuffisante</h3>
-    <h3 th:if="${param.vsucess}" class="success">Virements effectués</h3>
     <div class="form-section">
       <form th:action="@{/transaction/pay}" method="get">
         <select name="receiverEmail" required>

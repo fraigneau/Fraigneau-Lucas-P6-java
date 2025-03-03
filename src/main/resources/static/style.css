@@ -213,24 +213,24 @@ table th {
     margin-bottom: 20px;
 }
 
+/* Styles pour les messages d'alerte */
 .alert {
-    padding: 12px;
-    border-radius: 8px;
+    padding: 15px;
     margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 
-.alert-error {
-    background-color: #fff2f2;
-    color: #dc3545;
-    border: 1px solid #ffcdd2;
-    margin: 0;
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }
 
 .alert-success {
-    background-color: #f0fff4;
-    color: #28a745;
-    border: 1px solid #c3e6cb;
-    margin: 0;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 }
 
 .form-footer {

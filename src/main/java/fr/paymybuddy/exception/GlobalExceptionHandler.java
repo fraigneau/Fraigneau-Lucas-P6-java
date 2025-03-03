@@ -1,48 +1,50 @@
 package fr.paymybuddy.exception;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.validation.ValidationException;
-
-@RestControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return new ErrorResponse(404, 1001, "RESOURCE_NOT_FOUND", ex.getMessage());
-    }
-
-    @ExceptionHandler(ValidationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleValidationException(ValidationException ex) {
-        return new ErrorResponse("VALIDATION_FAILED", ex.getMessage());
+    public String handleResourceNotFoundException(ResourceNotFoundException ex, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        return "redirect:/login";
     }
 
     @ExceptionHandler(InsufficientBalanceException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleInsufficientBalanceException(InsufficientBalanceException ex) {
-        return new ErrorResponse(400, 2001, "INSUFFICIENT_BALANCE", ex.getMessage());
+    public String handleInsufficientBalanceException(InsufficientBalanceException ex,
+            RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        return "redirect:/transaction";
+    }
+
+    @ExceptionHandler(SelfSendingAmountException.class)
+    public String handleSelfSendingAmountException(SelfSendingAmountException ex,
+            RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        return "redirect:/transaction";
+    }
+
+    @ExceptionHandler(ContactAlreadyExistException.class)
+    public String handleContactAlreadyExistException(ContactAlreadyExistException ex,
+            RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        return "redirect:/friends";
     }
 
     @ExceptionHandler(DuplicateResourceException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponse handleDuplicateResourceException(DuplicateResourceException ex) {
-        return new ErrorResponse(409, 3001, "DUPLICATE_RESOURCE", ex.getMessage());
+    public String handleDuplicateResourceException(DuplicateResourceException ex,
+            RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        return "redirect:/friends";
     }
 
-    @ExceptionHandler(UnauthorizedOperationException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ErrorResponse handleUnauthorizedOperationException(UnauthorizedOperationException ex) {
-        return new ErrorResponse(403, 4001, "UNAUTHORIZED_OPERATION", ex.getMessage());
+    @ExceptionHandler(UserNotFondExeption.class)
+    public String handleUserNotFondExeption(UserNotFondExeption ex, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        return "redirect:/friends";
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleGlobalException(Exception ex) {
-        return new ErrorResponse(500, 9999, "INTERNAL_SERVER_ERROR", "Une erreur interne s'est produite");
-    }
 }
