@@ -7,8 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.paymybuddy.dto.UserFormDTO;
-import fr.paymybuddy.dto.UserFriendDTO;
+import fr.paymybuddy.dto.UserFormRequestDTO;
+import fr.paymybuddy.dto.UserFriendResponseDTO;
 import fr.paymybuddy.exception.ContactAlreadyExistException;
 import fr.paymybuddy.exception.DuplicateResourceException;
 import fr.paymybuddy.exception.InsufficientBalanceException;
@@ -45,14 +45,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(UserFormDTO updatedUser, Long id) {
+    public void updateUser(UserFormRequestDTO updatedUser, Long id) {
 
         User user = getUserByEmail(updatedUser.getEmail());
         user = mergeUpdateUser(user, updatedUser);
         saveUser(user);
     }
 
-    public User mergeUpdateUser(User existingUser, UserFormDTO updateDTO) {
+    public User mergeUpdateUser(User existingUser, UserFormRequestDTO updateDTO) {
         Optional.ofNullable(updateDTO.getUsername())
                 .filter(username -> isValidUpdateUser(username, existingUser.getUsername()))
                 .ifPresent(existingUser::setUsername);
@@ -74,12 +74,12 @@ public class UserService {
     }
 
     @Transactional
-    public List<UserFriendDTO> getFriends(Long userId) {
+    public List<UserFriendResponseDTO> getFriends(Long userId) {
         User user = userRepository.findByIdWithFriends(userId)
                 .orElseThrow(() -> new UserNotFondExeption("User not found"));
 
         return user.getFriends().stream()
-                .map(friend -> new UserFriendDTO(friend.getId(), friend.getUsername(), friend.getEmail()))
+                .map(friend -> new UserFriendResponseDTO(friend.getId(), friend.getUsername(), friend.getEmail()))
                 .toList();
     }
 

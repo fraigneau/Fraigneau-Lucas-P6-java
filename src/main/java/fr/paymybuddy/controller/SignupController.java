@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import fr.paymybuddy.dto.UserFormDTO;
+import fr.paymybuddy.dto.UserFormRequestDTO;
 import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
@@ -34,13 +34,13 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String login(Model model) {
-        model.addAttribute("user", new UserFormDTO());
+        model.addAttribute("user", new UserFormRequestDTO());
         logger.debug("Acces a la page d'inscription");
         return "signup";
     }
 
     @PostMapping("/signup-processing")
-    public String signup(@Valid @ModelAttribute("user") UserFormDTO newuser, BindingResult result, Model model) {
+    public String signup(@Valid @ModelAttribute("user") UserFormRequestDTO newuser, BindingResult result, Model model) {
         if (result.hasErrors()) {
             logger.error("Erreur lors de l'inscription: " + result.getAllErrors());
             return "signup";

@@ -1,20 +1,22 @@
 package fr.paymybuddy.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.paymybuddy.config.UserDetailsImpl;
+import fr.paymybuddy.dto.BalanceRequestDTO;
+import fr.paymybuddy.dto.TransactionRequestDTO;
 import fr.paymybuddy.mapper.TransactionMapper;
 import fr.paymybuddy.service.TransactionService;
 import fr.paymybuddy.service.UserService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/transaction")
@@ -34,34 +36,43 @@ public class TransactionController {
     }
 
     @GetMapping()
-    public String transactionHome(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public String transactionHome(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails,
+            BalanceRequestDTO balanceRequest, TransactionRequestDTO transactionRequest) {
 
-        model.addAttribute("friends", userService.getFriends(userDetails.getId()));
-        model.addAttribute("balance", userService.getUserById(userDetails
+        model.addAttribute("balanceResponse", balanceRequest);
+        model.addAttribute("transactionResponse", transactionRequest);
+
+        model.addAttribute("friendsList", userService.getFriends(userDetails
+                .getId()));
+
+        model.addAttribute("transactionsList", transactionService.getFilteredTransactionsByUser(userService
+                .getUserById(userDetails.getId())));
+
+        model.addAttribute("userBalance", userService.getUserById(userDetails
                 .getId()).getBalance());
 
-        model.addAttribute("transactions",
-                transactionService.getFilteredTransactionsByUser(userService.getUserById(userDetails.getId())));
         return "transaction";
     }
 
-    @GetMapping("/pay")
-    public String pay(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails,
-            @RequestParam("receiverEmail") String receiverEmail,
-            @RequestParam("description") String description,
-            @RequestParam("amount") double amount, RedirectAttributes redirectAttributes) {
+    @PostMapping("/pay")
+    public String pay(@ModelAttribute @Valid TransactionRequestDTO transactionRequest,
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            RedirectAttributes redirectAttributes) {
 
-        transactionService.addNewTransaction(userDetails.getId(), receiverEmail, description, amount);
+        transactionService.addNewTransaction(userDetails.getId(), transactionRequest.getEmail(),
+                transactionRequest.getDescription(), transactionRequest.getAmount());
+
         redirectAttributes.addFlashAttribute("success", "Payment successful");
 
         return "redirect:/transaction";
     }
 
-    @GetMapping("/deposit")
-    public String deposit(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails,
-            @RequestParam("count") double count, RedirectAttributes redirectAttributes) {
+    @PostMapping("/deposit")
+    public String deposit(@ModelAttribute @Valid BalanceRequestDTO balanceRequest,
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            RedirectAttributes redirectAttributes) {
 
-        userService.addBalance(userService.getUserById(userDetails.getId()), count);
+        userService.addBalance(userService.getUserById(userDetails.getId()), balanceRequest.getAmount());
         redirectAttributes.addFlashAttribute("success", "Deposit successful");
         return "redirect:/transaction";
     }

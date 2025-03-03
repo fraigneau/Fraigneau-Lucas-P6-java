@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserFormDTO {
+public class UserFormRequestDTO {
 
     @NotBlank(message = "Le nom d'utilisateur ne peut pas être vide")
     @Size(min = 3, max = 50, message = "Le nom d'utilisateur doit contenir entre 3 et 50 caractères")

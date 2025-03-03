@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import fr.paymybuddy.dto.TransactionDTO;
+import fr.paymybuddy.dto.TransactionResponseDTO;
 import fr.paymybuddy.mapper.TransactionMapper;
 import fr.paymybuddy.model.Transaction;
 import fr.paymybuddy.model.User;
@@ -39,7 +39,7 @@ public class TransactionService {
         return transactionRepository.findByReceiver_Id(receiver);
     }
 
-    public List<TransactionDTO> getFilteredTransactionsByUser(User user) {
+    public List<TransactionResponseDTO> getFilteredTransactionsByUser(User user) {
         List<Transaction> sentTransactions = getTransactionsBySender(user.getId());
         List<Transaction> receivedTransactions = getTransactionsByReceiver(user.getId());
 
@@ -48,9 +48,9 @@ public class TransactionService {
         return transactionToDTO(allTransactions);
     }
 
-    private List<TransactionDTO> transactionToDTO(List<Transaction> transactions) {
+    private List<TransactionResponseDTO> transactionToDTO(List<Transaction> transactions) {
         return transactions.stream()
-                .map(transaction -> transMapper.toTransactionDTO(transaction))
+                .map(transaction -> transMapper.toTransactionResponseDTO(transaction))
                 .toList();
     }
 
@@ -67,7 +67,7 @@ public class TransactionService {
 
     private Transaction setTransaction(String email, String desc, double amount, Long senderId) {
         User reciver = userService.getUserByEmail(email);
-        TransactionDTO transaction = new TransactionDTO();
+        TransactionResponseDTO transaction = new TransactionResponseDTO();
         transaction.setReceiverEmail(email);
         transaction.setDescription(desc);
         transaction.setAmount(amount);
