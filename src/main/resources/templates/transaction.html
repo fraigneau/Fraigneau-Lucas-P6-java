@@ -10,7 +10,7 @@
 
 <body>
   <div class="header">
-    <span>Pay My Buddy</span>
+    <span> Pay My Buddy</span>
     <nav>
       <a href="/transaction" sec:authorize="isAuthenticated()" class="active">Virements</a>
       <a href="/profil" sec:authorize="isAuthenticated()">Profil</a>
@@ -26,8 +26,7 @@
     <div class="form-section">
       <form th:action="@{/transaction/deposit}" method="get">
         <select name="compte" required>
-          <option disabled selected>Choix du compte</option>
-          <option>Pay My Buddy</option>
+          <option selected>Pay My Buddy</option>
         </select>
         <input type="number" name="count" step="0.01" placeholder="Montant 0€" required />
         <button type="submit">Ajouter</button>
