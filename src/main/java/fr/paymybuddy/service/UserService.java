@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.paymybuddy.dto.UserFormDTO;
 import fr.paymybuddy.dto.UserFriendDTO;
+import fr.paymybuddy.exception.DuplicateResourceException;
+import fr.paymybuddy.exception.InsufficientBalanceException;
+import fr.paymybuddy.exception.ResourceNotFoundException;
+import fr.paymybuddy.exception.UnauthorizedOperationException;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.UserRepository;
 
@@ -25,12 +29,12 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User byEmail not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
     }
 
     public User getUserById(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User byId not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
 
         return user;
     }
@@ -42,12 +46,8 @@ public class UserService {
     public void updateUser(UserFormDTO updatedUser, Long id) {
 
         User user = getUserByEmail(updatedUser.getEmail());
-        if (user == null) {
-            throw new IllegalArgumentException("User not found");
-        }
         user = mergeUpdateUser(user, updatedUser);
-
-        userRepository.save(user);
+        saveUser(user);
     }
 
     public User mergeUpdateUser(User existingUser, UserFormDTO updateDTO) {
@@ -74,7 +74,7 @@ public class UserService {
     @Transactional
     public List<UserFriendDTO> getFriends(Long userId) {
         User user = userRepository.findByIdWithFriends(userId)
-                .orElseThrow(() -> new RuntimeException("User with Friend not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User with friends", "id", userId));
 
         return user.getFriends().stream()
                 .map(friend -> new UserFriendDTO(friend.getId(), friend.getUsername(), friend.getEmail()))
@@ -93,7 +93,7 @@ public class UserService {
             userRepository.save(user);
             userRepository.save(friend);
         } else {
-            throw new IllegalArgumentException("User is already friend with this user");
+            throw new DuplicateResourceException("Relation", "id", friendId);
         }
     }
 
@@ -109,7 +109,7 @@ public class UserService {
             userRepository.save(user);
             userRepository.save(friend);
         } else {
-            throw new IllegalArgumentException("User is not friend with this user");
+            throw new ResourceNotFoundException("Relation", "id", friendId);
         }
     }
 
@@ -120,22 +120,31 @@ public class UserService {
     @Transactional
     public void updateBalance(User sender, User reciver, double amount) {
         if (!isValidBalanceOperationForSender(sender, amount)) {
-            throw new IllegalArgumentException("Insufficient balance");
-        } else {
-            sender.setBalance(sender.getBalance() - amount);
-            reciver.setBalance(sender.getBalance() + amount);
-            userRepository.save(sender);
-            userRepository.save(reciver);
+            throw new InsufficientBalanceException(sender.getBalance(), amount - sender.getBalance());
         }
+        if (!isValidReceiver(sender, reciver)) {
+            throw new UnauthorizedOperationException("Sender and receiver are the same");
+        }
+        sender.setBalance(sender.getBalance() - amount);
+        reciver.setBalance(sender.getBalance() + amount);
+        userRepository.save(sender);
+        userRepository.save(reciver);
+
     }
 
     private boolean isValidBalanceOperationForSender(User user, double amount) {
-        if (user.getBalance() - amount < 0)
-            return false;
-        return true;
+        return user.getBalance() - amount > 0 && amount > 0;
     }
 
+    private boolean isValidReceiver(User sender, User receiver) {
+        return sender.getId() != receiver.getId();
+    }
+
+    @Transactional
     public void addBalance(User user, double amount) {
+        if (amount < 0) {
+            throw new InsufficientBalanceException("Amount must be positive");
+        }
         user.setBalance(user.getBalance() + amount);
         userRepository.save(user);
     }

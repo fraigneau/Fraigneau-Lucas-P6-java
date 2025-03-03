@@ -53,8 +53,8 @@ public class TransactionController {
 
         try {
             transactionService.addNewTransaction(userDetails.getId(), receiverEmail, description, amount);
-        } catch (IllegalArgumentException balence) {
-            logger.error("Transaction failed {}", balence.getMessage());
+        } catch (Exception e) {
+            logger.error("Transaction failed {}", e.getMessage());
             return "redirect:/transaction?verror";
         }
         return "redirect:/transaction?vsuceess";
@@ -66,8 +66,8 @@ public class TransactionController {
 
         try {
             userService.addBalance(userService.getUserById(userDetails.getId()), count);
-        } catch (IllegalArgumentException balence) {
-            logger.error("Transaction failed {}", balence.getMessage());
+        } catch (Exception e) {
+            logger.error("Transaction failed {}", e.getMessage());
             return "redirect:/transaction?ferror";
         }
 

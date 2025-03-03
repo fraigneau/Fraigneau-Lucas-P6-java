@@ -10,7 +10,7 @@
 
 <body>
   <div class="header">
-    <span>Pay My Buddy</span>
+    <span> Pay My Buddy</span>
     <nav>
       <a href="/transaction" sec:authorize="isAuthenticated()" class="active">Virements</a>
       <a href="/profil" sec:authorize="isAuthenticated()">Profil</a>
@@ -21,15 +21,14 @@
 
   <div class="container">
     <h2>Ajouter des fonds</h2>
-    <h3 th:if="${param.ferror}" style="color: rgb(239, 6, 6)">Fonds insuffisante</h3>
+    <h3 th:if="${param.ferror}" style="color: rgb(239, 6, 6)">Fonds negatif</h3>
     <h3 th:if="${param.fsucess}" style="color: rgb(10, 232, 40)">Fonds effectués</h3>
     <div class="form-section">
       <form th:action="@{/transaction/deposit}" method="get">
-        <select name="compte">
-          <option disabled selected>Choix du compte</option>
-          <option>Pay My Buddy</option>
+        <select name="compte" required>
+          <option selected>Pay My Buddy</option>
         </select>
-        <input type="number" name="count" step="0.01" placeholder="Montant 0€" />
+        <input type="number" name="count" step="0.01" placeholder="Montant 0€" required />
         <button type="submit">Ajouter</button>
       </form>
     </div>
@@ -39,12 +38,12 @@
     <h3 th:if="${param.vsucess}" style="color: rgb(10, 232, 40)">Virements effectués</h3>
     <div class="form-section">
       <form th:action="@{/transaction/pay}" method="get">
-        <select name="receiverEmail">
+        <select name="receiverEmail" required>
           <option value="" disabled selected>Choix du destinataire</option>
           <option th:each="friend : ${friends}" th:text="${friend.email}"></option>
         </select>
-        <input type="text" name="description" maxlength="25" minlength="5" placeholder="Description" />
-        <input type="number" name="amount" step="0.01" placeholder="Montant 0€" th:placeholder=${balance} />
+        <input type="text" name="description" maxlength="25" minlength="5" placeholder="Description" required />
+        <input type="number" name="amount" step="0.01" placeholder="Montant 0€" th:placeholder=${balance} required />
         <button type="submit">Envoyer</button>
       </form>
     </div>
