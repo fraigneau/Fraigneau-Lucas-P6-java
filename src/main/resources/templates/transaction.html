@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pay My Buddy - Effectuez vos virements en toute simplicité" />
   <title>Pay My Buddy - Virements</title>
   <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
   <div class="header">
-    <span> Pay My Buddy</span>
+    <span>Pay My Buddy</span>
     <nav>
       <a href="/transaction" sec:authorize="isAuthenticated()" class="active">Virements</a>
       <a href="/profil" sec:authorize="isAuthenticated()">Profil</a>
@@ -21,8 +22,8 @@
 
   <div class="container">
     <h2>Ajouter des fonds</h2>
-    <h3 th:if="${param.ferror}" style="color: rgb(239, 6, 6)">Fonds negatif</h3>
-    <h3 th:if="${param.fsucess}" style="color: rgb(10, 232, 40)">Fonds effectués</h3>
+    <h3 th:if="${param.ferror}" class="error">Fonds négatif</h3>
+    <h3 th:if="${param.fsucess}" class="success">Fonds effectués</h3>
     <div class="form-section">
       <form th:action="@{/transaction/deposit}" method="get">
         <select name="compte" required>
@@ -34,8 +35,8 @@
     </div>
 
     <h2>Virements</h2>
-    <h3 th:if="${param.verror}" style="color: rgb(239, 6, 6)">Balance insuffisante</h3>
-    <h3 th:if="${param.vsucess}" style="color: rgb(10, 232, 40)">Virements effectués</h3>
+    <h3 th:if="${param.verror}" class="error">Balance insuffisante</h3>
+    <h3 th:if="${param.vsucess}" class="success">Virements effectués</h3>
     <div class="form-section">
       <form th:action="@{/transaction/pay}" method="get">
         <select name="receiverEmail" required>
@@ -43,7 +44,7 @@
           <option th:each="friend : ${friends}" th:text="${friend.email}"></option>
         </select>
         <input type="text" name="description" maxlength="25" minlength="5" placeholder="Description" required />
-        <input type="number" name="amount" step="0.01" placeholder="Montant 0€" th:placeholder=${balance} required />
+        <input type="number" name="amount" step="0.01" th:placeholder="${balance}" required />
         <button type="submit">Envoyer</button>
       </form>
     </div>
@@ -51,8 +52,8 @@
     <table>
       <thead>
         <tr>
-          <th>Emetteur</th>
-          <th>Récepteur</th>
+          <th>Émetteur</th>
+          <th>Destinataire</th>
           <th>Description</th>
           <th>Montant</th>
           <th>Date</th>
