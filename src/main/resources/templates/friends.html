@@ -23,9 +23,11 @@
 
     <div th:if="${error}" class="alert alert-danger" role="alert">
       <p th:text="${error}"></p>
+      <button type="button" class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
     </div>
     <div th:if="${success}" class="alert alert-success" role="alert">
       <p th:text="${success}"></p>
+      <button type="button" class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
     </div>
 
     <h2>Ajouter une relation</h2>
