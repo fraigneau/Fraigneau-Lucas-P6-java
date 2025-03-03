@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pay My Buddy - Profil</title>
+  <meta name="description"
+    content="Pay My Buddy - Créez votre compte pour commencer à effectuer des paiements entre amis" />
+  <title>Pay My Buddy - Inscription</title>
   <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
@@ -12,35 +14,39 @@
   <div class="header">
     <span>Pay My Buddy</span>
     <nav>
-      <a href="/login" sec:authorize="isAuthenticated()">Acceuil</a>
+      <a href="/login" sec:authorize="isAuthenticated()">Accueil</a>
     </nav>
   </div>
 
   <div class="container">
-    <form th:action="@{/signup-processing}" th:object="${user}" method="post" class="profile-section">
-      <h2>Profil</h2>
+    <form th:action="@{/signup-processing}" th:object="${user}" method="post" class="login-container">
+      <h2>Inscription</h2>
 
-      <div class="profile-item">
+      <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" th:field="*{username}" placeholder="Entrez votre username"
           required />
         <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
       </div>
 
-      <div class="profile-item">
-        <label for="email">Mail</label>
+      <div class="form-group">
+        <label for="email">Email</label>
         <input type="email" id="email" name="email" th:field="*{email}" placeholder="Entrez votre email" required />
         <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
       </div>
 
-      <div class="profile-item">
+      <div class="form-group">
         <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password" th:field="*{password}"
-          placeholder="Entrez votre mdp : 6 caractères minimum" required />
+        <input type="password" id="password" name="password" th:field="*{password}" placeholder="6 caractères minimum"
+          required />
         <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
       </div>
 
       <button type="submit">S'inscrire</button>
+
+      <div class="form-footer">
+        <a href="/login" class="link">Déjà inscrit ? Connectez-vous</a>
+      </div>
     </form>
   </div>
 </body>
