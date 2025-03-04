@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">paymybuddy</a> &gt; <a href="index.source.html" class="el_package">fr.paymybuddy.service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package fr.paymybuddy.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import fr.paymybuddy.dto.UserFormRequestDTO;
+import fr.paymybuddy.dto.UserFriendResponseDTO;
+import fr.paymybuddy.exception.ContactAlreadyExistException;
+import fr.paymybuddy.exception.DuplicateResourceException;
+import fr.paymybuddy.exception.InsufficientBalanceException;
+import fr.paymybuddy.exception.ResourceNotFoundException;
+import fr.paymybuddy.exception.SelfSendingAmountException;
+import fr.paymybuddy.exception.UserNotFondExeption;
+import fr.paymybuddy.model.User;
+import fr.paymybuddy.repository.UserRepository;
+
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+<span class="fc" id="L27">    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {</span>
+<span class="fc" id="L28">        this.userRepository = userRepository;</span>
+<span class="fc" id="L29">        this.passwordEncoder = passwordEncoder;</span>
+<span class="fc" id="L30">    }</span>
+
+    public User getUserByEmail(String email) {
+<span class="fc" id="L33">        return userRepository.findByEmail(email)</span>
+<span class="fc" id="L34">                .orElseThrow(() -&gt; new UserNotFondExeption(&quot;User not found&quot;));</span>
+    }
+
+    public User getUserById(Long id) {
+<span class="fc" id="L38">        User user = userRepository.findById(id)</span>
+<span class="fc" id="L39">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;User not found&quot;));</span>
+
+<span class="fc" id="L41">        return user;</span>
+    }
+
+    public void saveUser(User user) {
+<span class="fc" id="L45">        userRepository.save(user);</span>
+<span class="fc" id="L46">    }</span>
+
+    public void saveNewUser(User user) {
+<span class="fc" id="L49">        user.setPassword(passwordEncoder.encode(user.getPassword()));</span>
+<span class="fc" id="L50">        userRepository.save(user);</span>
+<span class="fc" id="L51">    }</span>
+
+    public void updateUser(UserFormRequestDTO updatedUser, Long id) {
+
+<span class="fc" id="L55">        User user = getUserByEmail(updatedUser.getEmail());</span>
+<span class="fc" id="L56">        user = mergeUpdateUser(user, updatedUser);</span>
+<span class="fc" id="L57">        saveUser(user);</span>
+<span class="fc" id="L58">    }</span>
+
+    public User mergeUpdateUser(User existingUser, UserFormRequestDTO updateDTO) {
+<span class="fc" id="L61">        Optional.ofNullable(updateDTO.getUsername())</span>
+<span class="fc" id="L62">                .filter(username -&gt; isValidUpdateUser(username, existingUser.getUsername()))</span>
+<span class="fc" id="L63">                .ifPresent(existingUser::setUsername);</span>
+
+<span class="fc" id="L65">        Optional.ofNullable(updateDTO.getEmail())</span>
+<span class="fc" id="L66">                .filter(email -&gt; isValidUpdateUser(email, existingUser.getEmail()))</span>
+<span class="fc" id="L67">                .ifPresent(existingUser::setEmail);</span>
+
+<span class="fc" id="L69">        Optional.ofNullable(updateDTO.getPassword())</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">                .filter(password -&gt; !password.isBlank())</span>
+<span class="fc" id="L71">                .map(passwordEncoder::encode)</span>
+<span class="fc" id="L72">                .ifPresent(existingUser::setPassword);</span>
+
+<span class="fc" id="L74">        return existingUser;</span>
+    }
+
+    private boolean isValidUpdateUser(String newValue, String existingValue) {
+<span class="pc bpc" id="L78" title="3 of 6 branches missed.">        return newValue != null &amp;&amp; !newValue.isBlank() &amp;&amp; !newValue.equals(existingValue);</span>
+    }
+
+    @Transactional
+    public List&lt;UserFriendResponseDTO&gt; getFriends(Long userId) {
+<span class="fc" id="L83">        User user = userRepository.findByIdWithFriends(userId)</span>
+<span class="fc" id="L84">                .orElseThrow(() -&gt; new UserNotFondExeption(&quot;User not found&quot;));</span>
+
+<span class="fc" id="L86">        return user.getFriends().stream()</span>
+<span class="fc" id="L87">                .map(friend -&gt; new UserFriendResponseDTO(friend.getId(), friend.getUsername(), friend.getEmail()))</span>
+<span class="fc" id="L88">                .toList();</span>
+    }
+
+    @Transactional
+    public void addFriend(Long userId, Long friendId) {
+
+<span class="fc" id="L94">        User user = getUserById(userId);</span>
+<span class="fc" id="L95">        User friend = getUserById(friendId);</span>
+
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (!isFriend(user, friend)) {</span>
+<span class="fc" id="L98">            user.getFriends().add(friend);</span>
+<span class="fc" id="L99">            friend.getFriends().add(user);</span>
+<span class="fc" id="L100">            userRepository.save(user);</span>
+<span class="fc" id="L101">            userRepository.save(friend);</span>
+        } else {
+<span class="fc" id="L103">            throw new DuplicateResourceException(&quot;Relation already exists&quot;);</span>
+        }
+<span class="fc" id="L105">    }</span>
+
+    @Transactional
+    public void deleteFriend(Long userId, Long friendId) {
+
+<span class="fc" id="L110">        User user = getUserById(userId);</span>
+<span class="fc" id="L111">        User friend = getUserById(friendId);</span>
+
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (isFriend(user, friend)) {</span>
+<span class="fc" id="L114">            user.getFriends().remove(friend);</span>
+<span class="fc" id="L115">            friend.getFriends().remove(user);</span>
+<span class="fc" id="L116">            userRepository.save(user);</span>
+<span class="fc" id="L117">            userRepository.save(friend);</span>
+        } else {
+<span class="fc" id="L119">            throw new ContactAlreadyExistException(&quot;Relation don't exists&quot;);</span>
+        }
+<span class="fc" id="L121">    }</span>
+
+    private boolean isFriend(User user, User friend) {
+<span class="pc bpc" id="L124" title="1 of 4 branches missed.">        return user.getFriends().contains(friend) || friend.getFriends().contains(user);</span>
+    }
+
+    @Transactional
+    public void updateBalance(User sender, User reciver, double amount) {
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        if (!isValidBalanceOperationForSender(sender, amount)) {</span>
+<span class="fc" id="L130">            throw new InsufficientBalanceException(&quot;Insufficient balance&quot;);</span>
+        }
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        if (!isValidReceiver(sender, reciver)) {</span>
+<span class="fc" id="L133">            throw new SelfSendingAmountException(&quot;Same sander and receiver&quot;);</span>
+        }
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (!isPositiveAmount(amount)) {</span>
+<span class="fc" id="L136">            throw new InsufficientBalanceException(&quot;Amount must be positive&quot;);</span>
+        }
+<span class="fc" id="L138">        sender.setBalance(sender.getBalance() - amount);</span>
+<span class="fc" id="L139">        reciver.setBalance(reciver.getBalance() + amount);</span>
+<span class="fc" id="L140">        userRepository.save(sender);</span>
+<span class="fc" id="L141">        userRepository.save(reciver);</span>
+
+<span class="fc" id="L143">    }</span>
+
+    private boolean isValidBalanceOperationForSender(User user, double amount) {
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        return user.getBalance() - amount &gt; 0;</span>
+    }
+
+    private boolean isPositiveAmount(double amount) {
+<span class="fc bfc" id="L150" title="All 2 branches covered.">        return amount &gt; 0;</span>
+    }
+
+    private boolean isValidReceiver(User sender, User receiver) {
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        return sender.getId() != receiver.getId();</span>
+    }
+
+    @Transactional
+    public void addBalance(User user, double amount) {
+<span class="fc bfc" id="L159" title="All 2 branches covered.">        if (!isPositiveAmount(amount)) {</span>
+<span class="fc" id="L160">            throw new InsufficientBalanceException(&quot;Amount must be positive&quot;);</span>
+        }
+<span class="fc" id="L162">        user.setBalance(user.getBalance() + amount);</span>
+<span class="fc" id="L163">        userRepository.save(user);</span>
+<span class="fc" id="L164">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
