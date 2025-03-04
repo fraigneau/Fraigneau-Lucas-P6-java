@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - SignupControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>SignupControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/fr.paymybuddy.controller.html">fr.paymybuddy.controller</a> &gt; SignupControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.053s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Devrait afficher la page d'inscription</td>
+<td class="success">testGetSignupPage()</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Devrait retourner à la page d'inscription en cas d'erreurs de validation</td>
+<td class="success">testInvalidSignup()</td>
+<td class="success">0.039s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Devrait traiter une inscription valide et rediriger vers la page de connexion</td>
+<td class="success">testValidSignup()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>?[2m2025-03-04T10:43:10.412+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.controller.SignupControllerTest]: SignupControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[2m2025-03-04T10:43:10.417+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.controller.SignupControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.2)?[0;39m
+
+?[2m2025-03-04T10:43:10.435+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupControllerTest     ?[0;39m ?[2m:?[0;39m Starting SignupControllerTest using Java 21.0.2 with PID 20900 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
+?[2m2025-03-04T10:43:10.436+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupControllerTest     ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;dev&quot;
+?[2m2025-03-04T10:43:10.582+01:00?[0;39m ?[33m WARN?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.s.s.UserDetailsServiceAutoConfiguration?[0;39m ?[2m:?[0;39m 
+
+Using generated security password: 16720a4b-5a10-4fce-bb65-2a14577803b1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+?[2m2025-03-04T10:43:10.583+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+?[2m2025-03-04T10:43:10.594+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-04T10:43:10.595+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-04T10:43:10.595+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-04T10:43:10.598+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupControllerTest     ?[0;39m ?[2m:?[0;39m Started SignupControllerTest in 0.179 seconds (process running for 9.248)
+?[2m2025-03-04T10:43:10.607+01:00?[0;39m ?[31mERROR?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupController         ?[0;39m ?[2m:?[0;39m Erreur lors de l'inscription: [Field error in object 'user' on field 'email': rejected value []; codes [NotBlank.user.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email]]; default message [L'email est obligatoire]]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /signup-processing
+       Parameters = {email=[], username=[testuser], password=[password123], _csrf=[JjtgE8NsI2suyL0hbErCitLJssOfmmf_b5ZO3XAWN1YJeDLGFAlRJ_VUFVoDrI5EDWf26bf7n_qu-FfSV6couRImVmJvGQv2]}
+          Headers = []
+             Body = null
+    Session Attrs = {SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=user, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_USER]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.SignupController
+           Method = fr.paymybuddy.controller.SignupController#signup(UserFormRequestDTO, BindingResult, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = signup
+             View = null
+        Attribute = user
+            value = UserFormRequestDTO(username=testuser, email=, password=password123)
+           errors = [Field error in object 'user' on field 'email': rejected value []; codes [NotBlank.user.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email]]; default message [L'email est obligatoire]]
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;meta name=&quot;description&quot;
+    content=&quot;Pay My Buddy - Créez votre compte pour commencer à effectuer des paiements entre amis&quot; /&gt;
+  &lt;title&gt;Pay My Buddy - Inscription&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;span&gt;Pay My Buddy&lt;/span&gt;
+    &lt;nav&gt;
+      &lt;a href=&quot;/login&quot;&gt;Accueil&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;form action=&quot;/signup-processing&quot; method=&quot;post&quot; class=&quot;login-container&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;C0sXVy2ocVv0g3Y_lHTDyDKQb8VtEapohRG7EawmfhdNiLtNOXkmYxuQR2rZ50Va9Vn3q1eiQvxcc5pFvSDddc4WHyMr6YJ9&quot;/&gt;
+      &lt;h2&gt;Inscription&lt;/h2&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Entrez votre username&quot;
+          required value=&quot;testuser&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;Entrez votre email&quot; required value=&quot;&quot; /&gt;
+        &lt;span class=&quot;error&quot;&gt;Lemail est obligatoire&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;password&quot;&gt;Mot de passe&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;6 caractères minimum&quot;
+          required value=&quot;&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;button type=&quot;submit&quot;&gt;S'inscrire&lt;/button&gt;
+
+      &lt;div class=&quot;form-footer&quot;&gt;
+        &lt;a href=&quot;/login&quot; class=&quot;link&quot;&gt;Déjà inscrit ? Connectez-vous&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /signup
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1c1dba57, SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=user, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_USER]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.SignupController
+           Method = fr.paymybuddy.controller.SignupController#login(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = signup
+             View = null
+        Attribute = user
+            value = UserFormRequestDTO(username=null, email=null, password=null)
+           errors = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;meta name=&quot;description&quot;
+    content=&quot;Pay My Buddy - Créez votre compte pour commencer à effectuer des paiements entre amis&quot; /&gt;
+  &lt;title&gt;Pay My Buddy - Inscription&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;span&gt;Pay My Buddy&lt;/span&gt;
+    &lt;nav&gt;
+      &lt;a href=&quot;/login&quot;&gt;Accueil&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;form action=&quot;/signup-processing&quot; method=&quot;post&quot; class=&quot;login-container&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;aDDO4PViqu_-3qZjyMmylcvb66Gqu5_oml7tkrqjoLNCPfXXClOs0cVTnI3TvJFRruSGovzvxsDJgqfFrTvZ8NjFk4AkDpO2&quot;/&gt;
+      &lt;h2&gt;Inscription&lt;/h2&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Entrez votre username&quot;
+          required value=&quot;&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;Entrez votre email&quot; required value=&quot;&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;password&quot;&gt;Mot de passe&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;6 caractères minimum&quot;
+          required value=&quot;&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;button type=&quot;submit&quot;&gt;S'inscrire&lt;/button&gt;
+
+      &lt;div class=&quot;form-footer&quot;&gt;
+        &lt;a href=&quot;/login&quot; class=&quot;link&quot;&gt;Déjà inscrit ? Connectez-vous&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /signup-processing
+       Parameters = {email=[test@example.com], username=[testuser], password=[password123], _csrf=[JWerrRrRh7lYdGuOFZJrlhXhjHvbUVw_CCSz2d8JOwIRedCDE1GYz3iw5t91Fg6_dr9f9XODoUPqM2QSaRPV6-Y6DTR3Hba6]}
+          Headers = []
+             Body = null
+    Session Attrs = {SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=user, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_USER]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.SignupController
+           Method = fr.paymybuddy.controller.SignupController#signup(UserFormRequestDTO, BindingResult, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/login
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;, Location:&quot;/login&quot;]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /login
+          Cookies = []
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.12.1</a> at 4 mars 2025, 10:43:11</p>
+</div>
+</div>
+</body>
+</html>

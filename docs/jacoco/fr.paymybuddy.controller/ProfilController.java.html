@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfilController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">paymybuddy</a> &gt; <a href="index.source.html" class="el_package">fr.paymybuddy.controller</a> &gt; <span class="el_source">ProfilController.java</span></div><h1>ProfilController.java</h1><pre class="source lang-java linenums">package fr.paymybuddy.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import fr.paymybuddy.config.UserDetailsImpl;
+import fr.paymybuddy.dto.UserFormRequestDTO;
+import fr.paymybuddy.mapper.UserMapper;
+import fr.paymybuddy.service.UserService;
+import jakarta.validation.Valid;
+
+@Controller
+public class ProfilController {
+
+<span class="fc" id="L24">    private static final Logger logger = LoggerFactory.getLogger(ProfilController.class);</span>
+
+    private UserService userService;
+    private UserMapper userMapper;
+
+<span class="nc" id="L29">    public ProfilController() {</span>
+<span class="nc" id="L30">    }</span>
+
+    @Autowired
+<span class="fc" id="L33">    public ProfilController(UserService userService, UserMapper userMapper) {</span>
+<span class="fc" id="L34">        this.userService = userService;</span>
+<span class="fc" id="L35">        this.userMapper = userMapper;</span>
+<span class="fc" id="L36">    }</span>
+
+    @GetMapping(&quot;/profil&quot;)
+    public String profil(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (userDetails != null) {</span>
+<span class="fc" id="L41">            UserFormRequestDTO actualUserForm = userMapper.toUserFormDTO(userService.getUserById(userDetails.getId()));</span>
+<span class="fc" id="L42">            model.addAttribute(&quot;user&quot;, actualUserForm);</span>
+<span class="fc" id="L43">        } else {</span>
+<span class="fc" id="L44">            logger.warn(&quot;Aucun utilisateur authentifié !&quot;);</span>
+<span class="fc" id="L45">            return &quot;redirect:/login&quot;;</span>
+        }
+<span class="fc" id="L47">        return &quot;profil&quot;;</span>
+    }
+
+    @PostMapping(&quot;/profil-processing&quot;)
+    public String profilProssesing(@Valid @ModelAttribute(&quot;user&quot;) UserFormRequestDTO updatedUser,
+            BindingResult result, @AuthenticationPrincipal UserDetailsImpl userDetails,
+            RedirectAttributes redirectAttributes) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L55">            return &quot;profil&quot;;</span>
+        }
+
+<span class="fc" id="L58">        userService.updateUser(updatedUser, userDetails.getId());</span>
+<span class="fc" id="L59">        redirectAttributes.addFlashAttribute(&quot;success&quot;, &quot;Profil mis à jour avec succès&quot;);</span>
+
+<span class="fc" id="L61">        return &quot;redirect:/profil&quot;;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

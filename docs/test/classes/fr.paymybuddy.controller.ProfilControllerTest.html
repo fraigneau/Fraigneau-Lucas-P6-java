@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ProfilControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ProfilControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/fr.paymybuddy.controller.html">fr.paymybuddy.controller</a> &gt; ProfilControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">5</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.185s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Devrait afficher la page de profil pour un utilisateur authentifié</td>
+<td class="success">testGetProfilPage()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Devrait rediriger vers la page de connexion si l'utilisateur n'est pas authentifié</td>
+<td class="success">testGetProfilPageWithoutAuthentication()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Devrait mettre à jour le profil avec succès</td>
+<td class="success">testUpdateProfilSuccess()</td>
+<td class="success">0.024s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Devrait mettre à jour le mot de passe si fourni</td>
+<td class="success">testUpdateProfilWithPassword()</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Devrait rester sur la page de profil en cas d'erreurs de validation</td>
+<td class="success">testUpdateProfilWithValidationErrors()</td>
+<td class="success">0.139s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>?[2m2025-03-04T10:43:09.838+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.controller.ProfilControllerTest]: ProfilControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[2m2025-03-04T10:43:09.845+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.controller.ProfilControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.2)?[0;39m
+
+?[2m2025-03-04T10:43:09.875+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilControllerTest     ?[0;39m ?[2m:?[0;39m Starting ProfilControllerTest using Java 21.0.2 with PID 20900 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
+?[2m2025-03-04T10:43:09.876+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilControllerTest     ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;dev&quot;
+?[2m2025-03-04T10:43:10.191+01:00?[0;39m ?[33m WARN?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.s.s.UserDetailsServiceAutoConfiguration?[0;39m ?[2m:?[0;39m 
+
+Using generated security password: 12e5f924-a0d9-4920-81e3-e3ee72705082
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+?[2m2025-03-04T10:43:10.194+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+?[2m2025-03-04T10:43:10.213+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-04T10:43:10.214+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-04T10:43:10.214+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-04T10:43:10.219+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilControllerTest     ?[0;39m ?[2m:?[0;39m Started ProfilControllerTest in 0.371 seconds (process running for 8.868)
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /profil-processing
+       Parameters = {email=[], username=[updateduser], _csrf=[PdYznKYzHjgWwgliXmqKdvjUo6D-Z2or9RGl7uCuU-QnhzAoBOVRq5NWe1k79jtWZ0e-Q8qyjsKcVFwGwSPDi9KWY4AUsVZN]}
+          Headers = []
+             Body = null
+    Session Attrs = {SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.ProfilController
+           Method = fr.paymybuddy.controller.ProfilController#profilProssesing(UserFormRequestDTO, BindingResult, UserDetailsImpl, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = profil
+             View = null
+        Attribute = user
+            value = UserFormRequestDTO(username=updateduser, email=, password=null)
+           errors = [Field error in object 'user' on field 'email': rejected value []; codes [NotBlank.user.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email]]; default message [L'email est obligatoire]]
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;title&gt;Pay My Buddy - Profil&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;span&gt;Pay My Buddy&lt;/span&gt;
+    &lt;nav&gt;
+      &lt;a href=&quot;/transaction&quot;&gt;Virements&lt;/a&gt;
+      &lt;a href=&quot;/profil&quot; class=&quot;active&quot;&gt;Profil&lt;/a&gt;
+      &lt;a href=&quot;/friends&quot;&gt;Relations&lt;/a&gt;
+      &lt;a href=&quot;/login?logout&quot;&gt;Se déconnecter&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container&quot;&gt;
+
+    
+
+    &lt;h2&gt;Profil&lt;/h2&gt;
+    &lt;form action=&quot;/profil-processing&quot; method=&quot;post&quot; class=&quot;profile-section&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;BIZBl5WFHswAbZIIZJYPz68rg51fSWXC2oAl9BESge_LYNNcPbUjoKDge60tWaA8Xbs7-p1Nrv89elPv7rJDkSMqsYv4VrU5&quot;/&gt;
+      &lt;!-- Username --&gt;
+      &lt;div class=&quot;profile-item&quot;&gt;
+        &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; value=&quot;updateduser&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;!-- Email --&gt;
+      &lt;div class=&quot;profile-item&quot;&gt;
+        &lt;label for=&quot;email&quot;&gt;Mail&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; value=&quot;&quot; /&gt;
+        &lt;span class=&quot;error&quot;&gt;Lemail est obligatoire&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Mot de passe --&gt;
+      &lt;div class=&quot;profile-item&quot;&gt;
+        &lt;label for=&quot;password&quot;&gt;Mot de passe&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Laissez vide pour ne pas changer&quot; value=&quot;&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;button type=&quot;submit&quot;&gt;Enregistrer&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;script&gt;
+      document.getElementById(&quot;edit-btn&quot;).addEventListener(&quot;click&quot;, function () {
+        document.querySelectorAll(&quot;input&quot;).forEach((input) =&gt; input.removeAttribute(&quot;disabled&quot;));
+        document.getElementById(&quot;save-btn&quot;).style.display = &quot;inline-block&quot;;
+        document.getElementById(&quot;cancel-btn&quot;).style.display = &quot;inline-block&quot;;
+        this.style.display = &quot;none&quot;;
+      });
+
+      document.getElementById(&quot;cancel-btn&quot;).addEventListener(&quot;click&quot;, function () {
+        document.querySelectorAll(&quot;input&quot;).forEach((input) =&gt; input.setAttribute(&quot;disabled&quot;, &quot;true&quot;));
+        document.getElementById(&quot;edit-btn&quot;).style.display = &quot;inline-block&quot;;
+        document.getElementById(&quot;save-btn&quot;).style.display = &quot;none&quot;;
+        this.style.display = &quot;none&quot;;
+      });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+?[2m2025-03-04T10:43:10.363+01:00?[0;39m ?[33m WARN?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilController         ?[0;39m ?[2m:?[0;39m Aucun utilisateur authentifié !
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /profil-processing
+       Parameters = {email=[updated@example.com], username=[updateduser], password=[], _csrf=[pG9ee0Gyl0zACvv869Kkzh134l4nKhvYrv5b256ry9KaIGVXkQk6TCXU9CntOZjL2P-Q_iQSz2dETyr1ns5i6PyT_-L_FwNi]}
+          Headers = []
+             Body = null
+    Session Attrs = {org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={success=Profil mis à jour avec succès}, targetRequestPath=/profil, targetRequestParams={}]], SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.ProfilController
+           Method = fr.paymybuddy.controller.ProfilController#profilProssesing(UserFormRequestDTO, BindingResult, UserDetailsImpl, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/profil
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = success
+            value = Profil mis à jour avec succès
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;, Location:&quot;/profil&quot;]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /profil
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /profil
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4b06ae0b, SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.ProfilController
+           Method = fr.paymybuddy.controller.ProfilController#profil(Model, UserDetailsImpl)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = profil
+             View = null
+        Attribute = user
+            value = UserFormRequestDTO(username=testuser, email=test@example.com, password=null)
+           errors = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;title&gt;Pay My Buddy - Profil&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;span&gt;Pay My Buddy&lt;/span&gt;
+    &lt;nav&gt;
+      &lt;a href=&quot;/transaction&quot;&gt;Virements&lt;/a&gt;
+      &lt;a href=&quot;/profil&quot; class=&quot;active&quot;&gt;Profil&lt;/a&gt;
+      &lt;a href=&quot;/friends&quot;&gt;Relations&lt;/a&gt;
+      &lt;a href=&quot;/login?logout&quot;&gt;Se déconnecter&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container&quot;&gt;
+
+    
+
+    &lt;h2&gt;Profil&lt;/h2&gt;
+    &lt;form action=&quot;/profil-processing&quot; method=&quot;post&quot; class=&quot;profile-section&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;aYbAkg7wIiGYAwaJtvo_weCGe2IrxAkSBGukfFvcylMqW-DVDLHxqzvGF0S1ZzDr0tcLpIO3VgMeojo_YgiWS2vv-TUdY9ax&quot;/&gt;
+      &lt;!-- Username --&gt;
+      &lt;div class=&quot;profile-item&quot;&gt;
+        &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; value=&quot;testuser&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;!-- Email --&gt;
+      &lt;div class=&quot;profile-item&quot;&gt;
+        &lt;label for=&quot;email&quot;&gt;Mail&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; value=&quot;test@example.com&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;!-- Mot de passe --&gt;
+      &lt;div class=&quot;profile-item&quot;&gt;
+        &lt;label for=&quot;password&quot;&gt;Mot de passe&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Laissez vide pour ne pas changer&quot; value=&quot;&quot; /&gt;
+        
+      &lt;/div&gt;
+
+      &lt;button type=&quot;submit&quot;&gt;Enregistrer&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;script&gt;
+      document.getElementById(&quot;edit-btn&quot;).addEventListener(&quot;click&quot;, function () {
+        document.querySelectorAll(&quot;input&quot;).forEach((input) =&gt; input.removeAttribute(&quot;disabled&quot;));
+        document.getElementById(&quot;save-btn&quot;).style.display = &quot;inline-block&quot;;
+        document.getElementById(&quot;cancel-btn&quot;).style.display = &quot;inline-block&quot;;
+        this.style.display = &quot;none&quot;;
+      });
+
+      document.getElementById(&quot;cancel-btn&quot;).addEventListener(&quot;click&quot;, function () {
+        document.querySelectorAll(&quot;input&quot;).forEach((input) =&gt; input.setAttribute(&quot;disabled&quot;, &quot;true&quot;));
+        document.getElementById(&quot;edit-btn&quot;).style.display = &quot;inline-block&quot;;
+        document.getElementById(&quot;save-btn&quot;).style.display = &quot;none&quot;;
+        this.style.display = &quot;none&quot;;
+      });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /profil-processing
+       Parameters = {email=[test@example.com], username=[testuser], password=[newpassword], _csrf=[CS__8Wl79vfHAwkifUc57bWWXfunDEucFjQwyM7_pmZctpaiPEvPxF9JlM7qNTEbSGoNiNShcJmVPS6xdA0G-KvGkARqhKOX]}
+          Headers = []
+             Body = null
+    Session Attrs = {org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={success=Profil mis à jour avec succès}, targetRequestPath=/profil, targetRequestParams={}]], SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.ProfilController
+           Method = fr.paymybuddy.controller.ProfilController#profilProssesing(UserFormRequestDTO, BindingResult, UserDetailsImpl, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/profil
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = success
+            value = Profil mis à jour avec succès
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;, Location:&quot;/profil&quot;]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /profil
+          Cookies = []
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.12.1</a> at 4 mars 2025, 10:43:11</p>
+</div>
+</div>
+</body>
+</html>

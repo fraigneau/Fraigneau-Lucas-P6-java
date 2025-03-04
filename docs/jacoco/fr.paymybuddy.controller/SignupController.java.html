@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SignupController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">paymybuddy</a> &gt; <a href="index.source.html" class="el_package">fr.paymybuddy.controller</a> &gt; <span class="el_source">SignupController.java</span></div><h1>SignupController.java</h1><pre class="source lang-java linenums">package fr.paymybuddy.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import fr.paymybuddy.dto.UserFormRequestDTO;
+import fr.paymybuddy.mapper.UserMapper;
+import fr.paymybuddy.service.UserService;
+import jakarta.validation.Valid;
+
+@Controller
+public class SignupController {
+
+<span class="fc" id="L21">    private static final Logger logger = LoggerFactory.getLogger(SignupController.class);</span>
+
+    private UserService userService;
+    private UserMapper UserUpdateMapper;
+
+<span class="nc" id="L26">    public SignupController() {</span>
+<span class="nc" id="L27">    }</span>
+
+    @Autowired
+<span class="fc" id="L30">    public SignupController(UserService userService, UserMapper UserUpdateMapper) {</span>
+<span class="fc" id="L31">        this.userService = userService;</span>
+<span class="fc" id="L32">        this.UserUpdateMapper = UserUpdateMapper;</span>
+<span class="fc" id="L33">    }</span>
+
+    @GetMapping(&quot;/signup&quot;)
+    public String login(Model model) {
+<span class="fc" id="L37">        model.addAttribute(&quot;user&quot;, new UserFormRequestDTO());</span>
+<span class="fc" id="L38">        logger.debug(&quot;Acces a la page d'inscription&quot;);</span>
+<span class="fc" id="L39">        return &quot;signup&quot;;</span>
+    }
+
+    @PostMapping(&quot;/signup-processing&quot;)
+    public String signup(@Valid @ModelAttribute(&quot;user&quot;) UserFormRequestDTO newuser, BindingResult result, Model model) {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L45">            logger.error(&quot;Erreur lors de l'inscription: &quot; + result.getAllErrors());</span>
+<span class="fc" id="L46">            return &quot;signup&quot;;</span>
+        }
+
+<span class="fc" id="L49">        logger.debug(&quot;Utilisateur inscrit avec succes: &quot; + newuser);</span>
+<span class="fc" id="L50">        userService.saveNewUser(UserUpdateMapper.toUser(newuser));</span>
+
+<span class="fc" id="L52">        return &quot;redirect:/login&quot;;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

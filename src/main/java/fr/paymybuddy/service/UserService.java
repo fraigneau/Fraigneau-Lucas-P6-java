@@ -136,7 +136,7 @@ public class UserService {
             throw new InsufficientBalanceException("Amount must be positive");
         }
         sender.setBalance(sender.getBalance() - amount);
-        reciver.setBalance(sender.getBalance() + amount);
+        reciver.setBalance(reciver.getBalance() + amount);
         userRepository.save(sender);
         userRepository.save(reciver);
 
