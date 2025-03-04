@@ -15,41 +15,85 @@ import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
 
+/**
+ * Controller responsible for handling user registration functionality.
+ * <p>
+ * This controller manages the user signup process, including displaying
+ * the registration form and processing user registration submissions.
+ * </p>
+ *
+ * @author PayMyBuddy
+ * @version 1.0
+ */
 @Controller
 public class SignupController {
 
     private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
 
     private UserService userService;
-    private UserMapper UserUpdateMapper;
+    private UserMapper userUpdateMapper;
 
+    /**
+     * Default constructor for SignupController.
+     */
     public SignupController() {
     }
 
+    /**
+     * Constructor with dependency injection for SignupController.
+     *
+     * @param userService      The service handling user-related operations
+     * @param userUpdateMapper The mapper for converting between User and DTO
+     *                         objects
+     */
     @Autowired
-    public SignupController(UserService userService, UserMapper UserUpdateMapper) {
+    public SignupController(UserService userService, UserMapper userUpdateMapper) {
         this.userService = userService;
-        this.UserUpdateMapper = UserUpdateMapper;
+        this.userUpdateMapper = userUpdateMapper;
     }
 
+    /**
+     * Displays the user registration page.
+     * <p>
+     * This endpoint renders the signup form and adds an empty user DTO
+     * to the model for form binding.
+     * </p>
+     *
+     * @param model The Spring MVC model to add attributes to
+     * @return The name of the view template to render
+     */
     @GetMapping("/signup")
     public String login(Model model) {
         model.addAttribute("user", new UserFormRequestDTO());
-        logger.debug("Acces a la page d'inscription");
+        logger.debug("Accessing registration page");
         return "signup";
     }
 
+    /**
+     * Processes the user registration submission.
+     * <p>
+     * This endpoint handles the form submission for user registration,
+     * validates the input data, and creates a new user account if all
+     * validations pass.
+     * </p>
+     *
+     * @param newUser The DTO containing user registration data from the form
+     * @param result  The binding result containing validation errors, if any
+     * @param model   The Spring MVC model to add attributes to
+     * @return The name of the view template to render or a redirect URL
+     */
     @PostMapping("/signup-processing")
-    public String signup(@Valid @ModelAttribute("user") UserFormRequestDTO newuser, BindingResult result, Model model) {
+    public String signup(@Valid @ModelAttribute("user") UserFormRequestDTO newUser,
+            BindingResult result,
+            Model model) {
         if (result.hasErrors()) {
-            logger.error("Erreur lors de l'inscription: " + result.getAllErrors());
+            logger.error("Error during registration: " + result.getAllErrors());
             return "signup";
         }
 
-        logger.debug("Utilisateur inscrit avec succes: " + newuser);
-        userService.saveNewUser(UserUpdateMapper.toUser(newuser));
+        logger.debug("User registered successfully: " + newUser);
+        userService.saveNewUser(userUpdateMapper.toUser(newUser));
 
         return "redirect:/login";
     }
-
 }

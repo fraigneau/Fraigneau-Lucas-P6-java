@@ -1,0 +1,7 @@
+fr.paymybuddy
+fr.paymybuddy.config
+fr.paymybuddy.controller
+fr.paymybuddy.exception
+fr.paymybuddy.mapper
+fr.paymybuddy.repository
+fr.paymybuddy.service

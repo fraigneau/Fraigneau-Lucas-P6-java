@@ -75,7 +75,6 @@ jacoco {
 }
 
 tasks.jacocoTestReport {
-
     reports {
         xml.required.set(true)
         csv.required.set(false)
@@ -92,4 +91,30 @@ tasks.jacocoTestReport {
             }
         })
     )
+}
+
+tasks.javadoc {
+    val javadocOptions = options as StandardJavadocDocletOptions
+    javadocOptions.encoding = "UTF-8"
+    javadocOptions.charSet("UTF-8")
+    javadocOptions.setAuthor(true)
+    javadocOptions.setVersion(true)
+    javadocOptions.links("https://docs.oracle.com/en/java/javase/21/docs/api/")
+    javadocOptions.windowTitle = "Documentation API"
+    javadocOptions.docTitle("<h1>Documentation API</h1>")
+    
+    // Configuration pour ignorer les erreurs de documentation
+    javadocOptions.addStringOption("Xdoclint:none", "-quiet")
+    
+    // Exclusion des classes générées par MapStruct, Lombok, etc.
+    exclude("**/mapper/impl/**", "**/dto/**", "**/model/**")
+    
+    // Définition du dossier de destination
+    destinationDir = file("${layout.buildDirectory.get()}/docs/javadoc")
+    
+    // Pour ignorer les erreurs de Javadoc
+    (options as CoreJavadocOptions).addStringOption("Xdoclint:none", "-quiet")
+    
+    // Désactiver l'échec de la build en cas d'erreurs de Javadoc
+    isFailOnError = false
 }
