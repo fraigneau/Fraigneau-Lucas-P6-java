@@ -1,8 +1,13 @@
-package fr.paymybuddy.service;
+package fr.paymybuddy.unit.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +26,8 @@ import fr.paymybuddy.mapper.TransactionMapper;
 import fr.paymybuddy.model.Transaction;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.TransactionRepository;
+import fr.paymybuddy.service.TransactionService;
+import fr.paymybuddy.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
 public class TransactionServiceTest {
