@@ -1,4 +1,4 @@
-package fr.paymybuddy.service;
+package fr.paymybuddy.unit.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -25,6 +25,7 @@ import fr.paymybuddy.exception.SelfSendingAmountException;
 import fr.paymybuddy.exception.UserNotFondExeption;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.UserRepository;
+import fr.paymybuddy.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceExceptionsTest {

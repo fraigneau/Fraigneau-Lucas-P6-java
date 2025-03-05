@@ -1,4 +1,4 @@
-package fr.paymybuddy.controller;
+package fr.paymybuddy.unit.controller;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
@@ -26,11 +26,12 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import fr.paymybuddy.config.TestSecurityConfig;
 import fr.paymybuddy.config.UserDetailsImpl;
+import fr.paymybuddy.controller.FriendController;
 import fr.paymybuddy.dto.UserFriendResponseDTO;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.service.UserService;
+import fr.paymybuddy.unit.config.TestSecurityConfig;
 
 @WebMvcTest(FriendController.class)
 @Import(TestSecurityConfig.class)

@@ -1,4 +1,4 @@
-package fr.paymybuddy.controller;
+package fr.paymybuddy.unit.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -27,12 +27,13 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import fr.paymybuddy.config.TestSecurityConfig;
 import fr.paymybuddy.config.UserDetailsImpl;
+import fr.paymybuddy.controller.ProfilController;
 import fr.paymybuddy.dto.UserFormRequestDTO;
 import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.service.UserService;
+import fr.paymybuddy.unit.config.TestSecurityConfig;
 
 @WebMvcTest(ProfilController.class)
 @Import(TestSecurityConfig.class)

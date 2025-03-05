@@ -1,6 +1,6 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.4.2"
+    id("org.springframework.boot") version "3.4.3"
     id("io.spring.dependency-management") version "1.1.7"
     id("jacoco")
 }
@@ -30,7 +30,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 
     compileOnly("org.projectlombok:lombok:1.18.32")
@@ -47,41 +46,101 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly("com.h2database:h2")
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport)
+tasks.withType<JavaCompile> {
+    options.compilerArgs.add("-Amapstruct.defaultComponentModel=spring")
+}
 
-    reports {
-        html.required.set(true)
-        junitXml.required.set(true)
-        junitXml.outputLocation.set(layout.buildDirectory.dir("test-results/junit"))
+// Configuration des sources pour les tests d'intégration
+val integrationTest by sourceSets.creating {
+    java.srcDir("src/test/java")
+    resources.srcDir("src/test/resources")
+    compileClasspath = sourceSets.main.get().output + 
+                      sourceSets.test.get().output + 
+                      configurations.testCompileClasspath.get()
+    runtimeClasspath = output + 
+                      sourceSets.main.get().output + 
+                      sourceSets.test.get().output + 
+                      configurations.testRuntimeClasspath.get()
+}
+
+// Configuration des dépendances pour les tests d'intégration
+val integrationTestImplementation by configurations.getting {
+    extendsFrom(configurations.testImplementation.get())
+}
+
+val integrationTestRuntimeOnly by configurations.getting {
+    extendsFrom(configurations.testRuntimeOnly.get())
+}
+
+// Configuration de la tâche de test unitaire
+tasks.test {
+    description = "Exécute les tests unitaires."
+    group = "verification"
+    
+    useJUnitPlatform {
+        excludeTags("integration")
     }
-
+    
     testLogging {
         events("passed", "skipped", "failed")
         showStandardStreams = false
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
+    
+    systemProperty("spring.profiles.active", "test")
+    
+    finalizedBy(tasks.jacocoTestReport)
 }
 
-tasks.withType<JavaCompile>().configureEach {
-    options.compilerArgs.add("-Amapstruct.defaultComponentModel=spring")
+// Configuration de la tâche de test d'intégration
+val integrationTestTask = tasks.register<Test>("integrationTest") {
+    description = "Exécute les tests d'intégration."
+    group = "verification"
+    
+    testClassesDirs = integrationTest.output.classesDirs
+    classpath = integrationTest.runtimeClasspath
+    
+    useJUnitPlatform {
+        includeTags("integration")
+    }
+    
+    testLogging {
+        events("passed", "skipped", "failed")
+        showStandardStreams = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
+    
+    systemProperty("spring.profiles.active", "integration-test")
+    
+    shouldRunAfter(tasks.test)
+    
+    finalizedBy(tasks.jacocoTestReport)
 }
 
+// Tâche pour exécuter tous les tests (unitaires et intégration)
+tasks.register<Test>("testAll") {
+    description = "Exécute tous les tests (unitaires et d'intégration)."
+    group = "verification"
+    
+    dependsOn(tasks.test, integrationTestTask)
+}
+
+// Configuration de JaCoCo pour les rapports de couverture de code
 jacoco {
     toolVersion = "0.8.11"
 }
 
 tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    
     reports {
-        xml.required.set(true)
-        csv.required.set(false)
         html.required.set(true)
         html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco"))
     }
-
+    
     classDirectories.setFrom(
         files(classDirectories.files.map {
             fileTree(it) {
@@ -93,28 +152,25 @@ tasks.jacocoTestReport {
     )
 }
 
+// Configuration de la documentation JavaDoc
 tasks.javadoc {
-    val javadocOptions = options as StandardJavadocDocletOptions
-    javadocOptions.encoding = "UTF-8"
-    javadocOptions.charSet("UTF-8")
-    javadocOptions.setAuthor(true)
-    javadocOptions.setVersion(true)
-    javadocOptions.links("https://docs.oracle.com/en/java/javase/21/docs/api/")
-    javadocOptions.windowTitle = "Documentation API"
-    javadocOptions.docTitle("<h1>Documentation API</h1>")
+    (options as StandardJavadocDocletOptions).apply {
+        encoding = "UTF-8"
+        charSet = "UTF-8"
+        setAuthor(true)
+        setVersion(true)
+        links("https://docs.oracle.com/en/java/javase/21/docs/api/")
+        windowTitle = "Documentation API"
+        docTitle = "<h1>Documentation API</h1>"
+        addStringOption("Xdoclint:none", "-quiet")
+    }
     
-    // Configuration pour ignorer les erreurs de documentation
-    javadocOptions.addStringOption("Xdoclint:none", "-quiet")
-    
-    // Exclusion des classes générées par MapStruct, Lombok, etc.
     exclude("**/mapper/impl/**", "**/dto/**", "**/model/**")
-    
-    // Définition du dossier de destination
-    destinationDir = file("${layout.buildDirectory.get()}/docs/javadoc")
-    
-    // Pour ignorer les erreurs de Javadoc
-    (options as CoreJavadocOptions).addStringOption("Xdoclint:none", "-quiet")
-    
-    // Désactiver l'échec de la build en cas d'erreurs de Javadoc
+    destinationDir = file("${layout.buildDirectory}/docs/javadoc")
     isFailOnError = false
+}
+
+// Configuration pour le check de version de Java
+tasks.withType<JavaCompile>().configureEach {
+    options.release.set(21)
 }

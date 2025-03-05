@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.paymybuddy.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -25,6 +26,7 @@ import lombok.Data;
  * @see User
  */
 @Data
+@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
     /**

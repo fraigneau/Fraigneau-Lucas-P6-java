@@ -1,0 +1,285 @@
+.
+|-- bin
+|   |-- default
+|   |   `-- fr
+|   |       `-- paymybuddy
+|   |           `-- mapper
+|   |               |-- TransactionMapperImpl.class
+|   |               `-- UserMapperImpl.class
+|   |-- generated-sources
+|   |   `-- annotations
+|   |       `-- fr
+|   |           `-- paymybuddy
+|   |               `-- mapper
+|   |                   |-- TransactionMapperImpl.java
+|   |                   `-- UserMapperImpl.java
+|   |-- generated-test-sources
+|   |   `-- annotations
+|   |-- main
+|   |   |-- application.properties
+|   |   |-- fr
+|   |   |   `-- paymybuddy
+|   |   |       |-- PaymybuddyApplication.class
+|   |   |       |-- config
+|   |   |       |   |-- CustomUserDetailsService.class
+|   |   |       |   |-- SecurityConfig.class
+|   |   |       |   `-- UserDetailsImpl.class
+|   |   |       |-- controller
+|   |   |       |   |-- AuthController.class
+|   |   |       |   |-- FriendController.class
+|   |   |       |   |-- ProfilController.class
+|   |   |       |   |-- SignupController.class
+|   |   |       |   `-- TransactionController.class
+|   |   |       |-- dto
+|   |   |       |   |-- BalanceRequestDTO.class
+|   |   |       |   |-- TransactionRequestDTO.class
+|   |   |       |   |-- TransactionResponseDTO.class
+|   |   |       |   |-- UserDTO.class
+|   |   |       |   |-- UserFormDTO.class
+|   |   |       |   |-- UserFormRequestDTO.class
+|   |   |       |   `-- UserFriendResponseDTO.class
+|   |   |       |-- exception
+|   |   |       |   |-- ContactAlreadyExistException.class
+|   |   |       |   |-- DuplicateResourceException.class
+|   |   |       |   |-- GlobalExceptionHandler.class
+|   |   |       |   |-- InsufficientBalanceException.class
+|   |   |       |   |-- ResourceNotFoundException.class
+|   |   |       |   |-- SelfSendingAmountException.class
+|   |   |       |   `-- UserNotFondExeption.class
+|   |   |       |-- mapper
+|   |   |       |   |-- TransactionMapper.class
+|   |   |       |   `-- UserMapper.class
+|   |   |       |-- model
+|   |   |       |   |-- Transaction.class
+|   |   |       |   |-- User.class
+|   |   |       |   |-- UserConnection.class
+|   |   |       |   `-- UserConnectionId.class
+|   |   |       |-- repository
+|   |   |       |   |-- TransactionRepository.class
+|   |   |       |   `-- UserRepository.class
+|   |   |       `-- service
+|   |   |           |-- TransactionService.class
+|   |   |           `-- UserService.class
+|   |   |-- static
+|   |   |   `-- style.css
+|   |   `-- templates
+|   |       |-- friends.html
+|   |       |-- login.html
+|   |       |-- profil.html
+|   |       |-- signup.html
+|   |       `-- transaction.html
+|   `-- test
+|       |-- application-test.properties
+|       |-- data.sql
+|       |-- fr
+|       |   `-- paymybuddy
+|       |       |-- integration
+|       |       |   `-- RouteStatusCodeIntegrationTest.class
+|       |       `-- unit
+|       |           |-- PaymybuddyApplicationTests.class
+|       |           |-- config
+|       |           |   `-- TestSecurityConfig.class
+|       |           |-- controller
+|       |           |   |-- FriendControllerTest.class
+|       |           |   |-- ProfilControllerTest.class
+|       |           |   |-- SignupControllerTest.class
+|       |           |   `-- TransactionControllerTest.class
+|       |           `-- service
+|       |               |-- TransactionServiceExceptionsTest.class
+|       |               |-- TransactionServiceTest.class
+|       |               |-- UserServiceExceptionsTest.class
+|       |               `-- UserServiceTest.class
+|       `-- schema.sql
+|-- build
+|   |-- classes
+|   |   `-- java
+|   |       |-- integrationTest
+|   |       |   `-- fr
+|   |       |       `-- paymybuddy
+|   |       |           `-- integration
+|   |       |               `-- RouteStatusCodeIntegrationTest.class
+|   |       `-- main
+|   |           `-- fr
+|   |               `-- paymybuddy
+|   |                   |-- PaymybuddyApplication.class
+|   |                   |-- config
+|   |                   |   |-- CustomUserDetailsService.class
+|   |                   |   |-- SecurityConfig.class
+|   |                   |   `-- UserDetailsImpl.class
+|   |                   |-- controller
+|   |                   |   |-- AuthController.class
+|   |                   |   |-- FriendController.class
+|   |                   |   |-- ProfilController.class
+|   |                   |   |-- SignupController.class
+|   |                   |   `-- TransactionController.class
+|   |                   |-- dto
+|   |                   |   |-- BalanceRequestDTO.class
+|   |                   |   |-- TransactionRequestDTO.class
+|   |                   |   |-- TransactionResponseDTO.class
+|   |                   |   |-- UserDTO.class
+|   |                   |   |-- UserFormDTO.class
+|   |                   |   |-- UserFormRequestDTO.class
+|   |                   |   `-- UserFriendResponseDTO.class
+|   |                   |-- exception
+|   |                   |   |-- ContactAlreadyExistException.class
+|   |                   |   |-- DuplicateResourceException.class
+|   |                   |   |-- GlobalExceptionHandler.class
+|   |                   |   |-- InsufficientBalanceException.class
+|   |                   |   |-- ResourceNotFoundException.class
+|   |                   |   |-- SelfSendingAmountException.class
+|   |                   |   `-- UserNotFondExeption.class
+|   |                   |-- mapper
+|   |                   |   |-- TransactionMapper.class
+|   |                   |   |-- TransactionMapperImpl.class
+|   |                   |   |-- UserMapper.class
+|   |                   |   `-- UserMapperImpl.class
+|   |                   |-- model
+|   |                   |   |-- Transaction.class
+|   |                   |   |-- User.class
+|   |                   |   |-- UserConnection.class
+|   |                   |   `-- UserConnectionId.class
+|   |                   |-- repository
+|   |                   |   |-- TransactionRepository.class
+|   |                   |   `-- UserRepository.class
+|   |                   `-- service
+|   |                       |-- TransactionService.class
+|   |                       `-- UserService.class
+|   |-- generated
+|   |   `-- sources
+|   |       |-- annotationProcessor
+|   |       |   `-- java
+|   |       |       |-- integrationTest
+|   |       |       `-- main
+|   |       |           `-- fr
+|   |       |               `-- paymybuddy
+|   |       |                   `-- mapper
+|   |       |                       |-- TransactionMapperImpl.java
+|   |       |                       `-- UserMapperImpl.java
+|   |       `-- headers
+|   |           `-- java
+|   |               |-- integrationTest
+|   |               `-- main
+|   |-- jacoco
+|   |   `-- integrationTest.exec
+|   |-- reports
+|   |   |-- problems
+|   |   |   `-- problems-report.html
+|   |   `-- tests
+|   |       `-- integrationTest
+|   |           |-- css
+|   |           |   |-- base-style.css
+|   |           |   `-- style.css
+|   |           |-- index.html
+|   |           `-- js
+|   |               `-- report.js
+|   |-- resources
+|   |   |-- integrationTest
+|   |   |   |-- application-test.properties
+|   |   |   |-- data.sql
+|   |   |   `-- schema.sql
+|   |   `-- main
+|   |       |-- application.properties
+|   |       |-- static
+|   |       |   `-- style.css
+|   |       `-- templates
+|   |           |-- friends.html
+|   |           |-- login.html
+|   |           |-- profil.html
+|   |           |-- signup.html
+|   |           `-- transaction.html
+|   |-- test-results
+|   |   `-- integrationTest
+|   |       `-- binary
+|   |           |-- output.bin
+|   |           |-- output.bin.idx
+|   |           `-- results.bin
+|   `-- tmp
+|       |-- compileIntegrationTestJava
+|       |   `-- previous-compilation-data.bin
+|       |-- compileJava
+|       |   `-- previous-compilation-data.bin
+|       `-- integrationTest
+|-- build.gradle.kts
+|-- gradlew
+|-- gradlew.bat
+|-- settings.gradle.kts
+`-- src
+    |-- main
+    |   |-- java
+    |   |   `-- fr
+    |   |       `-- paymybuddy
+    |   |           |-- PaymybuddyApplication.java
+    |   |           |-- config
+    |   |           |   |-- CustomUserDetailsService.java
+    |   |           |   |-- SecurityConfig.java
+    |   |           |   `-- UserDetailsImpl.java
+    |   |           |-- controller
+    |   |           |   |-- AuthController.java
+    |   |           |   |-- FriendController.java
+    |   |           |   |-- ProfilController.java
+    |   |           |   |-- SignupController.java
+    |   |           |   `-- TransactionController.java
+    |   |           |-- dto
+    |   |           |   |-- BalanceRequestDTO.java
+    |   |           |   |-- TransactionRequestDTO.java
+    |   |           |   |-- TransactionResponseDTO.java
+    |   |           |   |-- UserDTO.java
+    |   |           |   |-- UserFormDTO.java
+    |   |           |   |-- UserFormRequestDTO.java
+    |   |           |   `-- UserFriendResponseDTO.java
+    |   |           |-- exception
+    |   |           |   |-- ContactAlreadyExistException.java
+    |   |           |   |-- DuplicateResourceException.java
+    |   |           |   |-- GlobalExceptionHandler.java
+    |   |           |   |-- InsufficientBalanceException.java
+    |   |           |   |-- ResourceNotFoundException.java
+    |   |           |   |-- SelfSendingAmountException.java
+    |   |           |   `-- UserNotFondExeption.java
+    |   |           |-- mapper
+    |   |           |   |-- TransactionMapper.java
+    |   |           |   `-- UserMapper.java
+    |   |           |-- model
+    |   |           |   |-- Transaction.java
+    |   |           |   |-- User.java
+    |   |           |   |-- UserConnection.java
+    |   |           |   `-- UserConnectionId.java
+    |   |           |-- repository
+    |   |           |   |-- TransactionRepository.java
+    |   |           |   `-- UserRepository.java
+    |   |           `-- service
+    |   |               |-- TransactionService.java
+    |   |               `-- UserService.java
+    |   `-- resources
+    |       |-- application.properties
+    |       |-- static
+    |       |   `-- style.css
+    |       `-- templates
+    |           |-- friends.html
+    |           |-- login.html
+    |           |-- profil.html
+    |           |-- signup.html
+    |           `-- transaction.html
+    `-- test
+        |-- java
+        |   `-- fr
+        |       `-- paymybuddy
+        |           |-- integration
+        |           |   `-- RouteStatusCodeIntegrationTest.java
+        |           `-- unit
+        |               |-- PaymybuddyApplicationTests.java
+        |               |-- config
+        |               |   `-- TestSecurityConfig.java
+        |               |-- controller
+        |               |   |-- FriendControllerTest.java
+        |               |   |-- ProfilControllerTest.java
+        |               |   |-- SignupControllerTest.java
+        |               |   `-- TransactionControllerTest.java
+        |               `-- service
+        |                   |-- TransactionServiceExceptionsTest.java
+        |                   |-- TransactionServiceTest.java
+        |                   |-- UserServiceExceptionsTest.java
+        |                   `-- UserServiceTest.java
+        `-- resources
+            |-- application-test.properties
+            |-- data.sql
+            `-- schema.sql
