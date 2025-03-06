@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - IntegrationTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>IntegrationTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/fr.paymybuddy.integration.html">fr.paymybuddy.integration</a> &gt; IntegrationTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">15</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.523s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">addFriendSucceeds_withValidEmail()</td>
+<td class="success">0.024s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">depositSucceeds_withValidAmount()</td>
+<td class="success">0.046s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">friendsPageLoads_whenAuthenticated()</td>
+<td class="success">0.927s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">homePageRedirectsToLogin_whenNotAuthenticated()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">loginFailsAndRedirects_whenCredentialsAreInvalid()</td>
+<td class="success">0.127s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">loginPageLoadsSuccessfully()</td>
+<td class="success">0.019s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">loginRedirectsToProfile_whenCredentialsAreValid()</td>
+<td class="success">0.073s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">paymentSucceeds_betweenFriends()</td>
+<td class="success">0.032s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">profilePageLoads_whenAuthenticated()</td>
+<td class="success">0.020s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">profileUpdateSucceeds_withValidData()</td>
+<td class="success">0.078s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">removeFriendSucceeds_withExistingConnection()</td>
+<td class="success">0.024s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">signupPageLoadsSuccessfully()</td>
+<td class="success">0.031s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">transactionPageLoads_whenAuthenticated()</td>
+<td class="success">0.032s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">userRegistrationFails_withInvalidData()</td>
+<td class="success">0.019s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">userRegistrationSucceeds_withValidData()</td>
+<td class="success">0.062s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>19:54:43.090 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [fr.paymybuddy.integration.IntegrationTests]: IntegrationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:54:43.230 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.integration.IntegrationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.3)?[0;39m
+
+?[2m2025-03-05T19:54:43.706+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.integration.IntegrationTests        ?[0;39m ?[2m:?[0;39m Starting IntegrationTests using Java 21.0.2 with PID 44284 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
+?[2m2025-03-05T19:54:43.707+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.integration.IntegrationTests        ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;integration-test&quot;
+?[2m2025-03-05T19:54:44.422+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.s.d.r.c.RepositoryConfigurationDelegate?[0;39m ?[2m:?[0;39m Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+?[2m2025-03-05T19:54:44.510+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.s.d.r.c.RepositoryConfigurationDelegate?[0;39m ?[2m:?[0;39m Finished Spring Data repository scanning in 72 ms. Found 2 JPA repository interfaces.
+?[2m2025-03-05T19:54:45.003+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mcom.zaxxer.hikari.HikariDataSource      ?[0;39m ?[2m:?[0;39m HikariPool-1 - Starting...
+?[2m2025-03-05T19:54:45.398+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mcom.zaxxer.hikari.pool.HikariPool       ?[0;39m ?[2m:?[0;39m HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@43bb76d0
+?[2m2025-03-05T19:54:45.400+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mcom.zaxxer.hikari.HikariDataSource      ?[0;39m ?[2m:?[0;39m HikariPool-1 - Start completed.
+?[2m2025-03-05T19:54:45.556+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.hibernate.jpa.internal.util.LogHelper ?[0;39m ?[2m:?[0;39m HHH000204: Processing PersistenceUnitInfo [name: default]
+?[2m2025-03-05T19:54:45.672+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36morg.hibernate.Version                   ?[0;39m ?[2m:?[0;39m HHH000412: Hibernate ORM core version 6.6.8.Final
+?[2m2025-03-05T19:54:45.738+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.h.c.internal.RegionFactoryInitiator   ?[0;39m ?[2m:?[0;39m HHH000026: Second-level cache disabled
+?[2m2025-03-05T19:54:46.261+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.o.j.p.SpringPersistenceUnitInfo     ?[0;39m ?[2m:?[0;39m No LoadTimeWeaver setup: ignoring JPA class transformer
+?[2m2025-03-05T19:54:46.419+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36morg.hibernate.orm.connections.pooling   ?[0;39m ?[2m:?[0;39m HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.31
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+?[2m2025-03-05T19:54:47.769+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.h.e.t.j.p.i.JtaPlatformInitiator      ?[0;39m ?[2m:?[0;39m HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+?[2m2025-03-05T19:54:47.864+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mj.LocalContainerEntityManagerFactoryBean?[0;39m ?[2m:?[0;39m Initialized JPA EntityManagerFactory for persistence unit 'default'
+?[2m2025-03-05T19:54:48.166+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.d.j.r.query.QueryEnhancerFactory    ?[0;39m ?[2m:?[0;39m Hibernate is in classpath; If applicable, HQL parser will be used.
+?[2m2025-03-05T19:54:48.949+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+?[2m2025-03-05T19:54:49.666+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:49.666+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:49.668+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 1 ms
+?[2m2025-03-05T19:54:49.693+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.integration.IntegrationTests        ?[0;39m ?[2m:?[0;39m Started IntegrationTests in 6.288 seconds (process running for 7.875)
+?[2m2025-03-05T19:54:50.056+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.057+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.057+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:50.634+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.634+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.634+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:50.680+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.680+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.680+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /profil-processing
+       Parameters = {username=[newUsername], email=[profileupdate@example.com], password=[], _csrf=[hlvD5E5dpw2rYcSORczt9xz_1bAtbnjMFaZ6T7YkGcPGOIjDv2_1gC9rxGuGBfe3IeHZkyjP-IlOW0nhLJ4ed4RHKPv0Dery]}
+          Headers = []
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={success=Profil mis à jour avec succès}, targetRequestPath=/profil, targetRequestParams={}]], SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=16, username=oldUsername, email=profileupdate@example.com, password=$2a$10$rB1d.Kpje/Oj6Bn/ZBUDfO7xux6hN5g.eXMWoc37s2isvg6Z1Bnq2), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
+
+Handler:
+             Type = fr.paymybuddy.controller.ProfilController
+           Method = fr.paymybuddy.controller.ProfilController#profilProssesing(UserFormRequestDTO, BindingResult, UserDetailsImpl, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/profil
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = success
+            value = Profil mis à jour avec succès
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;, Location:&quot;/profil&quot;]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /profil
+          Cookies = []
+?[2m2025-03-05T19:54:50.759+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.759+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.759+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:50.790+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.791+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.791+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:50.811+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.812+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.812+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:50.842+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.842+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.842+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:50.970+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:50.970+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:50.971+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 1 ms
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /signup-processing
+       Parameters = {username=[newuser], email=[newuser1741200890974@example.com], password=[password123], _csrf=[T3kjKWnFeoithUSq35L_bH-H-lv8SkWB-AxvwrsX9sRCJHJvexxCGAr0SOuAvXecvL_LXhmy12POLCasyjkK8ot2l6V7FRdW]}
+          Headers = []
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = fr.paymybuddy.controller.SignupController
+           Method = fr.paymybuddy.controller.SignupController#signup(UserFormRequestDTO, BindingResult, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/login
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;, Location:&quot;/login&quot;]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /login
+          Cookies = []
+?[2m2025-03-05T19:54:51.034+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:51.034+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:51.034+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:51.057+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:51.058+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:51.058+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:51.066+01:00?[0;39m ?[31mERROR?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupController         ?[0;39m ?[2m:?[0;39m Error during registration: [Field error in object 'user' on field 'password': rejected value [pwd]; codes [Pattern.user.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password],[Ljakarta.validation.constraints.Pattern$Flag;@580f4e4,^$|[a-zA-Z0-9]{6,32}]; default message [Doit être vide ou contenir entre 6 et 32 caractères alphanumériques], Field error in object 'user' on field 'username': rejected value [u]; codes [Size.user.username,Size.username,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.username,username]; arguments []; default message [username],50,3]; default message [Le nom d'utilisateur doit contenir entre 3 et 50 caractères], Field error in object 'user' on field 'email': rejected value [invalid-email]; codes [Email.user.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@76404b29,.*]; default message [L'email doit être valide]]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /signup-processing
+       Parameters = {username=[u], email=[invalid-email], password=[pwd], _csrf=[JX_RudSNqyfb6TaawPfuv07Eccw43sqkTAV8vqPN4QYdZgimEkmyj-HvzRL23gb7odraiSzxXK5d7_OJLz0fjMf71jZ7U2yf]}
+          Headers = []
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = fr.paymybuddy.controller.SignupController
+           Method = fr.paymybuddy.controller.SignupController#signup(UserFormRequestDTO, BindingResult, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = signup
+             View = null
+        Attribute = user
+            value = UserFormRequestDTO(username=u, email=invalid-email, password=pwd)
+           errors = [Field error in object 'user' on field 'password': rejected value [pwd]; codes [Pattern.user.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password],[Ljakarta.validation.constraints.Pattern$Flag;@580f4e4,^$|[a-zA-Z0-9]{6,32}]; default message [Doit être vide ou contenir entre 6 et 32 caractères alphanumériques], Field error in object 'user' on field 'username': rejected value [u]; codes [Size.user.username,Size.username,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.username,username]; arguments []; default message [username],50,3]; default message [Le nom d'utilisateur doit contenir entre 3 et 50 caractères], Field error in object 'user' on field 'email': rejected value [invalid-email]; codes [Email.user.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@76404b29,.*]; default message [L'email doit être valide]]
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;0&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;meta name=&quot;description&quot;
+    content=&quot;Pay My Buddy - Créez votre compte pour commencer à effectuer des paiements entre amis&quot; /&gt;
+  &lt;title&gt;Pay My Buddy - Inscription&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;span&gt;Pay My Buddy&lt;/span&gt;
+    &lt;nav&gt;
+      
+    &lt;/nav&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;form action=&quot;/signup-processing&quot; method=&quot;post&quot; class=&quot;login-container&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;v8AWkL3CUgcuV8w-mzfaYqq6ZZEBAdxSojxBMukkVLnOm18WiPZ1poigNDIDYPxf-hruVMiPSPNkMOV_wQQiAI0SY4morjsv&quot;/&gt;
+      &lt;h2&gt;Inscription&lt;/h2&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Entrez votre username&quot;
+          required value=&quot;u&quot; /&gt;
+        &lt;span class=&quot;error&quot;&gt;Le nom dutilisateur doit contenir entre 3 et 50 caractères&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;Entrez votre email&quot; required value=&quot;invalid-email&quot; /&gt;
+        &lt;span class=&quot;error&quot;&gt;Lemail doit être valide&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;password&quot;&gt;Mot de passe&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;6 caractères minimum&quot;
+          required value=&quot;&quot; /&gt;
+        &lt;span class=&quot;error&quot;&gt;Doit être vide ou contenir entre 6 et 32 caractères alphanumériques&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;button type=&quot;submit&quot;&gt;S'inscrire&lt;/button&gt;
+
+      &lt;div class=&quot;form-footer&quot;&gt;
+        &lt;a href=&quot;/login&quot; class=&quot;link&quot;&gt;Déjà inscrit ? Connectez-vous&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+?[2m2025-03-05T19:54:51.079+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:51.079+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:51.080+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 1 ms
+?[2m2025-03-05T19:54:51.104+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:51.104+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:51.104+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:51.124+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:51.124+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:51.124+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:51.133+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:51.133+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:51.134+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:54:51.166+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:54:51.167+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:54:51.167+01:00?[0;39m ?[32m INFO?[0;39m ?[35m44284?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Fraigneau\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.15.11\a38b16385e867f59a641330f0362ebe742788ed8\byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.12.1</a> at 5 mars 2025, 19:54:51</p>
+</div>
+</div>
+</body>
+</html>

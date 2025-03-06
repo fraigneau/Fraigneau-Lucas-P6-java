@@ -13,7 +13,7 @@
 <h1>SignupControllerTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/fr.paymybuddy.controller.html">fr.paymybuddy.controller</a> &gt; SignupControllerTest</div>
+<a href="../packages/fr.paymybuddy.unit.controller.html">fr.paymybuddy.unit.controller</a> &gt; SignupControllerTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.053s</div>
+<div class="counter">0.056s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,19 +81,19 @@
 <tr>
 <td class="success">Devrait afficher la page d'inscription</td>
 <td class="success">testGetSignupPage()</td>
-<td class="success">0.008s</td>
+<td class="success">0.015s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait retourner à la page d'inscription en cas d'erreurs de validation</td>
 <td class="success">testInvalidSignup()</td>
-<td class="success">0.039s</td>
+<td class="success">0.033s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait traiter une inscription valide et rediriger vers la page de connexion</td>
 <td class="success">testValidSignup()</td>
-<td class="success">0.006s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -101,8 +101,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>?[2m2025-03-04T10:43:10.412+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.controller.SignupControllerTest]: SignupControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-?[2m2025-03-04T10:43:10.417+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.controller.SignupControllerTest
+<pre>?[2m2025-03-05T19:53:34.925+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.unit.controller.SignupControllerTest]: SignupControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[2m2025-03-05T19:53:34.936+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.unit.controller.SignupControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -111,27 +111,21 @@
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
 
-?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.2)?[0;39m
+?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.3)?[0;39m
 
-?[2m2025-03-04T10:43:10.435+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupControllerTest     ?[0;39m ?[2m:?[0;39m Starting SignupControllerTest using Java 21.0.2 with PID 20900 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
-?[2m2025-03-04T10:43:10.436+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupControllerTest     ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;dev&quot;
-?[2m2025-03-04T10:43:10.582+01:00?[0;39m ?[33m WARN?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.s.s.UserDetailsServiceAutoConfiguration?[0;39m ?[2m:?[0;39m 
-
-Using generated security password: 16720a4b-5a10-4fce-bb65-2a14577803b1
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-?[2m2025-03-04T10:43:10.583+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-?[2m2025-03-04T10:43:10.594+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
-?[2m2025-03-04T10:43:10.595+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
-?[2m2025-03-04T10:43:10.595+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
-?[2m2025-03-04T10:43:10.598+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupControllerTest     ?[0;39m ?[2m:?[0;39m Started SignupControllerTest in 0.179 seconds (process running for 9.248)
-?[2m2025-03-04T10:43:10.607+01:00?[0;39m ?[31mERROR?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupController         ?[0;39m ?[2m:?[0;39m Erreur lors de l'inscription: [Field error in object 'user' on field 'email': rejected value []; codes [NotBlank.user.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email]]; default message [L'email est obligatoire]]
+?[2m2025-03-05T19:53:34.968+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.SignupControllerTest   ?[0;39m ?[2m:?[0;39m Starting SignupControllerTest using Java 21.0.2 with PID 40116 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
+?[2m2025-03-05T19:53:34.968+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.SignupControllerTest   ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;test&quot;
+?[2m2025-03-05T19:53:35.204+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+?[2m2025-03-05T19:53:35.220+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:53:35.220+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:53:35.221+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:53:35.227+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.SignupControllerTest   ?[0;39m ?[2m:?[0;39m Started SignupControllerTest in 0.288 seconds (process running for 10.995)
+?[2m2025-03-05T19:53:35.240+01:00?[0;39m ?[31mERROR?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.SignupController         ?[0;39m ?[2m:?[0;39m Error during registration: [Field error in object 'user' on field 'email': rejected value []; codes [NotBlank.user.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email]]; default message [L'email est obligatoire]]
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /signup-processing
-       Parameters = {email=[], username=[testuser], password=[password123], _csrf=[JjtgE8NsI2suyL0hbErCitLJssOfmmf_b5ZO3XAWN1YJeDLGFAlRJ_VUFVoDrI5EDWf26bf7n_qu-FfSV6couRImVmJvGQv2]}
+       Parameters = {email=[], username=[testuser], password=[password123], _csrf=[O1bVjd2VEsbOyjtx3ifWLVsRXlGb4LlXJj0r85wOJrqZuJAaCGTl7-WgcP7j_gkT5griGjgiczCphY56QlsSxqQ5Qtz6ivUs]}
           Headers = []
              Body = null
     Session Attrs = {SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=user, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_USER]]]}
@@ -183,7 +177,7 @@ MockHttpServletResponse:
   &lt;/div&gt;
 
   &lt;div class=&quot;container&quot;&gt;
-    &lt;form action=&quot;/signup-processing&quot; method=&quot;post&quot; class=&quot;login-container&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;C0sXVy2ocVv0g3Y_lHTDyDKQb8VtEapohRG7EawmfhdNiLtNOXkmYxuQR2rZ50Va9Vn3q1eiQvxcc5pFvSDddc4WHyMr6YJ9&quot;/&gt;
+    &lt;form action=&quot;/signup-processing&quot; method=&quot;post&quot; class=&quot;login-container&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;uaL1B5YwR5wJzkzLC36wmo1Em53RugHsI9Ogev30lgPz1gkeipDFZa4FJaQk-n6pM1OEre53tvzj3zbBR7WZT8XD8mWQ5Gwo&quot;/&gt;
       &lt;h2&gt;Inscription&lt;/h2&gt;
 
       &lt;div class=&quot;form-group&quot;&gt;
@@ -226,7 +220,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = null
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1c1dba57, SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=user, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_USER]]]}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@514f962d, SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=user, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_USER]]]}
 
 Handler:
              Type = fr.paymybuddy.controller.SignupController
@@ -275,7 +269,7 @@ MockHttpServletResponse:
   &lt;/div&gt;
 
   &lt;div class=&quot;container&quot;&gt;
-    &lt;form action=&quot;/signup-processing&quot; method=&quot;post&quot; class=&quot;login-container&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;aDDO4PViqu_-3qZjyMmylcvb66Gqu5_oml7tkrqjoLNCPfXXClOs0cVTnI3TvJFRruSGovzvxsDJgqfFrTvZ8NjFk4AkDpO2&quot;/&gt;
+    &lt;form action=&quot;/signup-processing&quot; method=&quot;post&quot; class=&quot;login-container&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;gRWm6RduGVb9cEUD3z_n1lESMVSCT9NWW11VBgyddKzgf8zR4CSS3yJbKTLQFnRluhLTtGQnHG2ze7Z7b2xgZzr_Rc3RRv_n&quot;/&gt;
       &lt;h2&gt;Inscription&lt;/h2&gt;
 
       &lt;div class=&quot;form-group&quot;&gt;
@@ -315,7 +309,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /signup-processing
-       Parameters = {email=[test@example.com], username=[testuser], password=[password123], _csrf=[JWerrRrRh7lYdGuOFZJrlhXhjHvbUVw_CCSz2d8JOwIRedCDE1GYz3iw5t91Fg6_dr9f9XODoUPqM2QSaRPV6-Y6DTR3Hba6]}
+       Parameters = {email=[test@example.com], username=[testuser], password=[password123], _csrf=[J_p3X92gaP41BXS7AXV2trqjtajgal0cQTt2dl_RevoEauLqE8lFaeyVC84YZELeMFhCgonCmMmEXGgxdllCEGrhTc1nUtSL]}
           Headers = []
              Body = null
     Session Attrs = {SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=user, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_USER]]]}
@@ -359,7 +353,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.12.1</a> at 4 mars 2025, 10:43:11</p>
+<a href="http://www.gradle.org">Gradle 8.12.1</a> at 5 mars 2025, 19:53:36</p>
 </div>
 </div>
 </body>

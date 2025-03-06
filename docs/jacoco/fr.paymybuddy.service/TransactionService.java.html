@@ -13,6 +13,14 @@ import fr.paymybuddy.model.User;
 import fr.paymybuddy.repository.TransactionRepository;
 import jakarta.transaction.Transactional;
 
+/**
+ * Service class that handles the business logic for transactions.
+ * &lt;p&gt;
+ * This service manages operations related to transactions, including creation,
+ * retrieval,
+ * filtering, and processing of transaction data between users.
+ * &lt;/p&gt;
+ */
 @Service
 public class TransactionService {
 
@@ -20,70 +28,145 @@ public class TransactionService {
     private TransactionMapper transMapper;
     private UserService userService;
 
+    /**
+     * Constructs a new TransactionService with the necessary dependencies.
+     *
+     * @param transactionRepository repository for Transaction entity operations
+     * @param transMapper           mapper for converting between Transaction
+     *                              entities and DTOs
+     * @param userService           service for user-related operations
+     */
     public TransactionService(TransactionRepository transactionRepository, TransactionMapper transMapper,
-<span class="fc" id="L24">            UserService userService) {</span>
-<span class="fc" id="L25">        this.transactionRepository = transactionRepository;</span>
-<span class="fc" id="L26">        this.transMapper = transMapper;</span>
-<span class="fc" id="L27">        this.userService = userService;</span>
-<span class="fc" id="L28">    }</span>
+<span class="fc" id="L40">            UserService userService) {</span>
+<span class="fc" id="L41">        this.transactionRepository = transactionRepository;</span>
+<span class="fc" id="L42">        this.transMapper = transMapper;</span>
+<span class="fc" id="L43">        this.userService = userService;</span>
+<span class="fc" id="L44">    }</span>
 
+    /**
+     * Persists a transaction to the database.
+     *
+     * @param transaction the transaction to save
+     */
     private void saveTransaction(Transaction transaction) {
-<span class="fc" id="L31">        transactionRepository.save(transaction);</span>
-<span class="fc" id="L32">    }</span>
+<span class="fc" id="L52">        transactionRepository.save(transaction);</span>
+<span class="fc" id="L53">    }</span>
 
+    /**
+     * Retrieves all transactions where the specified user is the sender.
+     *
+     * @param sender the ID of the sending user
+     * @return a list of transactions sent by the specified user
+     */
     private List&lt;Transaction&gt; getTransactionsBySender(Long sender) {
-<span class="fc" id="L35">        return transactionRepository.findBySender_Id(sender);</span>
+<span class="fc" id="L62">        return transactionRepository.findBySender_Id(sender);</span>
     }
 
+    /**
+     * Retrieves all transactions where the specified user is the receiver.
+     *
+     * @param receiver the ID of the receiving user
+     * @return a list of transactions received by the specified user
+     */
     private List&lt;Transaction&gt; getTransactionsByReceiver(Long receiver) {
-<span class="fc" id="L39">        return transactionRepository.findByReceiver_Id(receiver);</span>
+<span class="fc" id="L72">        return transactionRepository.findByReceiver_Id(receiver);</span>
     }
 
+    /**
+     * Retrieves and filters all transactions related to a specific user.
+     * &lt;p&gt;
+     * This method combines both sent and received transactions for the user,
+     * sorts them by creation time in descending order, and converts them to DTOs.
+     * &lt;/p&gt;
+     *
+     * @param user the user whose transactions should be retrieved
+     * @return a list of transaction DTOs related to the specified user
+     */
     public List&lt;TransactionResponseDTO&gt; getFilteredTransactionsByUser(User user) {
-<span class="fc" id="L43">        List&lt;Transaction&gt; sentTransactions = getTransactionsBySender(user.getId());</span>
-<span class="fc" id="L44">        List&lt;Transaction&gt; receivedTransactions = getTransactionsByReceiver(user.getId());</span>
+<span class="fc" id="L86">        List&lt;Transaction&gt; sentTransactions = getTransactionsBySender(user.getId());</span>
+<span class="fc" id="L87">        List&lt;Transaction&gt; receivedTransactions = getTransactionsByReceiver(user.getId());</span>
 
-<span class="fc" id="L46">        List&lt;Transaction&gt; allTransactions = addTransactions(sentTransactions, receivedTransactions);</span>
-<span class="fc" id="L47">        sortedTransactionsByTime(allTransactions);</span>
-<span class="fc" id="L48">        return transactionToDTO(allTransactions);</span>
+<span class="fc" id="L89">        List&lt;Transaction&gt; allTransactions = addTransactions(sentTransactions, receivedTransactions);</span>
+<span class="fc" id="L90">        sortedTransactionsByTime(allTransactions);</span>
+<span class="fc" id="L91">        return transactionToDTO(allTransactions);</span>
     }
 
+    /**
+     * Converts a list of Transaction entities to TransactionResponseDTOs.
+     *
+     * @param transactions the list of transaction entities to convert
+     * @return a list of transaction DTOs
+     */
     private List&lt;TransactionResponseDTO&gt; transactionToDTO(List&lt;Transaction&gt; transactions) {
-<span class="fc" id="L52">        return transactions.stream()</span>
-<span class="fc" id="L53">                .map(transaction -&gt; transMapper.toTransactionResponseDTO(transaction))</span>
-<span class="fc" id="L54">                .toList();</span>
+<span class="fc" id="L101">        return transactions.stream()</span>
+<span class="fc" id="L102">                .map(transaction -&gt; transMapper.toTransactionResponseDTO(transaction))</span>
+<span class="fc" id="L103">                .toList();</span>
     }
 
+    /**
+     * Combines two lists of transactions into a single list.
+     *
+     * @param sent     the list of sent transactions
+     * @param received the list of received transactions
+     * @return a combined list containing all transactions
+     */
     private List&lt;Transaction&gt; addTransactions(List&lt;Transaction&gt; sent, List&lt;Transaction&gt; received) {
-<span class="fc" id="L58">        sent.addAll(received);</span>
-<span class="fc" id="L59">        return sent;</span>
+<span class="fc" id="L114">        sent.addAll(received);</span>
+<span class="fc" id="L115">        return sent;</span>
     }
 
+    /**
+     * Sorts a list of transactions by creation time in descending order (newest
+     * first).
+     *
+     * @param transactions the list of transactions to sort
+     * @return the sorted list of transactions
+     */
     private List&lt;Transaction&gt; sortedTransactionsByTime(List&lt;Transaction&gt; transactions) {
-<span class="fc" id="L63">        return transactions.stream()</span>
-<span class="fc" id="L64">                .sorted(Comparator.comparing(Transaction::getCreatedAt).reversed())</span>
-<span class="fc" id="L65">                .toList();</span>
+<span class="fc" id="L126">        return transactions.stream()</span>
+<span class="fc" id="L127">                .sorted(Comparator.comparing(Transaction::getCreatedAt).reversed())</span>
+<span class="fc" id="L128">                .toList();</span>
     }
 
+    /**
+     * Creates a new Transaction entity from the provided information.
+     *
+     * @param email    the email of the transaction receiver
+     * @param desc     the description of the transaction
+     * @param amount   the amount of the transaction
+     * @param senderId the ID of the sending user
+     * @return a new Transaction entity
+     */
     private Transaction setTransaction(String email, String desc, double amount, Long senderId) {
-<span class="fc" id="L69">        User reciver = userService.getUserByEmail(email);</span>
-<span class="fc" id="L70">        TransactionResponseDTO transaction = new TransactionResponseDTO();</span>
-<span class="fc" id="L71">        transaction.setReceiverEmail(email);</span>
-<span class="fc" id="L72">        transaction.setDescription(desc);</span>
-<span class="fc" id="L73">        transaction.setAmount(amount);</span>
-<span class="fc" id="L74">        transaction.setSenderId(senderId);</span>
-<span class="fc" id="L75">        transaction.setReceiverId(reciver.getId());</span>
+<span class="fc" id="L141">        User reciver = userService.getUserByEmail(email);</span>
+<span class="fc" id="L142">        TransactionResponseDTO transaction = new TransactionResponseDTO();</span>
+<span class="fc" id="L143">        transaction.setReceiverEmail(email);</span>
+<span class="fc" id="L144">        transaction.setDescription(desc);</span>
+<span class="fc" id="L145">        transaction.setAmount(amount);</span>
+<span class="fc" id="L146">        transaction.setSenderId(senderId);</span>
+<span class="fc" id="L147">        transaction.setReceiverId(reciver.getId());</span>
 
-<span class="fc" id="L77">        return transMapper.toTransaction(transaction);</span>
+<span class="fc" id="L149">        return transMapper.toTransaction(transaction);</span>
     }
 
+    /**
+     * Creates and persists a new transaction between users.
+     * &lt;p&gt;
+     * This method updates the balances of both the sender and receiver,
+     * creates a new transaction record with the current timestamp, and saves it.
+     * &lt;/p&gt;
+     *
+     * @param senderId the ID of the user sending the money
+     * @param email    the email of the user receiving the money
+     * @param desc     the description of the transaction
+     * @param amount   the amount of money to transfer
+     */
     @Transactional
     public void addNewTransaction(Long senderId, String email, String desc, double amount) {
-
-<span class="fc" id="L83">        userService.updateBalance(userService.getUserById(senderId), userService.getUserByEmail(email), amount);</span>
-<span class="fc" id="L84">        Transaction transaction = setTransaction(email, desc, amount, senderId);</span>
-<span class="fc" id="L85">        transaction.setCreatedAt(LocalDateTime.now());</span>
-<span class="fc" id="L86">        saveTransaction(transaction);</span>
-<span class="fc" id="L87">    }</span>
+<span class="fc" id="L166">        userService.updateBalance(userService.getUserById(senderId), userService.getUserByEmail(email), amount);</span>
+<span class="fc" id="L167">        Transaction transaction = setTransaction(email, desc, amount, senderId);</span>
+<span class="fc" id="L168">        transaction.setCreatedAt(LocalDateTime.now());</span>
+<span class="fc" id="L169">        saveTransaction(transaction);</span>
+<span class="fc" id="L170">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

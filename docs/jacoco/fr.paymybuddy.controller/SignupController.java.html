@@ -15,42 +15,86 @@ import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
 
+/**
+ * Controller responsible for handling user registration functionality.
+ * &lt;p&gt;
+ * This controller manages the user signup process, including displaying
+ * the registration form and processing user registration submissions.
+ * &lt;/p&gt;
+ *
+ * @author PayMyBuddy
+ * @version 1.0
+ */
 @Controller
 public class SignupController {
 
-<span class="fc" id="L21">    private static final Logger logger = LoggerFactory.getLogger(SignupController.class);</span>
+<span class="fc" id="L31">    private static final Logger logger = LoggerFactory.getLogger(SignupController.class);</span>
 
     private UserService userService;
-    private UserMapper UserUpdateMapper;
+    private UserMapper userUpdateMapper;
 
-<span class="nc" id="L26">    public SignupController() {</span>
-<span class="nc" id="L27">    }</span>
+    /**
+     * Default constructor for SignupController.
+     */
+<span class="nc" id="L39">    public SignupController() {</span>
+<span class="nc" id="L40">    }</span>
 
+    /**
+     * Constructor with dependency injection for SignupController.
+     *
+     * @param userService      The service handling user-related operations
+     * @param userUpdateMapper The mapper for converting between User and DTO
+     *                         objects
+     */
     @Autowired
-<span class="fc" id="L30">    public SignupController(UserService userService, UserMapper UserUpdateMapper) {</span>
-<span class="fc" id="L31">        this.userService = userService;</span>
-<span class="fc" id="L32">        this.UserUpdateMapper = UserUpdateMapper;</span>
-<span class="fc" id="L33">    }</span>
+<span class="fc" id="L50">    public SignupController(UserService userService, UserMapper userUpdateMapper) {</span>
+<span class="fc" id="L51">        this.userService = userService;</span>
+<span class="fc" id="L52">        this.userUpdateMapper = userUpdateMapper;</span>
+<span class="fc" id="L53">    }</span>
 
+    /**
+     * Displays the user registration page.
+     * &lt;p&gt;
+     * This endpoint renders the signup form and adds an empty user DTO
+     * to the model for form binding.
+     * &lt;/p&gt;
+     *
+     * @param model The Spring MVC model to add attributes to
+     * @return The name of the view template to render
+     */
     @GetMapping(&quot;/signup&quot;)
     public String login(Model model) {
-<span class="fc" id="L37">        model.addAttribute(&quot;user&quot;, new UserFormRequestDTO());</span>
-<span class="fc" id="L38">        logger.debug(&quot;Acces a la page d'inscription&quot;);</span>
-<span class="fc" id="L39">        return &quot;signup&quot;;</span>
+<span class="fc" id="L67">        model.addAttribute(&quot;user&quot;, new UserFormRequestDTO());</span>
+<span class="fc" id="L68">        logger.debug(&quot;Accessing registration page&quot;);</span>
+<span class="fc" id="L69">        return &quot;signup&quot;;</span>
     }
 
+    /**
+     * Processes the user registration submission.
+     * &lt;p&gt;
+     * This endpoint handles the form submission for user registration,
+     * validates the input data, and creates a new user account if all
+     * validations pass.
+     * &lt;/p&gt;
+     *
+     * @param newUser The DTO containing user registration data from the form
+     * @param result  The binding result containing validation errors, if any
+     * @param model   The Spring MVC model to add attributes to
+     * @return The name of the view template to render or a redirect URL
+     */
     @PostMapping(&quot;/signup-processing&quot;)
-    public String signup(@Valid @ModelAttribute(&quot;user&quot;) UserFormRequestDTO newuser, BindingResult result, Model model) {
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
-<span class="fc" id="L45">            logger.error(&quot;Erreur lors de l'inscription: &quot; + result.getAllErrors());</span>
-<span class="fc" id="L46">            return &quot;signup&quot;;</span>
+    public String signup(@Valid @ModelAttribute(&quot;user&quot;) UserFormRequestDTO newUser,
+            BindingResult result,
+            Model model) {
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L90">            logger.error(&quot;Error during registration: &quot; + result.getAllErrors());</span>
+<span class="fc" id="L91">            return &quot;signup&quot;;</span>
         }
 
-<span class="fc" id="L49">        logger.debug(&quot;Utilisateur inscrit avec succes: &quot; + newuser);</span>
-<span class="fc" id="L50">        userService.saveNewUser(UserUpdateMapper.toUser(newuser));</span>
+<span class="fc" id="L94">        logger.debug(&quot;User registered successfully: &quot; + newUser);</span>
+<span class="fc" id="L95">        userService.saveNewUser(userUpdateMapper.toUser(newUser));</span>
 
-<span class="fc" id="L52">        return &quot;redirect:/login&quot;;</span>
+<span class="fc" id="L97">        return &quot;redirect:/login&quot;;</span>
     }
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

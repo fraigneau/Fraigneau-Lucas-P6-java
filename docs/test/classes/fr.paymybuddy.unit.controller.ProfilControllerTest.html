@@ -13,7 +13,7 @@
 <h1>ProfilControllerTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/fr.paymybuddy.controller.html">fr.paymybuddy.controller</a> &gt; ProfilControllerTest</div>
+<a href="../packages/fr.paymybuddy.unit.controller.html">fr.paymybuddy.unit.controller</a> &gt; ProfilControllerTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.185s</div>
+<div class="counter">0.244s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,31 +81,31 @@
 <tr>
 <td class="success">Devrait afficher la page de profil pour un utilisateur authentifié</td>
 <td class="success">testGetProfilPage()</td>
-<td class="success">0.011s</td>
+<td class="success">0.016s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait rediriger vers la page de connexion si l'utilisateur n'est pas authentifié</td>
 <td class="success">testGetProfilPageWithoutAuthentication()</td>
-<td class="success">0.004s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait mettre à jour le profil avec succès</td>
 <td class="success">testUpdateProfilSuccess()</td>
-<td class="success">0.024s</td>
+<td class="success">0.026s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait mettre à jour le mot de passe si fourni</td>
 <td class="success">testUpdateProfilWithPassword()</td>
-<td class="success">0.007s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait rester sur la page de profil en cas d'erreurs de validation</td>
 <td class="success">testUpdateProfilWithValidationErrors()</td>
-<td class="success">0.139s</td>
+<td class="success">0.188s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -113,8 +113,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>?[2m2025-03-04T10:43:09.838+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.controller.ProfilControllerTest]: ProfilControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-?[2m2025-03-04T10:43:09.845+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.controller.ProfilControllerTest
+<pre>?[2m2025-03-05T19:53:34.187+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.unit.controller.ProfilControllerTest]: ProfilControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[2m2025-03-05T19:53:34.201+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.unit.controller.ProfilControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -123,26 +123,20 @@
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
 
-?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.2)?[0;39m
+?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.3)?[0;39m
 
-?[2m2025-03-04T10:43:09.875+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilControllerTest     ?[0;39m ?[2m:?[0;39m Starting ProfilControllerTest using Java 21.0.2 with PID 20900 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
-?[2m2025-03-04T10:43:09.876+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilControllerTest     ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;dev&quot;
-?[2m2025-03-04T10:43:10.191+01:00?[0;39m ?[33m WARN?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.s.s.UserDetailsServiceAutoConfiguration?[0;39m ?[2m:?[0;39m 
-
-Using generated security password: 12e5f924-a0d9-4920-81e3-e3ee72705082
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-?[2m2025-03-04T10:43:10.194+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-?[2m2025-03-04T10:43:10.213+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
-?[2m2025-03-04T10:43:10.214+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
-?[2m2025-03-04T10:43:10.214+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
-?[2m2025-03-04T10:43:10.219+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilControllerTest     ?[0;39m ?[2m:?[0;39m Started ProfilControllerTest in 0.371 seconds (process running for 8.868)
+?[2m2025-03-05T19:53:34.251+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.ProfilControllerTest   ?[0;39m ?[2m:?[0;39m Starting ProfilControllerTest using Java 21.0.2 with PID 40116 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
+?[2m2025-03-05T19:53:34.252+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.ProfilControllerTest   ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;test&quot;
+?[2m2025-03-05T19:53:34.647+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+?[2m2025-03-05T19:53:34.664+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:53:34.665+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:53:34.665+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2025-03-05T19:53:34.670+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.ProfilControllerTest   ?[0;39m ?[2m:?[0;39m Started ProfilControllerTest in 0.465 seconds (process running for 10.438)
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /profil-processing
-       Parameters = {email=[], username=[updateduser], _csrf=[PdYznKYzHjgWwgliXmqKdvjUo6D-Z2or9RGl7uCuU-QnhzAoBOVRq5NWe1k79jtWZ0e-Q8qyjsKcVFwGwSPDi9KWY4AUsVZN]}
+       Parameters = {email=[], username=[updateduser], _csrf=[gi-1IoWFSAAf5YVLzkWfNURgxvb_uxjDWyklQImYipDl5uGCuhbRErSyK2Qy0bF9_GirAnxZ68-d2CzuPh0ScOuuuPXW3tK7]}
           Headers = []
              Body = null
     Session Attrs = {SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
@@ -199,7 +193,7 @@ MockHttpServletResponse:
     
 
     &lt;h2&gt;Profil&lt;/h2&gt;
-    &lt;form action=&quot;/profil-processing&quot; method=&quot;post&quot; class=&quot;profile-section&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;BIZBl5WFHswAbZIIZJYPz68rg51fSWXC2oAl9BESge_LYNNcPbUjoKDge60tWaA8Xbs7-p1Nrv89elPv7rJDkSMqsYv4VrU5&quot;/&gt;
+    &lt;form action=&quot;/profil-processing&quot; method=&quot;post&quot; class=&quot;profile-section&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;qfY0WKh6OvsyPhO17ICFMCGYrJOSco8v5_fIIWlLA9giRENpkc9QaJlNWZ8fCieD3q2xBxmhgarwEbsCgsP_EQt9Mb0RfHBQ&quot;/&gt;
       &lt;!-- Username --&gt;
       &lt;div class=&quot;profile-item&quot;&gt;
         &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
@@ -245,12 +239,12 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-?[2m2025-03-04T10:43:10.363+01:00?[0;39m ?[33m WARN?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilController         ?[0;39m ?[2m:?[0;39m Aucun utilisateur authentifié !
+?[2m2025-03-05T19:53:34.865+01:00?[0;39m ?[33m WARN?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.ProfilController         ?[0;39m ?[2m:?[0;39m Aucun utilisateur authentifié !
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /profil-processing
-       Parameters = {email=[updated@example.com], username=[updateduser], password=[], _csrf=[pG9ee0Gyl0zACvv869Kkzh134l4nKhvYrv5b256ry9KaIGVXkQk6TCXU9CntOZjL2P-Q_iQSz2dETyr1ns5i6PyT_-L_FwNi]}
+       Parameters = {email=[updated@example.com], username=[updateduser], password=[], _csrf=[YJZcyT8OrFQ6VUKnIFYkQX_gturf8PYwSe0AMUmnFVxFsuyVUK5lqFxsn20XYSCUE3sQc0uBm9LmksMdeN02AiqQdmkj0Nr3]}
           Headers = []
              Body = null
     Session Attrs = {org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={success=Profil mis à jour avec succès}, targetRequestPath=/profil, targetRequestParams={}]], SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
@@ -291,7 +285,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = null
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4b06ae0b, SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@2457b297, SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
 
 Handler:
              Type = fr.paymybuddy.controller.ProfilController
@@ -345,7 +339,7 @@ MockHttpServletResponse:
     
 
     &lt;h2&gt;Profil&lt;/h2&gt;
-    &lt;form action=&quot;/profil-processing&quot; method=&quot;post&quot; class=&quot;profile-section&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;aYbAkg7wIiGYAwaJtvo_weCGe2IrxAkSBGukfFvcylMqW-DVDLHxqzvGF0S1ZzDr0tcLpIO3VgMeojo_YgiWS2vv-TUdY9ax&quot;/&gt;
+    &lt;form action=&quot;/profil-processing&quot; method=&quot;post&quot; class=&quot;profile-section&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;8hKnuO6nVc_oFjYcraQR1ZOTfqHPqMvVwpQ3zG2M_Kaa8UZmwSaX2Y3EMP_FJVIkzoklsffxU8P4mPj4p_YE-1_tmZD-knEA&quot;/&gt;
       &lt;!-- Username --&gt;
       &lt;div class=&quot;profile-item&quot;&gt;
         &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
@@ -395,7 +389,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /profil-processing
-       Parameters = {email=[test@example.com], username=[testuser], password=[newpassword], _csrf=[CS__8Wl79vfHAwkifUc57bWWXfunDEucFjQwyM7_pmZctpaiPEvPxF9JlM7qNTEbSGoNiNShcJmVPS6xdA0G-KvGkARqhKOX]}
+       Parameters = {email=[test@example.com], username=[testuser], password=[newpassword], _csrf=[bzcIurqqzNExYKuoW098yCN4vjLLtrZn3NB6a020TU1RqTSfXwQ6g47I-LccUJuaPWJIq0Aek1D50tJK6rJICnnQfXgzkFD9]}
           Headers = []
              Body = null
     Session Attrs = {org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={success=Profil mis à jour avec succès}, targetRequestPath=/profil, targetRequestParams={}]], SPRING_SECURITY_CONTEXT=SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=UserDetailsImpl(id=1, username=testuser, email=test@example.com, password=password), Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[]]]}
@@ -440,7 +434,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.12.1</a> at 4 mars 2025, 10:43:11</p>
+<a href="http://www.gradle.org">Gradle 8.12.1</a> at 5 mars 2025, 19:53:36</p>
 </div>
 </div>
 </body>

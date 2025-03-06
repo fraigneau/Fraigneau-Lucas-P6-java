@@ -1,54 +1,55 @@
-# PayMyBuddy
+Voici un README complet du projet en français qui résume toutes les caractéristiques et fonctionnalités de l'application Pay My Buddy.
 
-A peer-to-peer money transfer application built with Spring Boot that allows users to easily send money to friends in their network.
+# Pay My Buddy
 
-## Technology Stack
+Une application de transfert d'argent peer-to-peer développée avec Spring Boot qui permet aux utilisateurs d'envoyer facilement de l'argent à leurs amis.
 
-- **Java 21** - Programming language
-- **Spring Boot 3.4.2** - Application framework
-- **Spring Security** - Authentication and authorization
-- **Spring Data JPA** - Data persistence
-- **Thymeleaf** - Server-side Java template engine
-- **MySQL** - Database
-- **Gradle** - Build and dependency management
-- **JaCoCo** - Java code coverage
-- **JUnit** - Testing framework
-- **Lombok** - Reduces boilerplate code
-- **MapStruct** - Bean mapping framework
+## Stack Technologique
 
-## Features
+- **Java 21** - Langage de programmation
+- **Spring Boot 3.4.3** - Framework d'application
+- **Spring Security** - Authentification et autorisation
+- **Spring Data JPA** - Persistance des données
+- **Thymeleaf** - Moteur de templates Java côté serveur
+- **MySQL** - Base de données
+- **Gradle** - Gestion des dépendances et des builds
+- **JaCoCo** - Couverture de code Java
+- **JUnit** - Framework de test
+- **Lombok** - Réduction du code boilerplate
+- **MapStruct** - Framework de mapping de beans
 
-- User registration and authentication
-- Profile management
-- Add and manage friends
-- Send money to connected friends
-- Deposit funds to account
-- View transaction history
+## Fonctionnalités
 
-## Project Structure
+- Inscription et authentification des utilisateurs
+- Gestion du profil
+- Ajout et gestion des amis
+- Envoi d'argent aux amis connectés
+- Dépôt de fonds sur le compte
+- Consultation de l'historique des transactions
 
-The application follows a standard layered architecture:
+## Structure du Projet
 
-- **Controller**: Handles HTTP requests and responses
-- **Service**: Contains business logic
-- **Repository**: Interfaces with the database
-- **Model**: Domain entities
-- **DTO**: Data Transfer Objects
-- **Mapper**: MapStruct interfaces for object conversion
+L'application suit une architecture en couches standard :
+
+- **Controller** : Gère les requêtes HTTP et les réponses
+- **Service** : Contient la logique métier
+- **Repository** : Interface avec la base de données
+- **Model** : Entités du domaine
+- **DTO** : Objets de transfert de données
+- **Mapper** : Interfaces MapStruct pour la conversion d'objets
 
 ## Documentation
 
 All project documentation is available in the `docs` directory of the GitHub repository and is deployed online:
 
 - [**JaCoCo Reports**](https://fraigneau.github.io/Fraigneau-Lucas-P6-java/jacoco/): Code coverage analysis for the project
-- [**Gradle Reports**](https://fraigneau.github.io/Fraigneau-Lucas-P6-java/test/): Build and test reports
+- [**Gradle Reports Unit test**](https://fraigneau.github.io/Fraigneau-Lucas-P6-java/test/): Build and test reports
+- [**Gradle Reports integration test**](https://fraigneau.github.io/Fraigneau-Lucas-P6-java/integrationTest/): Build and test reports
 - [**JavaDoc**](https://fraigneau.github.io/Fraigneau-Lucas-P6-java/javadoc/): API documentation for the codebase
 
 You can access the documentation online through the GitHub Pages site for this repository.
 
-## Getting Started
-
-### Prerequisites
+### Prérequis
 
 - Java 21
 - MySQL
@@ -56,48 +57,84 @@ You can access the documentation online through the GitHub Pages site for this r
 
 ### Configuration
 
-1. Clone the repository
-2. Configure MySQL database connection in `application.properties`
-3. Build the project using Gradle
+1. Cloner le dépôt
+2. Configurer la connexion à la base de données MySQL dans `application.properties`
+3. Construire le projet avec Gradle
 
 ```bash
 ./gradlew build
 ```
 
-4. Run the application
+4. Exécuter l'application
 
 ```bash
 ./gradlew bootRun
 ```
 
-The application should now be running at `http://localhost:8080`
+L'application devrait maintenant fonctionner à l'adresse `http://localhost:8080`
 
-## Testing
+## Tests
 
-The project includes comprehensive unit tests covering the controllers, services, and security configuration.
+Le projet comprend des tests unitaires complets couvrant les contrôleurs, les services et la configuration de sécurité.
 
-Run tests with:
+Exécuter les tests avec :
 
 ```bash
 ./gradlew test
 ```
 
-To generate code coverage reports:
+Pour générer des rapports de couverture de code :
 
 ```bash
 ./gradlew jacocoTestReport
 ```
 
-Reports can be found in `build/reports/jacoco/` directory.
+Les rapports peuvent être trouvés dans le répertoire `build/reports/jacoco/`.
 
-## Database Schema
+## Schéma de Base de Données
 
-The application uses several interconnected entities:
+L'application utilise plusieurs entités interconnectées :
 
-- **User**: Represents application users
-- **Transaction**: Tracks money transfers between users
-- **UserConnection**: Manages friend relationships between users
+- **User** : Représente les utilisateurs de l'application
+- **Transaction** : Suit les transferts d'argent entre utilisateurs
+- **UserConnection** : Gère les relations d'amitié entre utilisateurs
 
-## Security
+## Sécurité
 
-The application implements Spring Security for authentication and authorization. Passwords are encoded using BCrypt.
+L'application implémente Spring Security pour l'authentification et l'autorisation. Les mots de passe sont encodés à l'aide de BCrypt.
+
+## Pages de l'Application
+
+L'application comprend plusieurs pages HTML/Thymeleaf :
+
+- **login.html** : Page de connexion
+- **signup.html** : Page d'inscription
+- **profil.html** : Gestion du profil utilisateur
+- **friends.html** : Gestion des amis/contacts
+- **transaction.html** : Transferts d'argent et historique des transactions
+
+## Gestion des Exceptions
+
+L'application inclut un gestionnaire d'exceptions global qui intercepte les exceptions spécifiques comme :
+
+- **ResourceNotFoundException** : Ressource introuvable
+- **InsufficientBalanceException** : Solde insuffisant
+- **SelfSendingAmountException** : Tentative d'envoi d'argent à soi-même
+- **ContactAlreadyExistException** : Contact déjà existant
+- **DuplicateResourceException** : Ressource en double
+- **UserNotFondExeption** : Utilisateur non trouvé
+
+## Tests d'Intégration
+
+Des tests d'intégration sont configurés pour vérifier le bon fonctionnement de l'application dans son ensemble. Ils peuvent être exécutés avec :
+
+```bash
+./gradlew integrationTest
+```
+
+## Structure des Répertoires
+
+- **src/main/java** : Code source principal
+- **src/main/resources** : Fichiers de ressources (templates, CSS, properties)
+- **src/test/java** : Tests unitaires et d'intégration
+- **src/test/resources** : Ressources pour les tests

@@ -13,7 +13,7 @@
 <h1>FriendControllerTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/fr.paymybuddy.controller.html">fr.paymybuddy.controller</a> &gt; FriendControllerTest</div>
+<a href="../packages/fr.paymybuddy.unit.controller.html">fr.paymybuddy.unit.controller</a> &gt; FriendControllerTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.803s</div>
+<div class="counter">1.115s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,19 +81,19 @@
 <tr>
 <td class="success">Devrait ajouter un ami avec succès</td>
 <td class="success">testAddFriend()</td>
-<td class="success">0.011s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait supprimer un ami avec succès</td>
 <td class="success">testDeleteFriend()</td>
-<td class="success">0.041s</td>
+<td class="success">0.068s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Devrait afficher la liste des amis</td>
 <td class="success">testShowFriends()</td>
-<td class="success">0.751s</td>
+<td class="success">1.035s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -101,8 +101,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>?[2m2025-03-04T10:43:08.385+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.controller.FriendControllerTest]: FriendControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-?[2m2025-03-04T10:43:08.403+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.controller.FriendControllerTest
+<pre>?[2m2025-03-05T19:53:32.151+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [fr.paymybuddy.unit.controller.FriendControllerTest]: FriendControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[2m2025-03-05T19:53:32.181+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration fr.paymybuddy.PaymybuddyApplication for test class fr.paymybuddy.unit.controller.FriendControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -111,21 +111,15 @@
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
 
-?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.2)?[0;39m
+?[32m :: Spring Boot :: ?[39m              ?[2m (v3.4.3)?[0;39m
 
-?[2m2025-03-04T10:43:08.422+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.FriendControllerTest     ?[0;39m ?[2m:?[0;39m Starting FriendControllerTest using Java 21.0.2 with PID 20900 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
-?[2m2025-03-04T10:43:08.422+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.FriendControllerTest     ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;dev&quot;
-?[2m2025-03-04T10:43:08.849+01:00?[0;39m ?[33m WARN?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36m.s.s.UserDetailsServiceAutoConfiguration?[0;39m ?[2m:?[0;39m 
-
-Using generated security password: 13d995b6-a29b-4b20-a42b-ade9847b87a9
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-?[2m2025-03-04T10:43:08.854+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-?[2m2025-03-04T10:43:08.991+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
-?[2m2025-03-04T10:43:08.992+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
-?[2m2025-03-04T10:43:08.993+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 1 ms
-?[2m2025-03-04T10:43:09.013+01:00?[0;39m ?[32m INFO?[0;39m ?[35m20900?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.controller.FriendControllerTest     ?[0;39m ?[2m:?[0;39m Started FriendControllerTest in 0.607 seconds (process running for 7.663)
+?[2m2025-03-05T19:53:32.226+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.FriendControllerTest   ?[0;39m ?[2m:?[0;39m Starting FriendControllerTest using Java 21.0.2 with PID 40116 (started by Fraigneau in C:\Users\Fraigneau\CDA\_Java\P6)
+?[2m2025-03-05T19:53:32.226+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.FriendControllerTest   ?[0;39m ?[2m:?[0;39m The following 1 profile is active: &quot;test&quot;
+?[2m2025-03-05T19:53:32.816+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mr$InitializeUserDetailsManagerConfigurer?[0;39m ?[2m:?[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+?[2m2025-03-05T19:53:33.021+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2025-03-05T19:53:33.021+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2025-03-05T19:53:33.023+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 1 ms
+?[2m2025-03-05T19:53:33.048+01:00?[0;39m ?[32m INFO?[0;39m ?[35m40116?[0;39m ?[2m--- [paymybuddy] [    Test worker] ?[0;39m?[36mf.p.u.controller.FriendControllerTest   ?[0;39m ?[2m:?[0;39m Started FriendControllerTest in 0.861 seconds (process running for 8.815)
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -310,7 +304,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.12.1</a> at 4 mars 2025, 10:43:11</p>
+<a href="http://www.gradle.org">Gradle 8.12.1</a> at 5 mars 2025, 19:53:36</p>
 </div>
 </div>
 </body>

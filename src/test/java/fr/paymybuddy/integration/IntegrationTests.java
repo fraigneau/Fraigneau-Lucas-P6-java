@@ -108,7 +108,6 @@ public class IntegrationTests {
 
     @Test
     public void loginRedirectsToProfile_whenCredentialsAreValid() throws Exception {
-        // Create a user with known credentials in the test database
         String loginEmail = "login@example.com";
         Optional<User> existingLoginUser = userRepository.findByEmail(loginEmail);
 
@@ -164,7 +163,6 @@ public class IntegrationTests {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login"));
 
-        // Verify user was created in the database
         Optional<User> createdUser = userRepository.findByEmail(uniqueEmail);
         assertTrue(createdUser.isPresent(), "User should have been created");
         assertEquals("newuser", createdUser.get().getUsername());
@@ -297,12 +295,10 @@ public class IntegrationTests {
     @Test
     @Transactional
     public void removeFriendSucceeds_withExistingConnection() throws Exception {
-        // Create two users
         String user3Email = "user3@example.com";
         String user4Email = "user4@example.com";
         User user3, user4;
 
-        // Create or retrieve first user
         Optional<User> existingUser3 = userRepository.findByEmail(user3Email);
         if (existingUser3.isPresent()) {
             user3 = existingUser3.get();
@@ -315,7 +311,6 @@ public class IntegrationTests {
             user3 = userRepository.save(user3);
         }
 
-        // Create or retrieve second user
         Optional<User> existingUser4 = userRepository.findByEmail(user4Email);
         if (existingUser4.isPresent()) {
             user4 = existingUser4.get();
@@ -328,7 +323,6 @@ public class IntegrationTests {
             user4 = userRepository.save(user4);
         }
 
-        // Add friend relationship
         userService.addFriend(user3.getId(), user4.getId());
 
         UserDetailsImpl userDetails = new UserDetailsImpl(user3);
@@ -340,7 +334,6 @@ public class IntegrationTests {
                 .andExpect(redirectedUrl("/friends?del"))
                 .andExpect(flash().attributeExists("success"));
 
-        // Verify friendship was removed
         List<UserFriendResponseDTO> friends = userService.getFriends(user3.getId());
         boolean foundFriend = friends.stream()
                 .anyMatch(friend -> friend.getEmail().equals(user4Email));
@@ -364,7 +357,6 @@ public class IntegrationTests {
     @Test
     @Transactional
     public void depositSucceeds_withValidAmount() throws Exception {
-        // Create a user with a known balance
         String depositEmail = "deposit@example.com";
         User depositUser;
 
@@ -392,7 +384,6 @@ public class IntegrationTests {
                 .andExpect(redirectedUrl("/transaction"))
                 .andExpect(flash().attributeExists("success"));
 
-        // Verify balance was updated
         User updatedUser = userRepository.findById(depositUser.getId()).orElseThrow();
         assertEquals(initialBalance + 50.0, updatedUser.getBalance(), 0.001);
     }
@@ -400,12 +391,10 @@ public class IntegrationTests {
     @Test
     @Transactional
     public void paymentSucceeds_betweenFriends() throws Exception {
-        // Create two users
         String senderEmail = "sender@example.com";
         String receiverEmail = "receiver@example.com";
         User sender, receiver;
 
-        // Create or retrieve sender
         Optional<User> existingSender = userRepository.findByEmail(senderEmail);
         if (existingSender.isPresent()) {
             sender = existingSender.get();
@@ -419,7 +408,6 @@ public class IntegrationTests {
             sender = userRepository.save(sender);
         }
 
-        // Create or retrieve receiver
         Optional<User> existingReceiver = userRepository.findByEmail(receiverEmail);
         if (existingReceiver.isPresent()) {
             receiver = existingReceiver.get();
@@ -436,11 +424,9 @@ public class IntegrationTests {
         double senderInitialBalance = sender.getBalance();
         double receiverInitialBalance = receiver.getBalance();
 
-        // Add friend relationship if it doesn't exist
         try {
             userService.addFriend(sender.getId(), receiver.getId());
         } catch (Exception e) {
-            // Friend relationship might already exist, ignore
         }
 
         UserDetailsImpl senderDetails = new UserDetailsImpl(sender);
@@ -456,7 +442,6 @@ public class IntegrationTests {
                 .andExpect(redirectedUrl("/transaction"))
                 .andExpect(flash().attributeExists("success"));
 
-        // Verify balances were updated
         User updatedSender = userRepository.findById(sender.getId()).orElseThrow();
         User updatedReceiver = userRepository.findById(receiver.getId()).orElseThrow();
 

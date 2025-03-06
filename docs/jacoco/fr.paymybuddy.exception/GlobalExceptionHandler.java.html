@@ -4,48 +4,106 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Gestionnaire global d'exceptions pour l'application.
+ * Cette classe intercepte les exceptions spécifiques lancées par l'application
+ * et les transforme en réponses appropriées avec des messages d'erreur.
+ */
 @ControllerAdvice
-<span class="fc" id="L8">public class GlobalExceptionHandler {</span>
+<span class="fc" id="L13">public class GlobalExceptionHandler {</span>
 
+    /**
+     * Gère les exceptions de type ResourceNotFoundException.
+     * Redirige vers la page de connexion avec un message d'erreur.
+     *
+     * @param ex                 l'exception capturée
+     * @param redirectAttributes les attributs pour transmettre des données à la
+     *                           page de redirection
+     * @return la chaîne de redirection vers la page de connexion
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     public String handleResourceNotFoundException(ResourceNotFoundException ex, RedirectAttributes redirectAttributes) {
-<span class="nc" id="L12">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
-<span class="nc" id="L13">        return &quot;redirect:/login&quot;;</span>
+<span class="nc" id="L26">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
+<span class="nc" id="L27">        return &quot;redirect:/login&quot;;</span>
     }
 
+    /**
+     * Gère les exceptions de type InsufficientBalanceException.
+     * Redirige vers la page de transaction avec un message d'erreur.
+     *
+     * @param ex                 l'exception capturée
+     * @param redirectAttributes les attributs pour transmettre des données à la
+     *                           page de redirection
+     * @return la chaîne de redirection vers la page de transaction
+     */
     @ExceptionHandler(InsufficientBalanceException.class)
     public String handleInsufficientBalanceException(InsufficientBalanceException ex,
             RedirectAttributes redirectAttributes) {
-<span class="nc" id="L19">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
-<span class="nc" id="L20">        return &quot;redirect:/transaction&quot;;</span>
+<span class="nc" id="L42">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
+<span class="nc" id="L43">        return &quot;redirect:/transaction&quot;;</span>
     }
 
+    /**
+     * Gère les exceptions de type SelfSendingAmountException.
+     * Redirige vers la page de transaction avec un message d'erreur.
+     *
+     * @param ex                 l'exception capturée
+     * @param redirectAttributes les attributs pour transmettre des données à la
+     *                           page de redirection
+     * @return la chaîne de redirection vers la page de transaction
+     */
     @ExceptionHandler(SelfSendingAmountException.class)
     public String handleSelfSendingAmountException(SelfSendingAmountException ex,
             RedirectAttributes redirectAttributes) {
-<span class="nc" id="L26">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
-<span class="nc" id="L27">        return &quot;redirect:/transaction&quot;;</span>
+<span class="nc" id="L58">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
+<span class="nc" id="L59">        return &quot;redirect:/transaction&quot;;</span>
     }
 
+    /**
+     * Gère les exceptions de type ContactAlreadyExistException.
+     * Redirige vers la page des amis avec un message d'erreur.
+     *
+     * @param ex                 l'exception capturée
+     * @param redirectAttributes les attributs pour transmettre des données à la
+     *                           page de redirection
+     * @return la chaîne de redirection vers la page des amis
+     */
     @ExceptionHandler(ContactAlreadyExistException.class)
     public String handleContactAlreadyExistException(ContactAlreadyExistException ex,
             RedirectAttributes redirectAttributes) {
-<span class="nc" id="L33">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
-<span class="nc" id="L34">        return &quot;redirect:/friends&quot;;</span>
+<span class="nc" id="L74">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
+<span class="nc" id="L75">        return &quot;redirect:/friends&quot;;</span>
     }
 
+    /**
+     * Gère les exceptions de type DuplicateResourceException.
+     * Redirige vers la page des amis avec un message d'erreur.
+     *
+     * @param ex                 l'exception capturée
+     * @param redirectAttributes les attributs pour transmettre des données à la
+     *                           page de redirection
+     * @return la chaîne de redirection vers la page des amis
+     */
     @ExceptionHandler(DuplicateResourceException.class)
     public String handleDuplicateResourceException(DuplicateResourceException ex,
             RedirectAttributes redirectAttributes) {
-<span class="nc" id="L40">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
-<span class="nc" id="L41">        return &quot;redirect:/friends&quot;;</span>
+<span class="nc" id="L90">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
+<span class="nc" id="L91">        return &quot;redirect:/friends&quot;;</span>
     }
 
+    /**
+     * Gère les exceptions de type UserNotFondExeption.
+     * Redirige vers la page des amis avec un message d'erreur.
+     *
+     * @param ex                 l'exception capturée
+     * @param redirectAttributes les attributs pour transmettre des données à la
+     *                           page de redirection
+     * @return la chaîne de redirection vers la page des amis
+     */
     @ExceptionHandler(UserNotFondExeption.class)
     public String handleUserNotFondExeption(UserNotFondExeption ex, RedirectAttributes redirectAttributes) {
-<span class="nc" id="L46">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
-<span class="nc" id="L47">        return &quot;redirect:/friends&quot;;</span>
+<span class="nc" id="L105">        redirectAttributes.addFlashAttribute(&quot;error&quot;, ex.getMessage());</span>
+<span class="nc" id="L106">        return &quot;redirect:/friends&quot;;</span>
     }
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

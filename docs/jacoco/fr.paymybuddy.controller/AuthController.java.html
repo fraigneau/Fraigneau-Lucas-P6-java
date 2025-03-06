@@ -3,12 +3,29 @@
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Controller responsible for handling authentication-related requests.
+ * &lt;p&gt;
+ * This controller manages endpoints related to user authentication,
+ * such as login. It maps HTTP requests to the appropriate view templates.
+ *
+ * @author PayMyBuddy
+ * @version 1.0
+ * @see Controller
+ */
 @Controller
-<span class="fc" id="L7">public class AuthController {</span>
+<span class="fc" id="L17">public class AuthController {</span>
 
+    /**
+     * Handles GET requests to the login page.
+     * &lt;p&gt;
+     * This endpoint displays the login form to the user.
+     *
+     * @return the name of the login view template
+     */
     @GetMapping(&quot;/login&quot;)
     public String login() {
-<span class="nc" id="L11">        return &quot;login&quot;;</span>
+<span class="nc" id="L28">        return &quot;login&quot;;</span>
     }
 
 }

@@ -18,48 +18,103 @@ import fr.paymybuddy.mapper.UserMapper;
 import fr.paymybuddy.service.UserService;
 import jakarta.validation.Valid;
 
+/**
+ * Controller responsible for managing user profile operations.
+ * &lt;p&gt;
+ * This controller handles all operations related to viewing and updating
+ * a user's profile information. It provides endpoints for displaying the
+ * profile page and processing profile updates.
+ * &lt;/p&gt;
+ * 
+ * @author Pay My Buddy
+ * @version 1.0
+ */
 @Controller
 public class ProfilController {
 
-<span class="fc" id="L24">    private static final Logger logger = LoggerFactory.getLogger(ProfilController.class);</span>
+    /** Logger for this class */
+<span class="fc" id="L36">    private static final Logger logger = LoggerFactory.getLogger(ProfilController.class);</span>
 
+    /** Service handling user-related operations */
     private UserService userService;
+
+    /** Mapper for converting between User entities and DTOs */
     private UserMapper userMapper;
 
-<span class="nc" id="L29">    public ProfilController() {</span>
-<span class="nc" id="L30">    }</span>
+    /**
+     * Default constructor.
+     */
+<span class="nc" id="L47">    public ProfilController() {</span>
+<span class="nc" id="L48">    }</span>
 
+    /**
+     * Constructs a new ProfilController with the specified dependencies.
+     * 
+     * @param userService the service for user-related operations
+     * @param userMapper  the mapper for converting between User entities and DTOs
+     */
     @Autowired
-<span class="fc" id="L33">    public ProfilController(UserService userService, UserMapper userMapper) {</span>
-<span class="fc" id="L34">        this.userService = userService;</span>
-<span class="fc" id="L35">        this.userMapper = userMapper;</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L57">    public ProfilController(UserService userService, UserMapper userMapper) {</span>
+<span class="fc" id="L58">        this.userService = userService;</span>
+<span class="fc" id="L59">        this.userMapper = userMapper;</span>
+<span class="fc" id="L60">    }</span>
 
+    /**
+     * Displays the user profile page.
+     * &lt;p&gt;
+     * This endpoint retrieves the authenticated user's profile information
+     * and displays it on the profile page. If no user is authenticated,
+     * the user is redirected to the login page.
+     * &lt;/p&gt;
+     * 
+     * @param model       the Spring MVC model for passing data to the view
+     * @param userDetails the details of the authenticated user
+     * @return the name of the view to render or a redirect to the login page if no
+     *         user is authenticated
+     */
     @GetMapping(&quot;/profil&quot;)
     public String profil(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (userDetails != null) {</span>
-<span class="fc" id="L41">            UserFormRequestDTO actualUserForm = userMapper.toUserFormDTO(userService.getUserById(userDetails.getId()));</span>
-<span class="fc" id="L42">            model.addAttribute(&quot;user&quot;, actualUserForm);</span>
-<span class="fc" id="L43">        } else {</span>
-<span class="fc" id="L44">            logger.warn(&quot;Aucun utilisateur authentifié !&quot;);</span>
-<span class="fc" id="L45">            return &quot;redirect:/login&quot;;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (userDetails != null) {</span>
+<span class="fc" id="L78">            UserFormRequestDTO actualUserForm = userMapper.toUserFormDTO(userService.getUserById(userDetails.getId()));</span>
+<span class="fc" id="L79">            model.addAttribute(&quot;user&quot;, actualUserForm);</span>
+<span class="fc" id="L80">        } else {</span>
+<span class="fc" id="L81">            logger.warn(&quot;Aucun utilisateur authentifié !&quot;);</span>
+<span class="fc" id="L82">            return &quot;redirect:/login&quot;;</span>
         }
-<span class="fc" id="L47">        return &quot;profil&quot;;</span>
+<span class="fc" id="L84">        return &quot;profil&quot;;</span>
     }
 
+    /**
+     * Processes a user profile update.
+     * &lt;p&gt;
+     * This endpoint validates and processes a user profile update request.
+     * If validation errors occur, the user is returned to the profile page with
+     * error messages.
+     * Upon successful update, a success message is displayed and the user is
+     * redirected
+     * back to the profile page.
+     * &lt;/p&gt;
+     * 
+     * @param updatedUser        the updated user information from the form
+     * @param result             the binding result containing validation errors, if
+     *                           any
+     * @param userDetails        the details of the authenticated user
+     * @param redirectAttributes for passing flash attributes to the redirected URL
+     * @return the name of the view to render or a redirect to the profile page on
+     *         success
+     */
     @PostMapping(&quot;/profil-processing&quot;)
     public String profilProssesing(@Valid @ModelAttribute(&quot;user&quot;) UserFormRequestDTO updatedUser,
             BindingResult result, @AuthenticationPrincipal UserDetailsImpl userDetails,
             RedirectAttributes redirectAttributes) {
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
-<span class="fc" id="L55">            return &quot;profil&quot;;</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L111">            return &quot;profil&quot;;</span>
         }
 
-<span class="fc" id="L58">        userService.updateUser(updatedUser, userDetails.getId());</span>
-<span class="fc" id="L59">        redirectAttributes.addFlashAttribute(&quot;success&quot;, &quot;Profil mis à jour avec succès&quot;);</span>
+<span class="fc" id="L114">        userService.updateUser(updatedUser, userDetails.getId());</span>
+<span class="fc" id="L115">        redirectAttributes.addFlashAttribute(&quot;success&quot;, &quot;Profil mis à jour avec succès&quot;);</span>
 
-<span class="fc" id="L61">        return &quot;redirect:/profil&quot;;</span>
+<span class="fc" id="L117">        return &quot;redirect:/profil&quot;;</span>
     }
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

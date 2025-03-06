@@ -7,44 +7,159 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.paymybuddy.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-<span class="pc bnc" id="L12" title="All 38 branches missed.">@Data</span>
+/**
+ * Implementation of Spring Security's {@link UserDetails} interface.
+ * &lt;p&gt;
+ * This class serves as an adapter between the application's {@link User} model
+ * and Spring Security's authentication system. It provides the necessary
+ * user information to Spring Security for authentication and authorization.
+ * &lt;p&gt;
+ * The class uses Lombok's {@code @Data} annotation to automatically generate
+ * common boilerplate code.
+ *
+ * @author PayMyBuddy
+ * @version 1.0
+ * @see UserDetails
+ * @see User
+ */
+<span class="pc bnc" id="L28" title="All 38 branches missed.">@Data</span>
+<span class="nc" id="L29">@AllArgsConstructor</span>
 public class UserDetailsImpl implements UserDetails {
 
+    /**
+     * The unique identifier of the user.
+     */
     private Long id;
+
+    /**
+     * The username of the user.
+     */
     private String username;
+
+    /**
+     * The email address of the user.
+     */
     private String email;
+
+    /**
+     * The encoded password of the user.
+     */
     private String password;
 
-<span class="fc" id="L20">    public UserDetailsImpl(User user) {</span>
-<span class="fc" id="L21">        this.id = user.getId();</span>
-<span class="fc" id="L22">        this.username = user.getUsername();</span>
-<span class="fc" id="L23">        this.email = user.getEmail();</span>
-<span class="fc" id="L24">        this.password = user.getPassword();</span>
-<span class="fc" id="L25">    }</span>
+    /**
+     * Constructs a new UserDetailsImpl instance from a User entity.
+     * &lt;p&gt;
+     * Maps the relevant fields from the User entity to this UserDetails
+     * implementation.
+     *
+     * @param user the User entity to create the UserDetails from
+     */
+<span class="fc" id="L60">    public UserDetailsImpl(User user) {</span>
+<span class="fc" id="L61">        this.id = user.getId();</span>
+<span class="fc" id="L62">        this.username = user.getUsername();</span>
+<span class="fc" id="L63">        this.email = user.getEmail();</span>
+<span class="fc" id="L64">        this.password = user.getPassword();</span>
+<span class="fc" id="L65">    }</span>
 
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * @return the password
+     */
     @Override
     public String getPassword() {
-<span class="fc" id="L29">        return password;</span>
+<span class="fc" id="L74">        return password;</span>
     }
 
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return the username
+     */
     @Override
     public String getUsername() {
-<span class="fc" id="L34">        return username;</span>
+<span class="fc" id="L84">        return username;</span>
     }
 
+    /**
+     * Returns the email address of the user.
+     *
+     * @return the email address
+     */
     public String getEmail() {
-<span class="fc" id="L38">        return email;</span>
+<span class="fc" id="L93">        return email;</span>
     }
 
+    /**
+     * Returns the unique identifier of the user.
+     *
+     * @return the user ID
+     */
     public Long getId() {
-<span class="fc" id="L42">        return id;</span>
+<span class="fc" id="L102">        return id;</span>
     }
 
+    /**
+     * Returns the authorities granted to the user.
+     * &lt;p&gt;
+     * In this implementation, no specific authorities are granted.
+     *
+     * @return an empty list as no authorities are assigned
+     */
     @Override
     public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() {
-<span class="fc" id="L47">        return List.of();</span>
+<span class="fc" id="L114">        return List.of();</span>
+    }
+
+    /**
+     * Indicates whether the user's account has expired.
+     * &lt;p&gt;
+     * In this implementation, accounts never expire.
+     *
+     * @return {@code true} indicating the account is always valid
+     */
+    @Override
+    public boolean isAccountNonExpired() {
+<span class="nc" id="L126">        return true;</span>
+    }
+
+    /**
+     * Indicates whether the user is locked or unlocked.
+     * &lt;p&gt;
+     * In this implementation, accounts are never locked.
+     *
+     * @return {@code true} indicating the account is never locked
+     */
+    @Override
+    public boolean isAccountNonLocked() {
+<span class="nc" id="L138">        return true;</span>
+    }
+
+    /**
+     * Indicates whether the user's credentials (password) has expired.
+     * &lt;p&gt;
+     * In this implementation, credentials never expire.
+     *
+     * @return {@code true} indicating credentials are always valid
+     */
+    @Override
+    public boolean isCredentialsNonExpired() {
+<span class="nc" id="L150">        return true;</span>
+    }
+
+    /**
+     * Indicates whether the user is enabled or disabled.
+     * &lt;p&gt;
+     * In this implementation, users are always enabled.
+     *
+     * @return {@code true} indicating the user is always enabled
+     */
+    @Override
+    public boolean isEnabled() {
+<span class="nc" id="L162">        return true;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

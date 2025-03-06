@@ -16,47 +16,103 @@ import fr.paymybuddy.dto.UserFriendResponseDTO;
 import fr.paymybuddy.model.User;
 import fr.paymybuddy.service.UserService;
 
+/**
+ * Controller responsible for managing friend relationships between users.
+ * &lt;p&gt;
+ * This controller handles all operations related to the user's friends,
+ * including viewing, adding, and removing friends from a user's contact list.
+ * All endpoints in this controller are mapped under the &quot;/friends&quot; path.
+ * &lt;/p&gt;
+ * 
+ * @author Pay My Buddy
+ * @version 1.0
+ */
 @Controller
 @RequestMapping(&quot;/friends&quot;)
 public class FriendController {
 
+    /** Service handling user-related operations */
     private UserService userService;
 
-<span class="nc" id="L25">    public FriendController() {</span>
-<span class="nc" id="L26">    }</span>
+    /**
+     * Default constructor.
+     */
+<span class="nc" id="L40">    public FriendController() {</span>
+<span class="nc" id="L41">    }</span>
 
+    /**
+     * Constructs a new FriendController with the specified UserService.
+     * 
+     * @param userService the service for user-related operations
+     */
     @Autowired
-<span class="fc" id="L29">    public FriendController(UserService userService) {</span>
-<span class="fc" id="L30">        this.userService = userService;</span>
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L49">    public FriendController(UserService userService) {</span>
+<span class="fc" id="L50">        this.userService = userService;</span>
+<span class="fc" id="L51">    }</span>
 
+    /**
+     * Displays the list of friends for the authenticated user.
+     * &lt;p&gt;
+     * This endpoint retrieves all friends associated with the currently
+     * authenticated user and displays them on the friends page.
+     * &lt;/p&gt;
+     * 
+     * @param model       the Spring MVC model for passing data to the view
+     * @param userDetails the details of the authenticated user
+     * @return the name of the view to render
+     */
     @GetMapping
     public String showFriends(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-<span class="fc" id="L35">        List&lt;UserFriendResponseDTO&gt; friends = userService.getFriends(userDetails.getId());</span>
-<span class="fc" id="L36">        model.addAttribute(&quot;friends&quot;, friends);</span>
-<span class="fc" id="L37">        return &quot;friends&quot;;</span>
+<span class="fc" id="L66">        List&lt;UserFriendResponseDTO&gt; friends = userService.getFriends(userDetails.getId());</span>
+<span class="fc" id="L67">        model.addAttribute(&quot;friends&quot;, friends);</span>
+<span class="fc" id="L68">        return &quot;friends&quot;;</span>
     }
 
+    /**
+     * Adds a new friend to the authenticated user's list.
+     * &lt;p&gt;
+     * This endpoint adds a new friend relationship between the authenticated user
+     * and another user identified by their email address.
+     * &lt;/p&gt;
+     * 
+     * @param userDetails        the details of the authenticated user
+     * @param email              the email address of the user to add as a friend
+     * @param redirectAttributes for passing flash attributes to the redirected URL
+     * @return a redirect URL to the friends page with an &quot;add&quot; parameter
+     */
     @GetMapping(&quot;/add&quot;)
     public String addFriend(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam(&quot;email&quot;) String email,
             RedirectAttributes redirectAttributes) {
 
-<span class="fc" id="L44">        User friend = userService.getUserByEmail(email);</span>
-<span class="fc" id="L45">        userService.addFriend(userDetails.getId(), friend.getId());</span>
-<span class="fc" id="L46">        redirectAttributes.addFlashAttribute(&quot;success&quot;, &quot;Friend added successfully&quot;);</span>
+<span class="fc" id="L87">        User friend = userService.getUserByEmail(email);</span>
+<span class="fc" id="L88">        userService.addFriend(userDetails.getId(), friend.getId());</span>
+<span class="fc" id="L89">        redirectAttributes.addFlashAttribute(&quot;success&quot;, &quot;Friend added successfully&quot;);</span>
 
-<span class="fc" id="L48">        return &quot;redirect:/friends?add&quot;;</span>
+<span class="fc" id="L91">        return &quot;redirect:/friends?add&quot;;</span>
     }
 
+    /**
+     * Removes a friend from the authenticated user's list.
+     * &lt;p&gt;
+     * This endpoint removes an existing friend relationship between the
+     * authenticated
+     * user and the specified friend identified by their email address.
+     * &lt;/p&gt;
+     * 
+     * @param userDetails        the details of the authenticated user
+     * @param email              the email address of the friend to be removed
+     * @param redirectAttributes for passing flash attributes to the redirected URL
+     * @return a redirect URL to the friends page with a &quot;del&quot; parameter
+     */
     @GetMapping(&quot;/del&quot;)
     public String delFriend(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam(&quot;email&quot;) String email,
             RedirectAttributes redirectAttributes) {
 
-<span class="fc" id="L55">        User friend = userService.getUserByEmail(email);</span>
-<span class="fc" id="L56">        userService.deleteFriend(userDetails.getId(), friend.getId());</span>
-<span class="fc" id="L57">        redirectAttributes.addFlashAttribute(&quot;success&quot;, &quot;Friend deleted successfully&quot;);</span>
+<span class="fc" id="L111">        User friend = userService.getUserByEmail(email);</span>
+<span class="fc" id="L112">        userService.deleteFriend(userDetails.getId(), friend.getId());</span>
+<span class="fc" id="L113">        redirectAttributes.addFlashAttribute(&quot;success&quot;, &quot;Friend deleted successfully&quot;);</span>
 
-<span class="fc" id="L59">        return &quot;redirect:/friends?del&quot;;</span>
+<span class="fc" id="L115">        return &quot;redirect:/friends?del&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
