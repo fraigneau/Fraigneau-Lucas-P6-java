@@ -40,7 +40,7 @@ L'application suit une architecture en couches standard :
 
 Le diagramme EER ci-dessous représente la structure de la base de données de l'application Pay My Buddy :
 
-![Diagramme EER de Pay My Buddy](Data/EER.png)
+![Diagramme EER de Pay My Buddy](Data/EER-diagram.png)
 
 Le schéma de base de données comprend les entités principales suivantes :
 - **User** : Stocke les informations des utilisateurs (email, mot de passe, solde)
