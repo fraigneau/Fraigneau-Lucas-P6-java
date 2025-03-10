@@ -1,5 +1,3 @@
-Voici un README complet du projet en français qui résume toutes les caractéristiques et fonctionnalités de l'application Pay My Buddy.
-
 # Pay My Buddy
 
 Une application de transfert d'argent peer-to-peer développée avec Spring Boot qui permet aux utilisateurs d'envoyer facilement de l'argent à leurs amis.
@@ -37,6 +35,22 @@ L'application suit une architecture en couches standard :
 - **Model** : Entités du domaine
 - **DTO** : Objets de transfert de données
 - **Mapper** : Interfaces MapStruct pour la conversion d'objets
+
+## Schéma EER (Enhanced Entity-Relationship)
+
+Le diagramme EER ci-dessous représente la structure de la base de données de l'application Pay My Buddy :
+
+![Diagramme EER de Pay My Buddy](Data/EER.png)
+
+Le schéma de base de données comprend les entités principales suivantes :
+- **User** : Stocke les informations des utilisateurs (email, mot de passe, solde)
+- **Transaction** : Enregistre chaque transfert d'argent avec montant, date et description
+- **UserConnection** : Définit les relations d'amitié entre utilisateurs
+
+Les relations principales sont :
+- Un utilisateur peut avoir plusieurs connections avec d'autres utilisateurs
+- Un utilisateur peut effectuer plusieurs transactions (en tant qu'émetteur ou destinataire)
+- Chaque transaction est liée à un émetteur et un destinataire
 
 ## Documentation
 
