@@ -47,7 +47,7 @@
     <div class="form-section">
       <form th:action="@{/transaction/pay}" method="post" th:object="${transactionResponse}">
         <select th:field="*{email}" required>
-          <option value="" disabled selected>Choix du destinataire</option>
+          <option value="" selected>Choix du destinataire</option>
           <option th:each="friend : ${friendsList}" th:value="${friend.email}" th:text="${friend.email}"></option>
         </select>
         <input type="text" name="description" maxlength="25" minlength="5" placeholder="Description"
