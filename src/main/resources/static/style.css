@@ -1,364 +1,194 @@
-/* Styles de base pour l'accessibilité */
+/* Reset basique */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-/* Variables pour faciliter la cohérence et les modifications */
-:root {
-    --primary-color: #0056b3;
-    --secondary-color: #555555;
-    --background-color: #ffffff;
-    --text-color: #333333;
-    --error-color: #d32f2f;
-    --success-color: #388e3c;
-    --border-color: #dddddd;
-    --focus-outline: 3px solid #4d90fe;
-    --border-radius: 4px;
-    --spacing-sm: 5px;
-    --spacing-md: 10px;
-    --spacing-lg: 20px;
-}
-
-/* Styles globaux */
+/* Styles de base */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    /* Taille de base pour une meilleure lisibilité */
-}
-
-/* Amélioration de la visibilité des liens */
-a {
-    color: var(--primary-color);
-    text-decoration: underline;
-    /* Toujours souligner les liens pour une meilleure accessibilité */
-    font-weight: bold;
-}
-
-a:hover,
-a:focus {
-    text-decoration: underline;
-    outline: var(--focus-outline);
-}
-
-a.active {
-    font-weight: bolder;
-    border-bottom: 2px solid var(--primary-color);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: #333;
 }
 
 /* En-tête */
 .header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: var(--spacing-lg);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.header span {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: var(--spacing-md);
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
 }
 
 .header nav {
     display: flex;
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-md);
+    gap: 20px;
 }
 
 .header a {
-    color: white;
     text-decoration: none;
-    padding: var(--spacing-md);
-}
-
-.header a:hover,
-.header a:focus {
-    text-decoration: underline;
-    background-color: rgba(255, 255, 255, 0.2);
+    color: #000;
 }
 
 .header a.active {
-    background-color: rgba(255, 255, 255, 0.3);
-    font-weight: bold;
+    color: #007bff;
 }
 
-/* Structure principale */
+/* Conteneurs */
 .container {
-    max-width: 1000px;
-    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-lg);
-}
-
-/* Formulaires */
-form {
-    margin-bottom: 20px;
-}
-
-/* Titres */
-h1,
-h2 {
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-lg);
-    font-weight: bold;
-    line-height: 1.2;
-}
-
-h1 {
-    font-size: 28px;
-}
-
-h2 {
-    font-size: 24px;
-    margin-top: var(--spacing-lg);
-}
-
-/* Conteneurs de formulaires */
-.login-container,
-.profile-section,
-.form-section {
-    background-color: #f9f9f9;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 20px;
 }
 
 .login-container {
-    max-width: 400px;
+    max-width: 350px;
     margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #eee;
 }
 
-/* Éléments de formulaire */
-.form-group,
-.profile-item {
-    margin-bottom: var(--spacing-lg);
-}
-
-label {
-    display: block;
-    margin-bottom: var(--spacing-sm);
-    font-weight: bold;
-    color: var(--text-color);
-}
-
+/* Formulaires */
 input,
 select {
     width: 100%;
     padding: 10px;
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-input:focus,
-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.3);
-}
-
-input[readonly] {
-    background-color: #f0f0f0;
-    cursor: not-allowed;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
 }
 
 /* Boutons */
 button,
-.btn-primary,
-.del {
-    padding: 10px 15px;
-    border: none;
-    border-radius: var(--border-radius);
-    background-color: var(--primary-color);
+.btn-primary {
+    background-color: #007bff;
     color: white;
-    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
     cursor: pointer;
-    font-weight: bold;
-    min-width: 100px;
 }
 
-button:hover,
-.btn-primary:hover {
-    background-color: #003d7a;
-}
-
-button:focus,
-.btn-primary:focus {
-    outline: var(--focus-outline);
-}
-
-/* Bouton supprimer */
-.del {
-    background-color: var(--error-color);
-    padding: 8px 12px;
-}
-
-.del:hover {
-    background-color: #b71c1c;
-}
-
-.del::before {
-    content: "×";
-    margin-right: 5px;
-    font-weight: bold;
+/* Logo Pay My Buddy */
+.app-title {
+    background-color: #ffa500;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 15px 0 30px 0;
 }
 
 /* Tableaux */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: var(--spacing-lg);
-    border: 1px solid var(--border-color);
+    margin-top: 20px;
 }
 
 th,
 td {
-    border: 1px solid var(--border-color);
-    padding: 12px;
+    padding: 10px;
     text-align: left;
+    border-bottom: 1px solid #eee;
 }
 
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* Messages d'alerte */
-.alert {
-    padding: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-    border-radius: var(--border-radius);
-    font-weight: bold;
-}
-
-.alert-danger {
-    background-color: #ffebee;
-    color: var(--error-color);
-    border: 1px solid var(--error-color);
-}
-
-.alert-success {
-    background-color: #e8f5e9;
-    color: var(--success-color);
-    border: 1px solid var(--success-color);
-}
-
-.alert .close-btn {
-    float: right;
-    background: none;
-    border: none;
-    color: inherit;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0 5px;
-    min-width: auto;
-}
-
-/* Messages d'erreur */
-.error {
-    color: var(--error-color);
-    font-size: 14px;
-    margin-top: 3px;
-    display: block;
-}
-
-/* Pied de formulaire */
-.form-footer {
-    margin-top: var(--spacing-lg);
-    text-align: center;
-}
-
-.form-footer .separator {
-    margin: 0 var(--spacing-md);
-    color: var(--secondary-color);
-}
-
-/* Améliorer la visibilité des éléments de focus pour l'accessibilité */
-:focus {
-    outline: var(--focus-outline);
-}
-
-/* Media queries pour le responsive */
+/* Ajustements minimaux pour le responsive */
 @media (max-width: 768px) {
     .header {
-        padding: var(--spacing-md);
+        flex-direction: column;
+        text-align: center;
     }
 
     .header nav {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-        align-items: center;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .profile-item {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-item label {
+        text-align: left;
     }
 
     .form-section form {
         flex-direction: column;
     }
-
-    input,
-    select,
-    button {
-        width: 100%;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .form-section form input[type="email"] {
-        margin-bottom: var(--spacing-md);
-    }
-
-    table {
-        font-size: 14px;
-    }
-
-    th,
-    td {
-        padding: 8px;
-    }
 }
 
-/* Style pour formulaires horizontaux */
-.form-horizontal {
+/* Bouton de suppression */
+.del,
+.action-cell button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    min-width: 80px;
+}
+
+.del:hover,
+.action-cell button:hover {
+    background-color: #c82333;
+}
+
+/* Centre le texte dans la cellule d'action */
+td.action-cell {
+    text-align: center;
+}
+
+/* Assurez-vous que le bouton dans la cellule d'action a un texte visible */
+.action-cell button::before {
+    content: "Supprimer";
+}
+
+/* Formulaire d'ajout de relation */
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section form {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    align-items: flex-end;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
 }
 
-.form-horizontal input,
-.form-horizontal select {
+.form-section input[type="email"] {
     flex: 1;
-    min-width: 200px;
+    margin-bottom: 0;
 }
 
-.form-horizontal button {
-    min-width: 120px;
+.form-section button {
+    background-color: #ffa500;
+    white-space: nowrap;
+    min-width: 100px;
 }
 
-/* Amélioration du contraste pour les malvoyants */
-.high-contrast {
-    --primary-color: #0000ff;
-    --text-color: #000000;
-    --background-color: #ffffff;
-    --error-color: #ff0000;
-    --success-color: #008000;
-    --border-color: #000000;
+/* Page profil */
+.profile-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-item label {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.profile-section {
+    position: relative;
+}
+
+.profile-section button {
+    background-color: #ffa500;
+    position: absolute;
+    right: 0;
+    margin-top: 20px;
 }

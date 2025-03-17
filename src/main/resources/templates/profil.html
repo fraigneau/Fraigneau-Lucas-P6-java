@@ -50,7 +50,9 @@
         <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
       </div>
 
-      <button type="submit">Enregistrer</button>
+      <div class="profile-item" style="text-align: right;">
+        <button class="app-title" type="submit">Modifier</button>
+      </div>
     </form>
 
     <script>
