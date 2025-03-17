@@ -152,3 +152,14 @@ Des tests d'intégration sont configurés pour vérifier le bon fonctionnement d
 - **src/main/resources** : Fichiers de ressources (templates, CSS, properties)
 - **src/test/java** : Tests unitaires et d'intégration
 - **src/test/resources** : Ressources pour les tests
+
+## Accessibilité WCAG
+
+L'application a été optimisée pour respecter les normes d'accessibilité WCAG 2.1 niveau AA afin d'offrir une expérience inclusive à tous les utilisateurs :
+
+- **Contraste amélioré** : Ratios de contraste conformes aux exigences WCAG pour une meilleure lisibilité
+- **Liens identifiables** : Soulignement par défaut et effets de surbrillance au survol dans les formulaires
+- **Navigation au clavier** : États de focus visibles et améliorés pour tous les éléments interactifs
+- **Formulaires structurés** : Labels explicites et retours d'erreur clairs pour une meilleure compréhension
+
+Ces optimisations garantissent que l'application reste fonctionnelle et conviviale pour les utilisateurs ayant des besoins d'accessibilité spécifiques, tout en maintenant l'esthétique globale du design.
