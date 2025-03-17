@@ -192,3 +192,24 @@ td.action-cell {
     right: 0;
     margin-top: 20px;
 }
+
+/* Mise en surbrillance des inputs lors du focus */
+input:focus,
+select:focus {
+    outline: 2px solid #007bff;
+    box-shadow: 0 0 3px #007bff;
+    border-color: #007bff;
+}
+
+/* Boutons conformes aux normes WCAG */
+button,
+.btn-primary,
+.del,
+.action-cell button {
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 44px;
+    /* Taille minimale pour la cible tactile */
+    line-height: 1.5;
+    text-align: center;
+}
